@@ -1,0 +1,268 @@
+*** 
+***  Copyright 2003-2013, University of Cambridge, Computer Laboratory. 
+***  Copyright and related rights are licensed under the Hardware License, 
+***  Version 2.0 (the "License"); you may not use this file except in 
+***  compliance with the License. You may obtain a copy of the License at
+***  http://www.cl.cam.ac.uk/research/srg/netos/greenict/projects/contest/. 
+***  Unless required by applicable law or agreed to in writing, software, 
+***  hardware and materials distributed under this License is distributed 
+***  on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+***  either express or implied. See the License for the specific language
+***  governing permissions and limitations under the License.
+*** 
+*** 
+
+
+---------------- OPT1 ------------------
+
+****** VARIABLES **********
+   result_vdd=  9.0000E-01
+   result_vss=  0.0000E+00
+   result_pulldown_width=  3.0000E-07
+   result_pulldown_length=  5.0000E-08
+   result_pullup_width=  3.5000E-07
+   result_pullup_length=  8.0000E-08
+   result_sink_width=  1.0000E-06
+   result_sink_length=  1.0000E-07
+   result_n_bias=  5.9000E-01
+   result_p_bias=  2.0000E-03
+
+****** MEASUREMENTS *********
+
+   deltav_in=  4.8135E-01
+   deltav_a=  5.8575E-01
+   deltav_b=  6.2779E-01
+   deltav_c=  6.4014E-01
+   deltav_d=  6.4210E-01
+   deltav_e=  6.4303E-01
+   deltav_f=  6.4566E-01
+   mid_vin=  7.0336E-01
+   mid_va=  5.7355E-01
+   mid_vb=  5.8403E-01
+   mid_vc=  5.7880E-01
+   mid_vd=  5.7873E-01
+   mid_ve=  5.7937E-01
+   mid_vf=  5.7893E-01
+   delta_ia=  7.4415E-12  targ=  1.1385E-10   trig=  1.0641E-10
+   delta_ab=  3.7783E-12  targ=  1.1476E-10   trig=  1.1099E-10
+   delta_bc=  4.9974E-12  targ=  1.1993E-10   trig=  1.1493E-10
+   delta_cd=  4.1060E-12  targ=  1.2396E-10   trig=  1.1986E-10
+   delta_de=  4.3071E-12  targ=  1.2827E-10   trig=  1.2396E-10
+   delta_ef=  3.1970E-12  targ=  1.3147E-10   trig=  1.2828E-10
+   delta_ii=  2.6359E-12  targ=  1.0905E-10   trig=  1.0641E-10
+   delta_aa=  4.0605E-12  targ=  1.1505E-10   trig=  1.1099E-10
+   delta_bb=  4.5888E-12  targ=  1.1952E-10   trig=  1.1493E-10
+   delta_cc=  3.0293E-12  targ=  1.2289E-10   trig=  1.1986E-10
+   delta_dd=  3.1328E-12  targ=  1.2709E-10   trig=  1.2396E-10
+   delta_ee=  2.9226E-12  targ=  1.3120E-10   trig=  1.2828E-10
+   delta_ff=  1.9340E-12  targ=  1.3340E-10   trig=  1.3147E-10
+   deltahl_a=  8.6366E-12  targ=  1.1505E-10   trig=  1.0641E-10
+   deltalh_a=  1.9402E-12  targ=  1.1099E-10   trig=  1.0905E-10
+   deltahl_b=  8.5338E-12  targ=  1.1952E-10   trig=  1.1099E-10
+   deltalh_b= -1.1553E-13  targ=  1.1493E-10   trig=  1.1505E-10
+   deltahl_c=  7.9542E-12  targ=  1.2289E-10   trig=  1.1493E-10
+   deltalh_c=  3.3610E-13  targ=  1.1986E-10   trig=  1.1952E-10
+   deltahl_d=  7.2380E-12  targ=  1.2709E-10   trig=  1.1986E-10
+   deltalh_d=  1.0759E-12  targ=  1.2396E-10   trig=  1.2289E-10
+   deltahl_e=  7.2379E-12  targ=  1.3120E-10   trig=  1.2396E-10
+   deltalh_e=  1.1825E-12  targ=  1.2828E-10   trig=  1.2709E-10
+   deltahl_f=  5.1264E-12  targ=  1.3340E-10   trig=  1.2828E-10
+   deltalh_f=  2.6983E-13  targ=  1.3147E-10
+
+---------------- OPT2 ------------------
+   ****** VARIABLES **********	 
+   result_vdd=  9.0000E-01
+   result_vss=  0.0000E+00
+   result_pulldown_width=  3.0000E-07
+   result_pulldown_length=  5.0000E-08
+   result_pullup_width=  3.0000E-07
+   result_pullup_length=  7.0000E-08
+   result_sink_width=  9.0000E-07
+   result_sink_length=  9.0000E-08
+   result_n_bias=  5.9000E-01
+   result_p_bias=  2.0000E-03
+
+  ****** MEASUREMENTS *********
+
+   deltav_in=  4.8153E-01
+   deltav_a=  5.9066E-01
+   deltav_b=  6.3549E-01
+   deltav_c=  6.4668E-01
+   deltav_d=  6.4952E-01
+   deltav_e=  6.5055E-01
+   deltav_f=  6.5352E-01
+   mid_vin=  7.0362E-01
+   mid_va=  5.6957E-01
+   mid_vb=  5.8030E-01
+   mid_vc=  5.7597E-01
+   mid_vd=  5.7568E-01
+   mid_ve=  5.7615E-01
+   mid_vf=  5.7579E-01
+   delta_ia=  7.3826E-12  targ=  1.1378E-10   trig=  1.0640E-10
+   delta_ab=  3.5946E-12  targ=  1.1452E-10   trig=  1.1093E-10
+   delta_bc=  4.8425E-12  targ=  1.1953E-10   trig=  1.1469E-10
+   delta_cd=  3.8838E-12  targ=  1.2335E-10   trig=  1.1947E-10
+   delta_de=  4.0977E-12  targ=  1.2745E-10   trig=  1.2335E-10
+   delta_ef=  2.9723E-12  targ=  1.3043E-10   trig=  1.2745E-10
+   delta_ii=  2.6055E-12  targ=  1.0901E-10   trig=  1.0640E-10
+   delta_aa=  3.8501E-12  targ=  1.1478E-10   trig=  1.1093E-10
+   delta_bb=  4.3646E-12  targ=  1.1905E-10   trig=  1.1469E-10
+   delta_cc=  2.6458E-12  targ=  1.2212E-10   trig=  1.1947E-10
+   delta_dd=  2.7991E-12  targ=  1.2615E-10   trig=  1.2335E-10
+   delta_ee=  2.5940E-12  targ=  1.3005E-10   trig=  1.2745E-10
+   delta_ff=  1.6655E-12  targ=  1.3209E-10   trig=  1.3042E-10
+   deltahl_a=  8.3761E-12  targ=  1.1478E-10   trig=  1.0640E-10
+   deltalh_a=  1.9205E-12  targ=  1.1093E-10   trig=  1.0901E-10
+   deltahl_b=  8.1218E-12  targ=  1.1905E-10   trig=  1.1093E-10
+   deltalh_b= -9.2861E-14  targ=  1.1469E-10   trig=  1.1478E-10
+   deltahl_c=  7.4313E-12  targ=  1.2212E-10   trig=  1.1469E-10
+   deltalh_c=  4.2078E-13  targ=  1.1947E-10   trig=  1.1905E-10
+   deltahl_d=  6.6794E-12  targ=  1.2615E-10   trig=  1.1947E-10
+   deltalh_d=  1.2344E-12  targ=  1.2335E-10   trig=  1.2212E-10
+   deltahl_e=  6.6971E-12  targ=  1.3005E-10   trig=  1.2335E-10
+   deltalh_e=  1.3040E-12  targ=  1.2745E-10   trig=  1.2615E-10
+   deltahl_f=  4.6347E-12  targ=  1.3209E-10   trig=  1.2745E-10
+   deltalh_f=  3.7513E-13  targ=  1.3042E-10   trig=  1.3005E-10
+   prop_a=  5.1483E-12
+   prop_b=  4.0145E-12
+   prop_c=  3.9260E-12
+   prop_d=  3.9569E-12
+   prop_e=  4.0006E-12
+   prop_f=  2.5049E-12	 
+
+
+---------------- OPT3 ---------------------
+
+****** VARS *************
+.param PARAM_MCML_SWING = 0.4
+.param PARAM_VDD_VOLTAGE = 0.9
+.param PARAM_VSS_VOLTAGE = 0.0
+
+.param SWEEP_P_WIDTH = 0.32U
+.param SWEEP_P_LENGTH = 0.07U
+
+.param SWEEP_N_WIDTH = 0.3U
+.param SWEEP_N_LENGTH = 'lmin'
+
+.param PARAM_NSOURCE_WIDTH = '1.2U'
+.param PARAM_NSOURCE_LENGTH = '0.12U'
+
+.param SWEEP_N_BIAS_VOLTAGE = 0.53V
+.param SWEEP_P_BIAS_VOLTAGE = 2mV
+
+***** MEASUREMENTS *****
+   deltav_in=  4.8022E-01
+   deltav_a=  4.4413E-01
+   deltav_b=  4.5043E-01
+   deltav_c=  4.5578E-01
+   deltav_d=  4.5790E-01
+   deltav_e=  4.5845E-01
+   deltav_f=  4.5865E-01
+   mid_vin=  7.0515E-01
+   mid_va=  6.7486E-01
+   mid_vb=  6.7128E-01
+   mid_vc=  6.6935E-01
+   mid_vd=  6.6861E-01
+   mid_ve=  6.6844E-01
+   mid_vf=  6.6838E-01
+   delta_ia=  3.4792E-12  targ=  1.0992E-10   trig=  1.0645E-10
+   delta_ab=  3.9152E-12  targ=  1.1305E-10   trig=  1.0914E-10
+   delta_bc=  3.7128E-12  targ=  1.1668E-10   trig=  1.1296E-10
+   delta_cd=  3.7404E-12  targ=  1.2037E-10   trig=  1.1663E-10
+   delta_de=  3.7563E-12  targ=  1.2410E-10   trig=  1.2035E-10
+   delta_ef=  2.7279E-12  targ=  1.2683E-10   trig=  1.2410E-10
+   delta_ii=  2.3158E-12  targ=  1.0876E-10   trig=  1.0645E-10
+   delta_aa=  5.4971E-12  targ=  1.1463E-10   trig=  1.0914E-10
+   delta_bb=  5.5143E-12  targ=  1.1848E-10   trig=  1.1296E-10
+   delta_cc=  5.7254E-12  targ=  1.2235E-10   trig=  1.1663E-10
+   delta_dd=  5.8829E-12  targ=  1.2623E-10   trig=  1.2035E-10
+   delta_ee=  5.9482E-12  targ=  1.3005E-10   trig=  1.2410E-10
+   delta_ff=  4.9649E-12  targ=  1.3179E-10   trig=  1.2683E-10
+   deltahl_a=  8.1890E-12  targ=  1.1463E-10   trig=  1.0645E-10
+   deltalh_a=  3.7610E-13  targ=  1.0914E-10   trig=  1.0876E-10
+   deltahl_b=  9.3410E-12  targ=  1.1848E-10   trig=  1.0914E-10
+   deltalh_b= -1.6704E-12  targ=  1.1296E-10   trig=  1.1463E-10
+   deltahl_c=  9.3878E-12  targ=  1.2235E-10   trig=  1.1296E-10
+   deltalh_c= -1.8518E-12  targ=  1.1663E-10   trig=  1.1848E-10
+   deltahl_d=  9.6053E-12  targ=  1.2623E-10   trig=  1.1663E-10
+   deltalh_d= -2.0031E-12  targ=  1.2035E-10   trig=  1.2235E-10
+   deltahl_e=  9.7002E-12  targ=  1.3005E-10   trig=  1.2035E-10
+   deltalh_e= -2.1309E-12  targ=  1.2410E-10   trig=  1.2623E-10
+   deltahl_f=  7.6915E-12  targ=  1.3179E-10   trig=  1.2410E-10
+   deltalh_f= -3.2217E-12  targ=  1.2683E-10   trig=  1.3005E-10
+   prop_a=  4.2826E-12
+   prop_b=  3.8353E-12
+   prop_c=  3.7680E-12
+   prop_d=  3.8011E-12
+   prop_e=  3.7846E-12
+   prop_f=  2.2349E-12
+   rise_in=  2.0202E-11  targ=  1.1983E-10   trig=  9.9625E-11
+   rise_a=  1.2203E-11  targ=  1.1664E-10   trig=  1.0444E-10
+   rise_b=  1.2620E-11  targ=  1.2043E-10   trig=  1.0781E-10
+   rise_c=  1.2879E-11  targ=  1.2441E-10   trig=  1.1153E-10
+   rise_d=  1.3036E-11  targ=  1.2830E-10   trig=  1.1527E-10
+   rise_e=  1.3206E-11  targ=  1.3225E-10   trig=  1.1904E-10
+   rise_f=  1.1791E-11  targ=  1.3414E-10   trig=  1.2235E-10
+   fall_in=  6.2102E-11  targ=  1.2169E-10   trig=  5.9588E-11
+   fall_a=  2.1546E-11  targ=  1.2718E-10   trig=  1.0564E-10
+   fall_b=  2.6628E-11  targ=  1.3631E-10   trig=  1.0968E-10
+   fall_c=  1.0519E-10  targ=  2.1873E-10   trig=  1.1354E-10
+   fall_d=  1.0655E-10  targ=  2.2384E-10   trig=  1.1730E-10
+   fall_e=  1.0699E-10  targ=  2.2802E-10   trig=  1.2103E-10
+   fall_f=  1.0370E-10  targ=  2.2798E-10   trig=  1.2428E-10
+
+
+
+---------------- OPT3 ---------------------
+
+****** VARS *************
+.param PARAM_MCML_SWING = 0.4
+
+*** supply voltages
+.param PARAM_VDD_VOLTAGE = 0.9
+.param PARAM_VSS_VOLTAGE = 0.0
+
+*** parasitic capacitance
+.param CLOAD = 0.05fF 
+
+*** pull-up network
+.param SWEEP_P_WIDTH = 0.25U
+.param SWEEP_P_LENGTH = 0.06U
+
+*** pull-down
+.param SWEEP_N_WIDTH = 0.21U
+.param SWEEP_N_LENGTH = 'lmin'
+
+*** current sink 
+.param PARAM_NSOURCE_WIDTH = 1.2U
+.param PARAM_NSOURCE_LENGTH = 0.12U
+
+*** reference voltages
+.param SWEEP_N_BIAS_VOLTAGE = 0.53V
+.param SWEEP_P_BIAS_VOLTAGE = 2mV
+
+***** MEASUREMENTS *****
+ prop_a=  3.8409E-12
+ prop_b=  2.9252E-12
+ prop_c=  3.1305E-12
+ prop_d=  3.2430E-12
+ prop_e=  3.1613E-12
+ prop_f=  1.9870E-12
+ rise_in=  1.9463E-11  targ=  1.1888E-10   trig=  9.9417E-11
+ rise_a=  5.2800E-11  targ=  1.1530E-10   trig=  6.2505E-11
+ rise_b=  1.3586E-11  targ=  1.1997E-10   trig=  1.0638E-10
+ rise_c=  1.4328E-11  targ=  1.2376E-10   trig=  1.0943E-10
+ rise_d=  1.5700E-11  targ=  1.2773E-10   trig=  1.1203E-10
+ rise_e=  1.7024E-11  targ=  1.3175E-10   trig=  1.1472E-10
+ rise_f=  1.7769E-11  targ=  1.3461E-10   trig=  1.1684E-10
+ fall_in=  6.1263E-11  targ=  1.1930E-10   trig=  5.8040E-11
+ fall_a=  2.2457E-11  targ=  1.2675E-10   trig=  1.0429E-10
+ fall_b=  2.2490E-11  targ=  1.2988E-10   trig=  1.0739E-10
+ fall_c=  2.3821E-11  targ=  1.3429E-10   trig=  1.1047E-10
+ fall_d=  2.7111E-11  targ=  1.4052E-10   trig=  1.1341E-10
+ fall_e=  1.0604E-10  targ=  2.2229E-10   trig=  1.1625E-10
+ fall_f=  1.0734E-10  targ=  2.2582E-10   trig=  1.1848E-10
+
+
+
+

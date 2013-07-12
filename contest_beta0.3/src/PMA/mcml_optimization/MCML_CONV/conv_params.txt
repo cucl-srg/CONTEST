@@ -1,0 +1,64 @@
+*** 
+***  Copyright 2003-2013, University of Cambridge, Computer Laboratory. 
+***  Copyright and related rights are licensed under the Hardware License, 
+***  Version 2.0 (the "License"); you may not use this file except in 
+***  compliance with the License. You may obtain a copy of the License at
+***  http://www.cl.cam.ac.uk/research/srg/netos/greenict/projects/contest/. 
+***  Unless required by applicable law or agreed to in writing, software, 
+***  hardware and materials distributed under this License is distributed 
+***  on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+***  either express or implied. See the License for the specific language
+***  governing permissions and limitations under the License.
+*** 
+*** 
+
+
+------------- OPT1 ------------------
+
+******** VARS ***********
+
+.param PARAM_MCML_SWING = 0.4
+*** supply voltages
+.param PARAM_CMOS_VDD_VOLTAGE = 1.1
+.param PARAM_VDD_VOLTAGE = 0.9
+.param PARAM_VSS_VOLTAGE = 0.0
+
+*** parasitic capacitance
+.param CLOAD = 0.05fF 
+
+*** pull-up network
+.param SWEEP_P_WIDTH = 0.25U
+.param SWEEP_P_LENGTH = 0.055U
+
+*** pull-down
+.param SWEEP_N_WIDTH = 0.21U
+.param SWEEP_N_LENGTH = 'lmin'
+
+*** current sink 
+.param PARAM_NSOURCE_WIDTH = 1.2U
+.param PARAM_NSOURCE_LENGTH = 0.12U
+
+*** reference voltages
+.param SWEEP_N_BIAS_VOLTAGE = 0.53V
+.param SWEEP_P_BIAS_VOLTAGE = 50mV
+
+**** CMOS gate dimentions optimization ******
+.param SWEEP_CMOSP_WIDTH = 0.3U
+.param SWEEP_CMOSN_WIDTH = 0.21U
+
+
+******** MEASUREMENTS *************
+ prop_i=  9.1717E-12 -- delay in CMOS to MCML
+ prop_o=  1.7115E-11 -- delay out MCML to CMOS
+ prop_a=  3.6476E-12
+ prop_b=  2.7346E-12
+ prop_c=  3.1867E-12
+ rise_in=  5.5887E-12  targ=  1.1873E-10   trig=  1.1315E-10
+ rise_a=  6.7784E-12  targ=  1.2129E-10   trig=  1.1451E-10
+ rise_b=  8.4957E-12  targ=  1.2537E-10   trig=  1.1687E-10
+ rise_c=  1.1469E-11  targ=  1.3008E-10   trig=  1.1861E-10
+ fall_in=  1.5337E-11  targ=  1.2769E-10   trig=  1.1236E-10
+ fall_a=  1.6676E-11  targ=  1.3229E-10   trig=  1.1561E-10
+ fall_b=  2.2284E-11  targ=  1.3981E-10   trig=  1.1753E-10
+ fall_c=  2.6661E-11  targ=  1.4667E-10   trig=  1.2001E-10
+ 

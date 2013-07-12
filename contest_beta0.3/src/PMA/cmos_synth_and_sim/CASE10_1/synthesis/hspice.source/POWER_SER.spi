@@ -1,0 +1,46 @@
+***  Written by Yury Audzevich
+*** 
+***  Comments, suggestions for improvement and criticism welcome
+***  E-mail:  yury.audzevich~at~cl.cam.ac.uk
+*** 
+*** 
+***  Copyright 2003-2013, University of Cambridge, Computer Laboratory. 
+***  Copyright and related rights are licensed under the Hardware License, 
+***  Version 2.0 (the "License"); you may not use this file except in 
+***  compliance with the License. You may obtain a copy of the License at
+***  http://www.cl.cam.ac.uk/research/srg/netos/greenict/projects/contest/. 
+***  Unless required by applicable law or agreed to in writing, software, 
+***  hardware and materials distributed under this License is distributed 
+***  on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+***  either express or implied. See the License for the specific language
+***  governing permissions and limitations under the License.
+*** 
+
+*** =============================================================
+*** Power estimation for 10:1:10 SerDes  
+*** =============================================================
+*** TRANSISTOR MODELS - commercial 45nm library
+
+*** ============================================================= ***
+*** ============== Build-in HSPICE power meter ================== ***
+*** ============================================================= ***
+*** -- for comparison only ***
+.meas tran AVG_POWER_HSPICE AVG POWER FROM=FROM_TS TO=TO_TS
+.meas tran PEAK_POWER_HSPICE MAX POWER FROM=FROM_TS TO=TO_TS
+
+*** ============================================================= ***
+*** ================ Custom Power Estimation ==================== ***
+*** ============================================================= ***
+
+***** POWER measurements for 10:1 CMOS MUX ********************
+.MEASURE TRAN Idd_ser_cmos45 AVG I(Vdd_ser_cmos) FROM=FROM_TS TO=TO_TS
+.MEASURE SER10_1_POWER Param='-Idd_ser_cmos45*cmos_vdd'
+
+**** CMOS power -- all gates used in P414.instantiation ****
+.MEASURE TRAN Idd_inst_cmos45 AVG I(Vpdd_cmos) FROM=FROM_TS TO=TO_TS
+.MEASURE INST_POWER_SERDES Param='-Idd_inst_cmos45*cmos_vdd'
+
+****************************************
+*************** Total ******************
+*** check POWER_DES.spi for total power ***
+

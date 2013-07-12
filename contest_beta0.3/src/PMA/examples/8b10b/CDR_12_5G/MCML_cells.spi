@@ -1,0 +1,189 @@
+***  Written by Yury Audzevich
+*** 
+***  Comments, suggestions for improvement and criticism welcome
+***  E-mail:  yury.audzevich~at~cl.cam.ac.uk
+*** 
+*** 
+***  Copyright 2003-2013, University of Cambridge, Computer Laboratory. 
+***  Copyright and related rights are licensed under the Hardware License, 
+***  Version 2.0 (the "License"); you may not use this file except in 
+***  compliance with the License. You may obtain a copy of the License at
+***  http://www.cl.cam.ac.uk/research/srg/netos/greenict/projects/contest/. 
+***  Unless required by applicable law or agreed to in writing, software, 
+***  hardware and materials distributed under this License is distributed 
+***  on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+***  either express or implied. See the License for the specific language
+***  governing permissions and limitations under the License.
+*** 
+*** 
+
+
+**************************************************************************
+**************************************************************************
+**************************************************************************
+
+*** MCML inverter with symmetric PMOS loads ***
+**** ================================================= ***
+.subckt INV_SL An Ap Zn Zp VDD VREFP VREFN VSS
+
+M11 Zn Zn VDD VDD PMOS_VTL W=SLL_P_WIDTH L=SLL_P_LENGTH
+M21 Zn VREFP VDD VDD PMOS_VTL W=SLL_P_WIDTH L=SLL_P_LENGTH
+M12 Zp Zp VDD VDD PMOS_VTL W=SLL_P_WIDTH L=SLL_P_LENGTH
+M22 Zp VREFP VDD VDD PMOS_VTL W=SLL_P_WIDTH L=SLL_P_LENGTH
+M3 Zn Ap node1 VSS NMOS_VTL W=SLL_N_WIDTH L=SLL_N_LENGTH
+M4 Zp An node1 VSS NMOS_VTL W=SLL_N_WIDTH L=SLL_N_LENGTH
+
+M5 node1 VREFN VSS VSS NMOS_VTL W=SLL_NSOURCE_WIDTH L=SLL_NSOURCE_LENGTH 
+
+.ends INV_SL
+**** ================================================= ***
+
+**** ================================================= ***
+*** VCO BUFFER for rail-to-rail signal regeneration ***
+.subckt BUFF_VCO OUT INp INn VDD VSS VREFN 
+
+*** Simple operational transconductance amplifier ---> VCCS
+M1 Cl Cl VDD VDD PMOS_VTL W=SLL_P_WIDTH L=SLL_P_LENGTH
+M2 Cr Cr VDD VDD PMOS_VTL W=SLL_P_WIDTH L=SLL_P_LENGTH
+
+M3 Cl INp Cc VSS NMOS_VTL W=SLL_N_WIDTH L=SLL_N_LENGTH
+M4 Cr INn Cc VSS NMOS_VTL W=SLL_N_WIDTH L=SLL_N_LENGTH
+M5 Cc VREFN VSS VSS NMOS_VTL W=SLL_NSOURCE_WIDTH L=SLL_NSOURCE_LENGTH 
+
+M6 Cll Cr VDD VDD PMOS_VTL W=SLL_P_WIDTH L=SLL_P_LENGTH
+M7 Crr Cl VDD VDD PMOS_VTL W=SLL_P_WIDTH L=SLL_P_LENGTH
+M8 Cll Cll VSS VSS NMOS_VTL W=SLL_N_WIDTH L=SLL_N_LENGTH
+M9 Crr Cll VSS VSS NMOS_VTL W=SLL_N_WIDTH L=SLL_N_LENGTH
+
+*** CMOS INV
+M10 OUT Crr VDD VDD PMOS_VTL W=CONV_CMOS_P_WIDTH L=CONV_CMOS_LENGTH
+M11 OUT Crr VSS VSS NMOS_VTL W=CONV_CMOS_P_WIDTH L=CONV_CMOS_LENGTH
+
+.ends BUFF_VCO
+**** ================================================= ***
+
+*** Replica bias voltage generation for INV_SL and realistic opamp ***
+**** ================================================= ***
+.subckt VCO_VBIAS VCTRL VBIAS VDD VSS
+
+M1 Zg Zg VDD VDD PMOS_VTL W=SLL_P_WIDTH L=SLL_P_LENGTH
+M2 Zg VCTRL VDD VDD PMOS_VTL W=SLL_P_WIDTH L=SLL_P_LENGTH
+
+M3 Zg VDD node1 VSS NMOS_VTL W=SLL_N_WIDTH L=SLL_N_LENGTH
+M4 node1 VBIAS VSS VSS NMOS_VTL W=SLL_NSOURCE_WIDTH L=SLL_NSOURCE_LENGTH 
+
+*** 2 stage push-pull opamp ***
+*** FORMAT -- <OUT, IN+, IN-, VDD, VSS> VCO_OPAMP
+Xop1 VBIAS Zg VCTRL VDD VSS OPAMP_2PP
+
+.ends VCO_VBIAS
+**** ================================================= ***
+
+*** ring oscillator-based VCO with limited tunability *** 
+*** CTRL ~ 350mV -> 10mV; FFrange ~ 7.3GHz -> 14.6GHZ ***
+*** for FF=12.5Ghz, CTRL~108mV ***
+**** ================================================= ***
+.subckt VCO VCTRL OUTRR OUTDP OUTDN VDD_CMOS VDD VSS
+ 
+*** Biasign circuit 
+Xbias VCTRL VBIASR VDD VSS VCO_VBIAS
+R2 VBIASR 0 RLOAD_VCO
+
+*** MCML ring buffer with 6 stages *** 
+Xin1 Ap An Bp Bn VDD VCTRL VBIASR VSS INV_SL
+Xin2 Bp Bn Cp Cn VDD VCTRL VBIASR VSS INV_SL
+Xin3 Cp Cn Dp Dn VDD VCTRL VBIASR VSS INV_SL
+Xin6 Dp Dn o2p o2n VDD VCTRL VBIASR VSS INV_SL
+Xin7 o2p o2n o4p o4n VDD VCTRL VBIASR VSS INV_SL
+Xin8 o4p o4n An Ap VDD VCTRL VBIASR VSS INV_SL
+
+*** Differential to single rail conversion ***
+Xsr_out OUTRR o4p o4n VDD_CMOS VSS VBIASR BUFF_VCO
+
+*** differential output ***
+Xdr_out o4p o4n OUTDP OUTDN VDD VCTRL VBIASR VSS INV_SL
+
+.ends VCO
+**** ================================================= ***
+
+**** ================================================= ***
+*** Single ENDED OPAMP circuit ***
+.subckt OPAMP_SE OUT INp INn VDD VSS VREFP VREFN
+
+*** Simple operational transconductance amplifier ---> VCCS
+M1 Cl VREFP VDD VDD PMOS_VTL W=0.3U L=0.05U
+M2 Cr VREFP VDD VDD PMOS_VTL W=0.3U L=0.05U
+M3 Cl INp Cc Cc NMOS_VTL W=0.3U L=0.05U
+M4 Cr INn Cc Cc NMOS_VTL W=0.3U L=0.05U
+M5 Cc VREFN VSS VSS NMOS_VTL W=0.4U L=0.05U
+
+**** Second stage with a simple Cur. Mir.
+M6 Cll Cr VDD VDD PMOS_VTL W=0.95U L=0.05U
+M7 OUT Cl VDD VDD PMOS_VTL W=0.95U L=0.05U
+M8 Cll OUT VSS VSS NMOS_VTL W=0.1U L=0.05U
+M9 OUT OUT VSS VSS NMOS_VTL W=0.1U L=0.05U
+
+.ends OPAMP_SE
+**** ================================================= ***
+
+*** Two stage push-pull OPAMP circuit ***
+**** ================================================= ***
+.subckt OPAMP_2PP OUT INP INN VDD VSS 
+
+M1 VBB VBB VDD VDD PMOS_VTL W=0.3U L=0.2U
+M2 VBB VBB VSS VSS NMOS_VTL W=1.2U L=0.2U
+
+M3 VC1 VBB VDD VDD PMOS_VTL W=0.3U L=0.05U
+
+M4 VN1 INN VC1 VC1 PMOS_VTL W=1.2U L=0.2U
+M5 VN2 INP VC1 VC1 PMOS_VTL W=1.2U L=0.2U
+
+** NMOS pair
+M6 VN1 VN1 VSS VSS NMOS_VTL W=0.18U L=0.2U
+M7 VN2 VN2 VSS VSS NMOS_VTL W=0.18U L=0.2U
+
+** pair 1
+M8 VPP1 VPP1 VDD VDD PMOS_VTL W=1.2U L=0.2U
+M9 VPP1 VN1 VSS VSS NMOS_VTL W=0.3U L=0.2U
+
+** pair 2
+M10 OUT VPP1 VDD VDD PMOS_VTL W=1.2U L=0.2U
+M11 OUT VN2 VSS VSS NMOS_VTL W=0.3U L=0.2U
+
+.ends OPAMP_2PP
+**** ================================================= ***
+
+*********************************************************************
+* Subcircuit of a simple rail-to-rail level shifter 
+.subckt L_SHIFTRR in out vdd vss vrfn_sf 
+* ==============================================================
+
+M10 vdd in out vss NMOS_VTL W=SLL_N_WIDTH L=SLL_N_LENGTH
+M11 out vrfn_sf vss vss NMOS_VTL W=LS_NSOURCE_WIDTH L=LS_NSOURCE_LENGTH
+
+.ends L_SHIFTRR
+*********************************************************************
+
+**************************************************************************
+************************ Other unused circuits ***************************
+**************************************************************************
+
+*** Replica bias voltage generation for INV_SL and Ideal opamp ***
+**** ================================================= ***
+.subckt VCO_VBIASI VCTRL VBIAS VDD VSS
+
+M1 Zg Zg VDD VDD PMOS_VTL W=SLL_P_WIDTH L=SLL_P_LENGTH
+M2 Zg VCTRL VDD VDD PMOS_VTL W=SLL_P_WIDTH L=SLL_P_LENGTH
+
+M3 Zg VDD node1 VSS NMOS_VTL W=SLL_N_WIDTH L=SLL_N_LENGTH
+M4 node1 VBIAS VSS VSS NMOS_VTL W=SLL_NSOURCE_WIDTH L=SLL_NSOURCE_LENGTH 
+
+*** ideal OPAMP with gain 1 ***
+Eopamp VBIAS VSS Zg VCTRL 1
+
+.ends VCO_VBIASI
+**** ================================================= ***
+
+**************************************************************************
+**************************************************************************
+**************************************************************************

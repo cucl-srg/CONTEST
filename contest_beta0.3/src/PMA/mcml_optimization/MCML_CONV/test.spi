@@ -1,0 +1,347 @@
+***  Written by Yury Audzevich
+*** 
+***  Comments, suggestions for improvement and criticism welcome
+***  E-mail:  yury.audzevich~at~cl.cam.ac.uk
+*** 
+*** 
+***  Copyright 2003-2013, University of Cambridge, Computer Laboratory. 
+***  Copyright and related rights are licensed under the Hardware License, 
+***  Version 2.0 (the "License"); you may not use this file except in 
+***  compliance with the License. You may obtain a copy of the License at
+***  http://www.cl.cam.ac.uk/research/srg/netos/greenict/projects/contest/. 
+***  Unless required by applicable law or agreed to in writing, software, 
+***  hardware and materials distributed under this License is distributed 
+***  on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+***  either express or implied. See the License for the specific language
+***  governing permissions and limitations under the License.
+*** 
+*** 
+
+
+***** HSPICE simulation using standard cell library  transistors *****
+
+***** Include MCML cell models and parameters for the analysis *****
+.include "cells.spi"
+.include "params.spi"
+
+**** ================================================= ***
+*** HSPICE OPTIONS ***
+.option post
+.option nomod
+.option co=255
+*.option brief
+.option dcon=1
+.option lis_new=1
+**.option captab 
+.option accurate
+
+**** ================================================= ***
+***** Drive inputs using stimulus in "test.dsi", configure driver widths *****
+*** DSI stimuli is converted into hspice one through the automatic Perl routine (flow_dsi_v0p7.pl) 
+.param beta = "1.3"
+.param dsiwmin = "wmin*10"
+.param dsilmin = "lmin"
+.include "tempdir.stimulus/test-stim.sp"
+
+**** ================================================= ***
+*** Define HSPICE optimiser ***
+.model opt1 opt relin=1e-5 relout=1e-5 itropt=200
+
+*** Stop after measures (faster for optimisation)
+.option autostop
+
+*** OPT ON/OFF ***
+.if (OPT_PARAM_ON==1)
+*******************************************************************************************
+*** Setup the optimisation sweep (note that keyword order is critical) 			***
+*** 1) Specify optimization variables required (RESULTS keyword).			***
+*** 2) Specify corresponding OPT GOALs in MEASUREMENTs section 				***
+*** (i.e. add below the corresponding GOAL words; use deltaV_a,etc for reference.)	***
+*******************************************************************************************	
+.tran PARAM_TIME_S PARAM_TIME_E SWEEP OPTIMIZE=optw RESULTS=deltaV_a,deltaV_b,deltaV_c,deltaV_d,deltaV_e MODEL=opt1
+
+.else
+
+*** Standard run without optimisation
+.tran PARAM_TIME_S PARAM_TIME_E
+.endif
+*******************************
+*** CMOS supply voltage
+Vcvdd CVDD 0 PARAM_CMOS_VDD_VOLTAGE
+
+*** MCML bias supply voltages
+Vvdd VDD 0 PARAM_VDD_VOLTAGE
+Vsss VSS 0 PARAM_VSS_VOLTAGE
+
+Vvrefn VREFN 0 SWEEP_N_BIAS_VOLTAGE
+Vvrefp VREFP 0 SWEEP_P_BIAS_VOLTAGE
+
+**** ================================================= ***
+*** Data input passed through a chain of inverters
+*** DSI has generated "DATA" stimuli at required CMOS level
+
+*** data conversion 1x
+Xctom1 DATA DATAn DATAp VDD VREFP VREFN CVDD VSS CMOS_to_MCML
+*** MCML INVS
+Xinv0 DATAn DATAp An Ap VDD VSS VREFP VREFN  INV
+Xinv1 An Ap Bn Bp VDD VSS VREFP VREFN  INV
+Xinv2 Bn Bp Cn Cp VDD VSS VREFP VREFN  INV
+*** conv back
+Xmtoc1  Cn Cp DOUT CVDD VREFN VSS MCML_to_CMOS
+
+*** clock conversion 2x
+Xctom2 CLK_IN CLKn CLKp VDD VREFP VREFN CVDD VSS CMOS_to_MCML
+
+Xinv3 CLKn CLKp Dn Dp VDD VSS VREFP VREFN  INV
+Xinv4 Dn Dp En Ep VDD VSS VREFP VREFN  INV
+Xinv5 En Ep Fn Fp VDD VSS VREFP VREFN  INV
+
+Xmtoc2  Fn Fp COUT CVDD VREFN VSS MCML_to_CMOS
+
+*** Add small parasitic loads on outputs to be more realistic
+C1 An 0 CLOAD
+C2 Bn 0 CLOAD
+C3 Cn 0 CLOAD
+C4 Dn 0 CLOAD
+C5 En 0 CLOAD
+C6 Fn 0 CLOAD
+C11 Ap 0 CLOAD
+C12 Bp 0 CLOAD
+C13 Cp 0 CLOAD
+C14 Dp 0 CLOAD
+C15 Ep 0 CLOAD
+C16 Fp 0 CLOAD
+
+**** Test the gate for the FANOUT of 4 ****
+.if (FANOUT_ON==1)
+Xinv10 DATAn DATAp AFn AFp VDD VSS VREFP VREFN  INV
+*
+Xinv12 AFn AFp CFn CFp VDD VSS VREFP VREFN  INV
+Xinv13 AFn AFp DFn DFp VDD VSS VREFP VREFN  INV
+Xinv14 AFn AFp EFn EFp VDD VSS VREFP VREFN  INV
+
+C03 CFn 0 CLOAD
+C04 DFn 0 CLOAD
+C05 EFn 0 CLOAD
+C103 CFp 0 CLOAD
+C104 DFp 0 CLOAD
+C105 EFp 0 CLOAD
+
+.endif
+
+**** ================================================= ***
+*** Measurements and optimization goals ***
+**** ================================================= ***
+
+.if (OPT_PARAM_ON==1)
+**** ================================================= ***
+*** satisfy optimization goals
+**** ================================================= ***
+
+.measure tran maxV_in MAX V(DATAp,VSS) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran maxV_a MAX V(AP,VSS) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran maxV_b MAX V(BP,VSS) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran maxV_c MAX V(CP,VSS) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran maxV_d MAX V(DP,VSS) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran maxV_e MAX V(EP,VSS) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E
+.measure tran maxV_f MAX V(FP,VSS) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E
+
+.measure tran deltaV_in MAX V(DATAp,DATAn) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran deltaV_a MAX V(AP,AN) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E GOAL = ‘PARAM_MCML_SWING’
+.measure tran deltaV_b MAX V(BP,BN) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E GOAL = ‘PARAM_MCML_SWING’
+.measure tran deltaV_c MAX V(CP,CN) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E GOAL = ‘PARAM_MCML_SWING’
+.measure tran deltaV_d MAX V(DP,DN) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E GOAL = ‘PARAM_MCML_SWING’
+.measure tran deltaV_e MAX V(EP,EN) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E GOAL = ‘PARAM_MCML_SWING’
+.measure tran deltaV_f MAX V(FP,FN) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E GOAL = ‘PARAM_MCML_SWING’
+
+*** absolute value of midswing
+.measure mid_Vin Param='maxV_in - (deltaV_in/2)'
+.measure mid_Va Param='maxV_a - (deltaV_a/2)'
+.measure mid_Vb Param='maxV_b - (deltaV_b/2)'
+.measure mid_Vc Param='maxV_c - (deltaV_c/2)'
+.measure mid_Vd Param='maxV_d - (deltaV_d/2)'
+.measure mid_Ve Param='maxV_e - (deltaV_e/2)'
+.measure mid_Vf Param='maxV_f - (deltaV_f/2)'
+
+*** Measure AP to BP, use the common level; specify opt goals; comment if not needed
+.meas tran delta_ab TRIG v(AP) VAL='mid_Va' CROSS=1 TARG v(BP) VAL='mid_Va' CROSS=1 
+.meas tran delta_bc TRIG v(BP) VAL='mid_Vb' CROSS=1 TARG v(CP) VAL='mid_Vb' CROSS=1 
+.meas tran delta_cd TRIG v(CP) VAL='mid_Vc' CROSS=1 TARG v(DP) VAL='mid_Vc' CROSS=1 
+.meas tran delta_de TRIG v(DP) VAL='mid_Vd' CROSS=1 TARG v(EP) VAL='mid_Vd' CROSS=1 
+.meas tran delta_ef TRIG v(EP) VAL='mid_Ve' CROSS=1 TARG v(FP) VAL='mid_Ve' CROSS=1 
+
+*** Measure AP to AN, etc; specify opt goals; comment if not needed
+.meas tran delta_aa TRIG v(AP) VAL='mid_Va' CROSS=1 TARG v(AN) VAL='mid_Va' CROSS=1 
+.meas tran delta_bb TRIG v(BP) VAL='mid_Vb' CROSS=1 TARG v(BN) VAL='mid_Vb' CROSS=1 
+.meas tran delta_cc TRIG v(CP) VAL='mid_Vc' CROSS=1 TARG v(CN) VAL='mid_Vc' CROSS=1 
+.meas tran delta_dd TRIG v(DP) VAL='mid_Vd' CROSS=1 TARG v(DN) VAL='mid_Vd' CROSS=1 
+.meas tran delta_ee TRIG v(EP) VAL='mid_Ve' CROSS=1 TARG v(EN) VAL='mid_Ve' CROSS=1 
+.meas tran delta_ff TRIG v(FP) VAL='mid_Vf' CROSS=1 TARG v(FN) VAL='mid_Vf' CROSS=1 
+
+*** Measure propagation time as 50% mark of V(out) minus 50% mark of V(in); use both differential waveforms
+.meas tran deltaHL_a TRIG v(DATAp) VAL='mid_Vin' RISE=1 TARG v(AN) VAL='mid_Va' FALL=1  	
+.meas tran deltaLH_a TRIG v(DATAn) VAL='mid_Vin' FALL=1 TARG v(AP) VAL='mid_Va' RISE=1  
+*
+.meas tran deltaHL_b TRIG v(AP) VAL='mid_Va' RISE=1 TARG v(BN) VAL='mid_Vb' FALL=1	
+.meas tran deltaLH_b TRIG v(AN) VAL='mid_Va' FALL=1 TARG v(BP) VAL='mid_Vb' RISE=1    
+*
+.meas tran deltaHL_c TRIG v(BP) VAL='mid_Vb' RISE=1 TARG v(CN) VAL='mid_Vc' FALL=1	
+.meas tran deltaLH_c TRIG v(BN) VAL='mid_Vb' FALL=1 TARG v(CP) VAL='mid_Vc' RISE=1 	
+*
+*
+.meas tran deltaHL_e TRIG v(DP) VAL='mid_Vd' RISE=1 TARG v(EN) VAL='mid_Ve' FALL=1	
+.meas tran deltaLH_e TRIG v(DN) VAL='mid_Vd' FALL=1 TARG v(EP) VAL='mid_Ve' RISE=1 	
+*
+.meas tran deltaHL_f TRIG v(EP) VAL='mid_Ve' RISE=1 TARG v(FN) VAL='mid_Vf' FALL=1	
+.meas tran deltaLH_f TRIG v(EN) VAL='mid_Ve' FALL=1 TARG v(FP) VAL='mid_Vf' RISE=1	
+
+*** prop time is simply (deltaHL+deltaLH)/2
+.meas prop_a Param='(deltaHL_a+deltaLH_a)/2' 
+.meas prop_b Param='(deltaHL_b+deltaLH_b)/2'
+.meas prop_c Param='(deltaHL_c+deltaLH_c)/2' 
+.meas prop_e Param='(deltaHL_e+deltaLH_e)/2' 
+.meas prop_f Param='(deltaHL_f+deltaLH_f)/2'  
+
+*** Measure rise time -- meas can fail if signal is asymmetric, substract 10% of delta V to have 10-90% variation
+.meas tran rise_a TRIG v(AP) VAL='mid_Va - (deltaV_a/2) + (0.1*deltaV_a)' RISE=1 TARG v(AP) VAL='mid_Va + (deltaV_a/2) - (0.1*deltaV_a)' RISE=1 GOAL < 2p
+.meas tran rise_b TRIG v(BP) VAL='mid_Vb - (deltaV_b/2) + (0.1*deltaV_b)' RISE=1 TARG v(BP) VAL='mid_Vb + (deltaV_b/2) - (0.1*deltaV_b)' RISE=1 GOAL < 2p
+.meas tran rise_c TRIG v(CP) VAL='mid_Vc - (deltaV_c/2) + (0.1*deltaV_c)' RISE=1 TARG v(CP) VAL='mid_Vc + (deltaV_c/2) - (0.1*deltaV_c)' RISE=1 GOAL < 2p
+.meas tran rise_d TRIG v(DP) VAL='mid_Vd - (deltaV_d/2) + (0.1*deltaV_d)' RISE=1 TARG v(DP) VAL='mid_Vd + (deltaV_d/2) - (0.1*deltaV_d)' RISE=1 GOAL < 2p
+.meas tran rise_e TRIG v(EP) VAL='mid_Ve - (deltaV_e/2) + (0.1*deltaV_e)' RISE=1 TARG v(EP) VAL='mid_Ve + (deltaV_e/2) - (0.1*deltaV_e)' RISE=1 GOAL < 2p
+.meas tran rise_f TRIG v(FP) VAL='mid_Vf - (deltaV_f/2) + (0.1*deltaV_f)' RISE=1 TARG v(FP) VAL='mid_Vf + (deltaV_f/2) - (0.1*deltaV_f)' RISE=1 GOAL < 2p
+
+*** Measure fall time -- meas can fail if signal is asymmetric, substract 10% to have 10-90% variation
+.meas tran fall_a TRIG v(AN) VAL='mid_Va + (deltaV_a/2) - (0.1*deltaV_a)' FALL=1 TARG v(AN) VAL='mid_Va - (deltaV_a/2) + (0.1*deltaV_a)' FALL=1 GOAL < 2p
+.meas tran fall_b TRIG v(BN) VAL='mid_Vb + (deltaV_b/2) - (0.1*deltaV_b)' FALL=1 TARG v(BN) VAL='mid_Vb - (deltaV_b/2) + (0.1*deltaV_b)' FALL=1 GOAL < 2p
+.meas tran fall_c TRIG v(CN) VAL='mid_Vc + (deltaV_c/2) - (0.1*deltaV_c)' FALL=1 TARG v(CN) VAL='mid_Vc - (deltaV_c/2) + (0.1*deltaV_c)' FALL=1 GOAL < 2p
+.meas tran fall_d TRIG v(DN) VAL='mid_Vd + (deltaV_d/2) - (0.1*deltaV_d)' FALL=1 TARG v(DN) VAL='mid_Vd - (deltaV_d/2) + (0.1*deltaV_d)' FALL=1 GOAL < 2p
+.meas tran fall_e TRIG v(EN) VAL='mid_Ve + (deltaV_e/2) - (0.1*deltaV_e)' FALL=1 TARG v(EN) VAL='mid_Ve - (deltaV_e/2) + (0.1*deltaV_e)' FALL=1 GOAL < 2p
+.meas tran fall_f TRIG v(FN) VAL='mid_Vf + (deltaV_f/2) - (0.1*deltaV_f)' FALL=1 TARG v(FN) VAL='mid_Vf - (deltaV_f/2) + (0.1*deltaV_f)' FALL=1 GOAL < 2p
+
+.else
+**** ================================================= ***
+*** standard measurements
+**** ================================================= ***
+
+*** MAX point of positive out
+.measure tran maxV_inC MAX V(DATA,VSS) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran maxV_outC MAX V(DOUT,VSS) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+
+.measure tran maxV_in MAX V(DATAp,VSS) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran maxV_a MAX V(AP,VSS) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran maxV_b MAX V(BP,VSS) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran maxV_c MAX V(CP,VSS) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran maxV_d MAX V(DP,VSS) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+
+*** Point-to-point with positive out
+.measure tran ppV_inpC PP V(DATA) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E
+.measure tran ppV_outpC PP V(DOUT) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E  
+
+.measure tran ppV_inp PP V(DATAp) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran ppV_ap PP V(AP) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran ppV_bp PP V(BP) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran ppV_cp PP V(CP) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran ppV_dp PP V(DP) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+
+*** Point-to-point with negative out
+.measure tran ppV_inn PP V(DATAn) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran ppV_an PP V(AN) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran ppV_bn PP V(BN) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran ppV_cn PP V(CN) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran ppV_dn PP V(DN) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+
+*** delta MAX-MIN (not valid for signals with glitches and asymmetric Vpos and Vneg out waveforms)
+.measure deltaV_inC Param='MIN(ppV_inpC,ppV_inpC)'
+.measure deltaV_outC Param='MIN(ppV_outpC,ppV_outpC)'
+
+.measure deltaV_in Param='MIN(ppV_inp, ppV_inn)'
+.measure deltaV_a Param='MIN(ppV_ap, ppV_an)'
+.measure deltaV_b Param='MIN(ppV_bp, ppV_bn)'
+.measure deltaV_c Param='MIN(ppV_cp, ppV_cn)'
+.measure deltaV_d Param='MIN(ppV_dp, ppV_dn)'
+
+*** absolute value of midswing
+.measure mid_VinC Param='maxV_inC - (deltaV_inC/2)'
+.measure mid_VoutC Param='maxV_outC - (deltaV_outC/2)'
+
+.measure mid_Vin Param='maxV_in - (deltaV_in/2)'
+.measure mid_Va Param='maxV_a - (deltaV_a/2)'
+.measure mid_Vb Param='maxV_b - (deltaV_b/2)'
+.measure mid_Vc Param='maxV_c - (deltaV_c/2)'
+.measure mid_Vd Param='maxV_d - (deltaV_d/2)'
+
+*** Measure time interval from AP to BP, etc
+.meas tran delta_iC TRIG v(DATA) VAL='mid_Vin' CROSS=1 TARG v(DATAp) VAL='mid_Vin' CROSS=1 
+.meas tran delta_oC TRIG v(CP) VAL='mid_Vc' CROSS=1 TARG v(DOUT) VAL='mid_Vc' CROSS=1 
+
+.meas tran delta_ia TRIG v(DATAp) VAL='mid_Vin' CROSS=1 TARG v(AP) VAL='mid_Vin' CROSS=1 
+.meas tran delta_ab TRIG v(AP) VAL='mid_Va' CROSS=1 TARG v(BP) VAL='mid_Va' CROSS=1 
+.meas tran delta_bc TRIG v(BP) VAL='mid_Vb' CROSS=1 TARG v(CP) VAL='mid_Vb' CROSS=1 
+
+*** Measure time interval from AP to AN, etc
+.meas tran delta_ii TRIG v(DATAn) VAL='mid_Vin' CROSS=1 TARG v(DATAp) VAL='mid_Vin' CROSS=1 
+.meas tran delta_aa TRIG v(AN) VAL='mid_Va' CROSS=1 TARG v(AP) VAL='mid_Va' CROSS=1 
+.meas tran delta_bb TRIG v(BN) VAL='mid_Vb' CROSS=1 TARG v(BP) VAL='mid_Vb' CROSS=1 
+.meas tran delta_cc TRIG v(CN) VAL='mid_Vc' CROSS=1 TARG v(CP) VAL='mid_Vc' CROSS=1 
+.meas tran delta_dd TRIG v(DN) VAL='mid_Vd' CROSS=1 TARG v(DP) VAL='mid_Vd' CROSS=1 
+
+
+*** Measure propagation time as 50% mark of V(out) minus 50% mark of V(in); use both differential waveforms
+.meas tran deltaHL_i TRIG v(DATA) VAL='mid_VinC' CROSS=1 TARG v(DATAp) VAL='mid_Va' CROSS=1
+.meas tran deltaHL_o TRIG v(CP) VAL='mid_Vc' CROSS=1 TARG v(DOUT) VAL='mid_VoutC' CROSS=1
+*
+.meas tran deltaHL_a TRIG v(DATAp) VAL='mid_Vin' CROSS=1 TARG v(AP) VAL='mid_Va' CROSS=1
+.meas tran deltaLH_a TRIG v(DATAn) VAL='mid_Vin' CROSS=1 TARG v(AN) VAL='mid_Va' CROSS=1    
+*
+.meas tran deltaHL_b TRIG v(AP) VAL='mid_Va' CROSS=1 TARG v(BP) VAL='mid_Vb' CROSS=1
+.meas tran deltaLH_b TRIG v(AN) VAL='mid_Va' CROSS=1 TARG v(BN) VAL='mid_Vb' CROSS=1    
+*
+.meas tran deltaHL_c TRIG v(BP) VAL='mid_Vb' CROSS=1 TARG v(CP) VAL='mid_Vc' CROSS=1
+.meas tran deltaLH_c TRIG v(BN) VAL='mid_Vb' CROSS=1 TARG v(CN) VAL='mid_Vc' CROSS=1 
+*
+
+
+*** prop time is simply (deltaHL+deltaLH)/2
+.meas prop_i Param='(deltaHL_i)' 
+.meas prop_o Param='(deltaHL_o)' 
+.meas prop_a Param='(deltaHL_a+deltaLH_a)/2' 
+.meas prop_b Param='(deltaHL_b+deltaLH_b)/2'
+.meas prop_c Param='(deltaHL_c+deltaLH_c)/2' 
+
+
+
+*** Measure rise time -- meas can fail if signal is asymmetric, substract 10% of delta V to have 10-90% variation
+.meas tran rise_in TRIG v(DATAp) VAL='mid_Vin - (deltaV_in/2) + (0.1*deltaV_in)' RISE=1 TARG v(DATAp) VAL='mid_Vin + (deltaV_in/2) - (0.1*deltaV_in)' RISE=1 
+.meas tran rise_a TRIG v(AP) VAL='mid_Va - (deltaV_a/2) + (0.1*deltaV_a)' RISE=1 TARG v(AP) VAL='mid_Va + (deltaV_a/2) - (0.1*deltaV_a)' RISE=1 
+.meas tran rise_b TRIG v(BP) VAL='mid_Vb - (deltaV_b/2) + (0.1*deltaV_b)' RISE=1 TARG v(BP) VAL='mid_Vb + (deltaV_b/2) - (0.1*deltaV_b)' RISE=1 
+.meas tran rise_c TRIG v(CP) VAL='mid_Vc - (deltaV_c/2) + (0.1*deltaV_c)' RISE=1 TARG v(CP) VAL='mid_Vc + (deltaV_c/2) - (0.1*deltaV_c)' RISE=1 
+.meas tran rise_d TRIG v(DP) VAL='mid_Vd - (deltaV_d/2) + (0.1*deltaV_d)' RISE=1 TARG v(DP) VAL='mid_Vd + (deltaV_d/2) - (0.1*deltaV_d)' RISE=1 
+
+*** Measure fall time -- meas can fail if signal is asymmetric, substract 10% to have 10-90% variation
+.meas tran fall_in TRIG v(DATAn) VAL='mid_Vin + (deltaV_in/2) - (0.1*deltaV_in)' FALL=1 TARG v(DATAn) VAL='mid_Vin - (deltaV_in/2) + (0.1*deltaV_in)' FALL=1 
+.meas tran fall_a TRIG v(AN) VAL='mid_Va + (deltaV_a/2) - (0.1*deltaV_a)' FALL=1 TARG v(AN) VAL='mid_Va - (deltaV_a/2) + (0.1*deltaV_a)' FALL=1 
+.meas tran fall_b TRIG v(BN) VAL='mid_Vb + (deltaV_b/2) - (0.1*deltaV_b)' FALL=1 TARG v(BN) VAL='mid_Vb - (deltaV_b/2) + (0.1*deltaV_b)' FALL=1 
+.meas tran fall_c TRIG v(CN) VAL='mid_Vc + (deltaV_c/2) - (0.1*deltaV_c)' FALL=1 TARG v(CN) VAL='mid_Vc - (deltaV_c/2) + (0.1*deltaV_c)' FALL=1 
+.meas tran fall_d TRIG v(DN) VAL='mid_Vd + (deltaV_d/2) - (0.1*deltaV_d)' FALL=1 TARG v(DN) VAL='mid_Vd - (deltaV_d/2) + (0.1*deltaV_d)' FALL=1 
+
+.endif
+
+
+**** ================================================= ***
+***  Other measurements -- can be added for final opt ***
+**** ================================================= ***
+
+*** Record the parameters in the .mt0 file
+.meas DELIM0 param='0.0'
+.meas tran result_vdd param='PARAM_VDD_VOLTAGE'
+.meas tran result_vss param='PARAM_VSS_VOLTAGE'
+.meas tran result_pulldown_width param='SWEEP_N_WIDTH'
+.meas tran result_pulldown_length param='SWEEP_N_LENGTH'
+.meas tran result_pullup_width param='SWEEP_P_WIDTH'
+.meas tran result_pullup_length param='SWEEP_P_LENGTH'
+.meas tran result_sink_width param='PARAM_NSOURCE_WIDTH'
+.meas tran result_sink_length param='PARAM_NSOURCE_LENGTH'
+.meas tran result_n_bias param='SWEEP_N_BIAS_VOLTAGE'
+.meas tran result_p_bias param='SWEEP_P_BIAS_VOLTAGE'
+
+

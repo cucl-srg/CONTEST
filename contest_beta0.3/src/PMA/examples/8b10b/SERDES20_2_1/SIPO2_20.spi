@@ -1,0 +1,539 @@
+*** 
+***  Copyright 2003-2013, University of Cambridge, Computer Laboratory. 
+***  Copyright and related rights are licensed under the Hardware License, 
+***  Version 2.0 (the "License"); you may not use this file except in 
+***  compliance with the License. You may obtain a copy of the License at
+***  http://www.cl.cam.ac.uk/research/srg/netos/greenict/projects/contest/. 
+***  Unless required by applicable law or agreed to in writing, software, 
+***  hardware and materials distributed under this License is distributed 
+***  on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+***  either express or implied. See the License for the specific language
+***  governing permissions and limitations under the License.
+*** 
+*** 
+
+
+*** SPICE structural netlist of 'SIPO2_20' after Design Compiler synthesis, based on port order in '/usr/groups/ecad/kits/commercial45_v2010_12/n45-library-netlist-noparasitics.spi' ***
+
+.SUBCKT SIPO2_20 VDD_SIPO2_20 VSS_SIPO2_20 CLK_IN RESET_IN SERIAL_IN[0] SERIAL_IN[1] DATA_USED_OUT PARALLEL_OUT[0] PARALLEL_OUT[1] PARALLEL_OUT[2] PARALLEL_OUT[3] PARALLEL_OUT[4] PARALLEL_OUT[5] PARALLEL_OUT[6] PARALLEL_OUT[7] PARALLEL_OUT[8] PARALLEL_OUT[9] PARALLEL_OUT[10] PARALLEL_OUT[11] PARALLEL_OUT[12] PARALLEL_OUT[13] PARALLEL_OUT[14] PARALLEL_OUT[15] PARALLEL_OUT[16] PARALLEL_OUT[17] PARALLEL_OUT[18] PARALLEL_OUT[19]  
+*** instances
+xpisos_0__SP1_10_ctr_reg_4_  pisos_0__SP1_10_N12___rc n239___rc n243___rc pisos_0__SP1_10_ctr_4_ SPICE_NETLIST_UNCONNECTED_1 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_0__SP1_10_ctr_reg_1_  n187___rc n239___rc n243___rc pisos_0__SP1_10_ctr_1_ SPICE_NETLIST_UNCONNECTED_2 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_0__SP1_10_ctr_reg_0_  n188___rc n239___rc n243___rc pisos_0__SP1_10_ctr_0_ SPICE_NETLIST_UNCONNECTED_3 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_0__SP1_10_ctr_reg_3_  pisos_0__SP1_10_N11___rc n235___rc n241___rc pisos_0__SP1_10_ctr_3_ SPICE_NETLIST_UNCONNECTED_4 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_0__SP1_10_ctr_reg_2_  pisos_0__SP1_10_N10___rc n235___rc n241___rc pisos_0__SP1_10_ctr_2_ SPICE_NETLIST_UNCONNECTED_5 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_0__SP1_10_shift_reg_reg_9_  SERIAL_IN[0]___rc n239___rc n243___rc pisos_0__SP1_10_shift_reg_9_ n39 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_0__SP1_10_shift_reg_reg_8_  pisos_0__SP1_10_shift_reg_9____rc n239___rc n243___rc pisos_0__SP1_10_shift_reg_8_ n38 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_0__SP1_10_shift_reg_reg_7_  pisos_0__SP1_10_shift_reg_8____rc n235___rc n241___rc pisos_0__SP1_10_shift_reg_7_ n37 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_0__SP1_10_shift_reg_reg_6_  pisos_0__SP1_10_shift_reg_7____rc n235___rc n241___rc pisos_0__SP1_10_shift_reg_6_ n36 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_0__SP1_10_shift_reg_reg_5_  pisos_0__SP1_10_shift_reg_6____rc n235___rc n241___rc pisos_0__SP1_10_shift_reg_5_ n35 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_0__SP1_10_shift_reg_reg_4_  pisos_0__SP1_10_shift_reg_5____rc n239___rc n243___rc pisos_0__SP1_10_shift_reg_4_ n34 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_0__SP1_10_shift_reg_reg_3_  pisos_0__SP1_10_shift_reg_4____rc n235___rc n241___rc pisos_0__SP1_10_shift_reg_3_ n33 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_0__SP1_10_shift_reg_reg_2_  pisos_0__SP1_10_shift_reg_3____rc n235___rc n241___rc pisos_0__SP1_10_shift_reg_2_ n32 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_0__SP1_10_shift_reg_reg_1_  pisos_0__SP1_10_shift_reg_2____rc n235___rc n241___rc pisos_0__SP1_10_shift_reg_1_ n31 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_0__SP1_10_shift_reg_reg_0_  pisos_0__SP1_10_shift_reg_1____rc n237___rc n242___rc SPICE_NETLIST_UNCONNECTED_6 n27 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_0__SP1_10_PARALLEL_OUT_reg_0_  n72___rc n237___rc n242___rc PARALLEL_OUT[0] SPICE_NETLIST_UNCONNECTED_7 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_0__SP1_10_PARALLEL_OUT_reg_1_  n71___rc n235___rc n244___rc PARALLEL_OUT[2] SPICE_NETLIST_UNCONNECTED_8 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_0__SP1_10_PARALLEL_OUT_reg_2_  n70___rc n238___rc n244___rc PARALLEL_OUT[4] SPICE_NETLIST_UNCONNECTED_9 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_0__SP1_10_PARALLEL_OUT_reg_3_  n69___rc n237___rc n244___rc PARALLEL_OUT[6] SPICE_NETLIST_UNCONNECTED_10 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_0__SP1_10_PARALLEL_OUT_reg_4_  n68___rc n239___rc n242___rc PARALLEL_OUT[8] SPICE_NETLIST_UNCONNECTED_11 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_0__SP1_10_PARALLEL_OUT_reg_5_  n67___rc n238___rc n242___rc PARALLEL_OUT[10] SPICE_NETLIST_UNCONNECTED_12 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_0__SP1_10_PARALLEL_OUT_reg_6_  n66___rc n235___rc n244___rc PARALLEL_OUT[12] SPICE_NETLIST_UNCONNECTED_13 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_0__SP1_10_PARALLEL_OUT_reg_7_  n65___rc n239___rc n244___rc PARALLEL_OUT[14] SPICE_NETLIST_UNCONNECTED_14 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_0__SP1_10_PARALLEL_OUT_reg_8_  n64___rc n238___rc n242___rc PARALLEL_OUT[16] SPICE_NETLIST_UNCONNECTED_15 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_0__SP1_10_PARALLEL_OUT_reg_9_  n63___rc n238___rc n242___rc PARALLEL_OUT[18] SPICE_NETLIST_UNCONNECTED_16 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_1__SP1_10_ctr_reg_4_  pisos_1__SP1_10_N12___rc n239___rc n243___rc pisos_1__SP1_10_ctr_4_ SPICE_NETLIST_UNCONNECTED_17 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_1__SP1_10_ctr_reg_1_  n186___rc n239___rc n243___rc pisos_1__SP1_10_ctr_1_ SPICE_NETLIST_UNCONNECTED_18 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_1__SP1_10_ctr_reg_0_  n189___rc n239___rc n243___rc pisos_1__SP1_10_ctr_0_ SPICE_NETLIST_UNCONNECTED_19 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_1__SP1_10_ctr_reg_3_  pisos_1__SP1_10_N11___rc n239___rc n243___rc pisos_1__SP1_10_ctr_3_ SPICE_NETLIST_UNCONNECTED_20 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_1__SP1_10_ctr_reg_2_  pisos_1__SP1_10_N10___rc n239___rc n243___rc pisos_1__SP1_10_ctr_2_ SPICE_NETLIST_UNCONNECTED_21 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_1__SP1_10_shift_reg_reg_9_  SERIAL_IN[1]___rc n239___rc n243___rc pisos_1__SP1_10_shift_reg_9_ n52 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_1__SP1_10_shift_reg_reg_8_  pisos_1__SP1_10_shift_reg_9____rc n235___rc n241___rc pisos_1__SP1_10_shift_reg_8_ n51 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_1__SP1_10_shift_reg_reg_7_  pisos_1__SP1_10_shift_reg_8____rc n238___rc n244___rc pisos_1__SP1_10_shift_reg_7_ n50 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_1__SP1_10_shift_reg_reg_6_  pisos_1__SP1_10_shift_reg_7____rc n239___rc n241___rc pisos_1__SP1_10_shift_reg_6_ n49 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_1__SP1_10_shift_reg_reg_5_  pisos_1__SP1_10_shift_reg_6____rc n237___rc n244___rc pisos_1__SP1_10_shift_reg_5_ n48 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_1__SP1_10_shift_reg_reg_4_  pisos_1__SP1_10_shift_reg_5____rc n235___rc n241___rc pisos_1__SP1_10_shift_reg_4_ n47 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_1__SP1_10_shift_reg_reg_3_  pisos_1__SP1_10_shift_reg_4____rc n237___rc n244___rc pisos_1__SP1_10_shift_reg_3_ n46 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_1__SP1_10_shift_reg_reg_2_  pisos_1__SP1_10_shift_reg_3____rc n235___rc n241___rc pisos_1__SP1_10_shift_reg_2_ n45 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_1__SP1_10_shift_reg_reg_1_  pisos_1__SP1_10_shift_reg_2____rc n237___rc n244___rc pisos_1__SP1_10_shift_reg_1_ n44 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_1__SP1_10_shift_reg_reg_0_  pisos_1__SP1_10_shift_reg_1____rc n238___rc n244___rc SPICE_NETLIST_UNCONNECTED_22 n40 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_1__SP1_10_PARALLEL_OUT_reg_0_  n62___rc n238___rc n242___rc PARALLEL_OUT[1] SPICE_NETLIST_UNCONNECTED_23 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_1__SP1_10_PARALLEL_OUT_reg_1_  n61___rc n237___rc n244___rc PARALLEL_OUT[3] SPICE_NETLIST_UNCONNECTED_24 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_1__SP1_10_PARALLEL_OUT_reg_2_  n60___rc n235___rc n244___rc PARALLEL_OUT[5] SPICE_NETLIST_UNCONNECTED_25 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_1__SP1_10_PARALLEL_OUT_reg_3_  n59___rc n238___rc n242___rc PARALLEL_OUT[7] SPICE_NETLIST_UNCONNECTED_26 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_1__SP1_10_PARALLEL_OUT_reg_4_  n58___rc n237___rc n244___rc PARALLEL_OUT[9] SPICE_NETLIST_UNCONNECTED_27 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_1__SP1_10_PARALLEL_OUT_reg_5_  n57___rc n238___rc n244___rc PARALLEL_OUT[11] SPICE_NETLIST_UNCONNECTED_28 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_1__SP1_10_PARALLEL_OUT_reg_6_  n56___rc n238___rc n242___rc PARALLEL_OUT[13] SPICE_NETLIST_UNCONNECTED_29 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_1__SP1_10_PARALLEL_OUT_reg_7_  n55___rc n237___rc n242___rc PARALLEL_OUT[15] SPICE_NETLIST_UNCONNECTED_30 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_1__SP1_10_PARALLEL_OUT_reg_8_  n54___rc n238___rc n242___rc PARALLEL_OUT[17] SPICE_NETLIST_UNCONNECTED_31 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xpisos_1__SP1_10_PARALLEL_OUT_reg_9_  n53___rc n237___rc n242___rc PARALLEL_OUT[19] SPICE_NETLIST_UNCONNECTED_32 VDD_SIPO2_20 VSS_SIPO2_20  DFFR_X1
+xU65  n124___rc n88___rc n84 VDD_SIPO2_20 VSS_SIPO2_20  NAND2_X1
+xU67  n85___rc n86___rc n165 VDD_SIPO2_20 VSS_SIPO2_20  NAND2_X1
+xU68  n161___rc n85 VDD_SIPO2_20 VSS_SIPO2_20  INV_X1
+xU69  n87___rc n86 VDD_SIPO2_20 VSS_SIPO2_20  INV_X1
+xU73  n119___rc n221___rc n87 VDD_SIPO2_20 VSS_SIPO2_20  NAND2_X1
+xU75  n90___rc n126 VDD_SIPO2_20 VSS_SIPO2_20  INV_X1
+xU77  n123___rc n121___rc n89 VDD_SIPO2_20 VSS_SIPO2_20  NAND2_X1
+xU79  n181___rc n92 VDD_SIPO2_20 VSS_SIPO2_20  INV_X1
+xU117  pisos_1__SP1_10_ctr_1____rc pisos_1__SP1_10_ctr_2____rc n128 VDD_SIPO2_20 VSS_SIPO2_20  NOR2_X1
+xU118  pisos_1__SP1_10_ctr_3____rc n130 VDD_SIPO2_20 VSS_SIPO2_20  INV_X1
+xU120  n179___rc pisos_0__SP1_10_ctr_0____rc n177___rc n131 VDD_SIPO2_20 VSS_SIPO2_20  NAND3_X1
+xU136  pisos_0__SP1_10_ctr_3____rc n179 VDD_SIPO2_20 VSS_SIPO2_20  INV_X1
+xU138  n184___rc n183___rc n187 VDD_SIPO2_20 VSS_SIPO2_20  AND2_X1
+xU139  n221___rc n84___rc pisos_1__SP1_10_N10 VDD_SIPO2_20 VSS_SIPO2_20  XNOR2_X1
+xU140  n164___rc n163___rc n186 VDD_SIPO2_20 VSS_SIPO2_20  AND2_X1
+xU141  n89___rc n122___rc pisos_0__SP1_10_N10 VDD_SIPO2_20 VSS_SIPO2_20  XNOR2_X1
+xU142  n165___rc n164___rc n162___rc pisos_1__SP1_10_N11 VDD_SIPO2_20 VSS_SIPO2_20  AND3_X1
+xU143  n117___rc n161___rc n160___rc n162 VDD_SIPO2_20 VSS_SIPO2_20  OAI21_X1
+xU144  n221___rc n160 VDD_SIPO2_20 VSS_SIPO2_20  INV_X1
+xU145  n128___rc n129___rc n124___rc n119___rc n164 VDD_SIPO2_20 VSS_SIPO2_20  NAND4_X1
+xU146  n185___rc n184___rc n182___rc pisos_0__SP1_10_N11 VDD_SIPO2_20 VSS_SIPO2_20  AND3_X1
+xU148  n122___rc n180 VDD_SIPO2_20 VSS_SIPO2_20  INV_X1
+xU149  n34___rc n171 VDD_SIPO2_20 VSS_SIPO2_20  INV_X1
+xU150  n36___rc n169 VDD_SIPO2_20 VSS_SIPO2_20  INV_X1
+xU151  n38___rc n167 VDD_SIPO2_20 VSS_SIPO2_20  INV_X1
+xU152  n27___rc n176 VDD_SIPO2_20 VSS_SIPO2_20  INV_X1
+xU153  n32___rc n173 VDD_SIPO2_20 VSS_SIPO2_20  INV_X1
+xU154  n37___rc n168 VDD_SIPO2_20 VSS_SIPO2_20  INV_X1
+xU155  n33___rc n172 VDD_SIPO2_20 VSS_SIPO2_20  INV_X1
+xU156  n39___rc n166 VDD_SIPO2_20 VSS_SIPO2_20  INV_X1
+xU157  n35___rc n170 VDD_SIPO2_20 VSS_SIPO2_20  INV_X1
+xU158  n31___rc n174 VDD_SIPO2_20 VSS_SIPO2_20  INV_X1
+xU159  n48___rc n152 VDD_SIPO2_20 VSS_SIPO2_20  INV_X1
+xU160  n40___rc n158 VDD_SIPO2_20 VSS_SIPO2_20  INV_X1
+xU161  n49___rc n151 VDD_SIPO2_20 VSS_SIPO2_20  INV_X1
+xU162  n47___rc n153 VDD_SIPO2_20 VSS_SIPO2_20  INV_X1
+xU163  n44___rc n156 VDD_SIPO2_20 VSS_SIPO2_20  INV_X1
+xU164  n52___rc n148 VDD_SIPO2_20 VSS_SIPO2_20  INV_X1
+xU165  n46___rc n154 VDD_SIPO2_20 VSS_SIPO2_20  INV_X1
+xU166  n51___rc n149 VDD_SIPO2_20 VSS_SIPO2_20  INV_X1
+xU167  n50___rc n150 VDD_SIPO2_20 VSS_SIPO2_20  INV_X1
+xU168  n45___rc n155 VDD_SIPO2_20 VSS_SIPO2_20  INV_X1
+xU170  pisos_1__SP1_10_ctr_0____rc n189 VDD_SIPO2_20 VSS_SIPO2_20  INV_X1
+xU172  pisos_0__SP1_10_ctr_0____rc n188 VDD_SIPO2_20 VSS_SIPO2_20  INV_X1
+xU183  n124___rc n88___rc n163 VDD_SIPO2_20 VSS_SIPO2_20  XOR2_X1
+xU184  n166___rc PARALLEL_OUT[18]___rc n135___rc n63 VDD_SIPO2_20 VSS_SIPO2_20  MUX2_X1
+xU185  n167___rc PARALLEL_OUT[16]___rc n135___rc n64 VDD_SIPO2_20 VSS_SIPO2_20  MUX2_X1
+xU186  n168___rc PARALLEL_OUT[14]___rc n135___rc n65 VDD_SIPO2_20 VSS_SIPO2_20  MUX2_X1
+xU187  n169___rc PARALLEL_OUT[12]___rc n135___rc n66 VDD_SIPO2_20 VSS_SIPO2_20  MUX2_X1
+xU189  n171___rc PARALLEL_OUT[8]___rc n234___rc n68 VDD_SIPO2_20 VSS_SIPO2_20  MUX2_X1
+xU190  n172___rc PARALLEL_OUT[6]___rc n234___rc n69 VDD_SIPO2_20 VSS_SIPO2_20  MUX2_X1
+xU191  n173___rc PARALLEL_OUT[4]___rc n234___rc n70 VDD_SIPO2_20 VSS_SIPO2_20  MUX2_X1
+xU192  n174___rc PARALLEL_OUT[2]___rc n234___rc n71 VDD_SIPO2_20 VSS_SIPO2_20  MUX2_X1
+xU193  n176___rc PARALLEL_OUT[0]___rc n234___rc n72 VDD_SIPO2_20 VSS_SIPO2_20  MUX2_X1
+xU196  n123___rc n121___rc n183 VDD_SIPO2_20 VSS_SIPO2_20  XOR2_X1
+xU127  pisos_0__SP1_10_ctr_3____rc pisos_0__SP1_10_ctr_2____rc n144 VDD_SIPO2_20 VSS_SIPO2_20  NOR2_X1
+xU71  n92___rc n222___rc n185 VDD_SIPO2_20 VSS_SIPO2_20  NAND2_X1
+xU105  pisos_1__SP1_10_ctr_4____rc n116 VDD_SIPO2_20 VSS_SIPO2_20  CLKBUF_X1
+xU106  n130___rc n117 VDD_SIPO2_20 VSS_SIPO2_20  CLKBUF_X1
+xU137  pisos_0__SP1_10_ctr_4____rc n177 VDD_SIPO2_20 VSS_SIPO2_20  INV_X1
+xU112  pisos_0__SP1_10_ctr_0____rc n123 VDD_SIPO2_20 VSS_SIPO2_20  BUF_X1
+xU110  pisos_0__SP1_10_ctr_1____rc n121 VDD_SIPO2_20 VSS_SIPO2_20  BUF_X1
+xU113  pisos_1__SP1_10_ctr_0____rc n124 VDD_SIPO2_20 VSS_SIPO2_20  BUF_X1
+xU76  pisos_1__SP1_10_ctr_1____rc n88 VDD_SIPO2_20 VSS_SIPO2_20  BUF_X1
+xU108  pisos_1__SP1_10_ctr_3____rc n119 VDD_SIPO2_20 VSS_SIPO2_20  CLKBUF_X1
+xU111  pisos_0__SP1_10_ctr_2____rc n122 VDD_SIPO2_20 VSS_SIPO2_20  CLKBUF_X1
+xU101  pisos_1__SP1_10_ctr_4____rc n129 VDD_SIPO2_20 VSS_SIPO2_20  INV_X2
+xU227  n123___rc pisos_0__SP1_10_ctr_3____rc n213 VDD_SIPO2_20 VSS_SIPO2_20  AND2_X1
+xU228  n213___rc n214___rc n184 VDD_SIPO2_20 VSS_SIPO2_20  NAND2_X1
+xU229  n133___rc n215___rc n214 VDD_SIPO2_20 VSS_SIPO2_20  NOR2_X1
+xU230  pisos_0__SP1_10_ctr_1____rc pisos_0__SP1_10_ctr_2____rc n133 VDD_SIPO2_20 VSS_SIPO2_20  OR2_X1
+xU231  n218___rc pisos_1__SP1_10_ctr_1____rc n189___rc n129___rc n216 VDD_SIPO2_20 VSS_SIPO2_20  NAND4_X1
+xU232  n179___rc n181___rc n180___rc n182 VDD_SIPO2_20 VSS_SIPO2_20  OAI21_X1
+xU234  n170___rc PARALLEL_OUT[10]___rc n135___rc n67 VDD_SIPO2_20 VSS_SIPO2_20  MUX2_X1
+xU235  n133___rc n131___rc n135 VDD_SIPO2_20 VSS_SIPO2_20  OR2_X2
+xU236  n177___rc n215 VDD_SIPO2_20 VSS_SIPO2_20  INV_X1
+xU238  n165___rc n116___rc pisos_1__SP1_10_N12 VDD_SIPO2_20 VSS_SIPO2_20  XNOR2_X1
+xU239  n185___rc n215___rc pisos_0__SP1_10_N12 VDD_SIPO2_20 VSS_SIPO2_20  XNOR2_X1
+xU240  n217___rc n216___rc DATA_USED_OUT VDD_SIPO2_20 VSS_SIPO2_20  NAND2_X1
+xU241  n144___rc n177___rc pisos_0__SP1_10_ctr_1____rc n188___rc n217 VDD_SIPO2_20 VSS_SIPO2_20  NAND4_X1
+xU242  n130___rc pisos_1__SP1_10_ctr_0____rc n129___rc n90 VDD_SIPO2_20 VSS_SIPO2_20  NAND3_X1
+xU243  n149___rc PARALLEL_OUT[17]___rc n219___rc n54 VDD_SIPO2_20 VSS_SIPO2_20  MUX2_X1
+xU244  n126___rc n128___rc n219 VDD_SIPO2_20 VSS_SIPO2_20  NAND2_X1
+xU245  n150___rc PARALLEL_OUT[15]___rc n219___rc n55 VDD_SIPO2_20 VSS_SIPO2_20  MUX2_X1
+xU246  n151___rc PARALLEL_OUT[13]___rc n219___rc n56 VDD_SIPO2_20 VSS_SIPO2_20  MUX2_X1
+xU247  n148___rc PARALLEL_OUT[19]___rc n219___rc n53 VDD_SIPO2_20 VSS_SIPO2_20  MUX2_X1
+xU248  n158___rc PARALLEL_OUT[1]___rc n219___rc n62 VDD_SIPO2_20 VSS_SIPO2_20  MUX2_X1
+xU249  n154___rc PARALLEL_OUT[7]___rc n220___rc n59 VDD_SIPO2_20 VSS_SIPO2_20  MUX2_X1
+xU250  n126___rc n128___rc n220 VDD_SIPO2_20 VSS_SIPO2_20  NAND2_X1
+xU251  n152___rc PARALLEL_OUT[11]___rc n220___rc n57 VDD_SIPO2_20 VSS_SIPO2_20  MUX2_X1
+xU252  n153___rc PARALLEL_OUT[9]___rc n220___rc n58 VDD_SIPO2_20 VSS_SIPO2_20  MUX2_X1
+xU253  n155___rc PARALLEL_OUT[5]___rc n220___rc n60 VDD_SIPO2_20 VSS_SIPO2_20  MUX2_X1
+xU254  n156___rc PARALLEL_OUT[3]___rc n220___rc n61 VDD_SIPO2_20 VSS_SIPO2_20  MUX2_X1
+xU255  pisos_1__SP1_10_ctr_2____rc n221 VDD_SIPO2_20 VSS_SIPO2_20  BUF_X1
+xU256  pisos_0__SP1_10_ctr_3____rc n122___rc n222 VDD_SIPO2_20 VSS_SIPO2_20  AND2_X1
+xU257  CLK_IN___rc n244 VDD_SIPO2_20 VSS_SIPO2_20  BUF_X2
+xU258  CLK_IN___rc n243 VDD_SIPO2_20 VSS_SIPO2_20  BUF_X2
+xU259  CLK_IN___rc n242 VDD_SIPO2_20 VSS_SIPO2_20  BUF_X2
+xU260  CLK_IN___rc n241 VDD_SIPO2_20 VSS_SIPO2_20  BUF_X2
+xU261  RESET_IN___rc n238 VDD_SIPO2_20 VSS_SIPO2_20  INV_X2
+xU262  RESET_IN___rc n237 VDD_SIPO2_20 VSS_SIPO2_20  INV_X2
+xU269  RESET_IN___rc n239 VDD_SIPO2_20 VSS_SIPO2_20  INV_X2
+xU237  pisos_1__SP1_10_ctr_3____rc pisos_1__SP1_10_ctr_2____rc n218 VDD_SIPO2_20 VSS_SIPO2_20  NOR2_X2
+xU74  n124___rc n88___rc n161 VDD_SIPO2_20 VSS_SIPO2_20  NAND2_X1
+xU233  n123___rc n121___rc n181 VDD_SIPO2_20 VSS_SIPO2_20  NAND2_X1
+xU274  n133___rc n131___rc n234 VDD_SIPO2_20 VSS_SIPO2_20  OR2_X2
+xU275  RESET_IN___rc n235 VDD_SIPO2_20 VSS_SIPO2_20  INV_X2
+*** Estimated net resistances from Design Compiler
+r1 CLK_IN CLK_IN___rc 118.0
+r2 DATA_USED_OUT DATA_USED_OUT___rc 42.0
+r3 PARALLEL_OUT[0] PARALLEL_OUT[0]___rc 33.0
+r4 PARALLEL_OUT[10] PARALLEL_OUT[10]___rc 56.0
+r5 PARALLEL_OUT[11] PARALLEL_OUT[11]___rc 31.0
+r6 PARALLEL_OUT[12] PARALLEL_OUT[12]___rc 36.0
+r7 PARALLEL_OUT[13] PARALLEL_OUT[13]___rc 27.0
+r8 PARALLEL_OUT[14] PARALLEL_OUT[14]___rc 69.0
+r9 PARALLEL_OUT[15] PARALLEL_OUT[15]___rc 19.0
+r10 PARALLEL_OUT[16] PARALLEL_OUT[16]___rc 55.0
+r11 PARALLEL_OUT[17] PARALLEL_OUT[17]___rc 25.0
+r12 PARALLEL_OUT[18] PARALLEL_OUT[18]___rc 50.0
+r13 PARALLEL_OUT[19] PARALLEL_OUT[19]___rc 29.0
+r14 PARALLEL_OUT[1] PARALLEL_OUT[1]___rc 14.0
+r15 PARALLEL_OUT[2] PARALLEL_OUT[2]___rc 46.0
+r16 PARALLEL_OUT[3] PARALLEL_OUT[3]___rc 26.0
+r17 PARALLEL_OUT[4] PARALLEL_OUT[4]___rc 50.0
+r18 PARALLEL_OUT[5] PARALLEL_OUT[5]___rc 31.0
+r19 PARALLEL_OUT[6] PARALLEL_OUT[6]___rc 45.0
+r20 PARALLEL_OUT[7] PARALLEL_OUT[7]___rc 20.0
+r21 PARALLEL_OUT[8] PARALLEL_OUT[8]___rc 36.0
+r22 PARALLEL_OUT[9] PARALLEL_OUT[9]___rc 25.0
+r23 RESET_IN RESET_IN___rc 109.0
+r24 SERIAL_IN[0] SERIAL_IN[0]___rc 14.0
+r25 SERIAL_IN[1] SERIAL_IN[1]___rc 11.0
+r26 n116 n116___rc 9.0
+r27 n117 n117___rc 24.0
+r28 n119 n119___rc 17.0
+r29 n121 n121___rc 20.0
+r30 n122 n122___rc 14.0
+r31 n123 n123___rc 28.0
+r32 n124 n124___rc 45.0
+r33 n126 n126___rc 51.0
+r34 n128 n128___rc 82.0
+r35 n129 n129___rc 38.0
+r36 n130 n130___rc 10.0
+r37 n131 n131___rc 18.0
+r38 n133 n133___rc 33.0
+r39 n135 n135___rc 46.0
+r40 n144 n144___rc 36.0
+r41 n148 n148___rc 28.0
+r42 n149 n149___rc 43.0
+r43 n150 n150___rc 31.0
+r44 n151 n151___rc 11.0
+r45 n152 n152___rc 6.0
+r46 n153 n153___rc 35.0
+r47 n154 n154___rc 22.0
+r48 n155 n155___rc 19.0
+r49 n156 n156___rc 3.0
+r50 n158 n158___rc 34.0
+r51 n160 n160___rc 11.0
+r52 n161 n161___rc 8.0
+r53 n162 n162___rc 8.0
+r54 n163 n163___rc 4.0
+r55 n164 n164___rc 32.0
+r56 n165 n165___rc 22.0
+r57 n166 n166___rc 17.0
+r58 n167 n167___rc 3.0
+r59 n168 n168___rc 3.0
+r60 n169 n169___rc 21.0
+r61 n170 n170___rc 2.0
+r62 n171 n171___rc 24.0
+r63 n172 n172___rc 24.0
+r64 n173 n173___rc 37.0
+r65 n174 n174___rc 3.0
+r66 n176 n176___rc 22.0
+r67 n177 n177___rc 41.0
+r68 n179 n179___rc 32.0
+r69 n180 n180___rc 17.0
+r70 n181 n181___rc 9.0
+r71 n182 n182___rc 35.0
+r72 n183 n183___rc 38.0
+r73 n184 n184___rc 24.0
+r74 n185 n185___rc 50.0
+r75 n186 n186___rc 12.0
+r76 n187 n187___rc 9.0
+r77 n188 n188___rc 26.0
+r78 n189 n189___rc 18.0
+r79 n213 n213___rc 10.0
+r80 n214 n214___rc 2.0
+r81 n215 n215___rc 34.0
+r82 n216 n216___rc 3.0
+r83 n217 n217___rc 1.0
+r84 n218 n218___rc 7.0
+r85 n219 n219___rc 27.0
+r86 n220 n220___rc 30.0
+r87 n221 n221___rc 42.0
+r88 n222 n222___rc 7.0
+r89 n234 n234___rc 59.0
+r90 n235 n235___rc 121.0
+r91 n237 n237___rc 107.0
+r92 n238 n238___rc 105.0
+r93 n239 n239___rc 101.0
+r94 n241 n241___rc 64.0
+r95 n242 n242___rc 72.0
+r96 n243 n243___rc 113.0
+r97 n244 n244___rc 106.0
+r98 n27 n27___rc 5.0
+r99 n31 n31___rc 19.0
+r100 n32 n32___rc 45.0
+r101 n33 n33___rc 18.0
+r102 n34 n34___rc 41.0
+r103 n35 n35___rc 55.0
+r104 n36 n36___rc 35.0
+r105 n37 n37___rc 20.0
+r106 n38 n38___rc 52.0
+r107 n39 n39___rc 51.0
+r108 n40 n40___rc 39.0
+r109 n44 n44___rc 9.0
+r110 n45 n45___rc 54.0
+r111 n46 n46___rc 28.0
+r112 n47 n47___rc 14.0
+r113 n48 n48___rc 33.0
+r114 n49 n49___rc 88.0
+r115 n50 n50___rc 57.0
+r116 n51 n51___rc 40.0
+r117 n52 n52___rc 52.0
+r118 n53 n53___rc 21.0
+r119 n54 n54___rc 7.0
+r120 n55 n55___rc 12.0
+r121 n56 n56___rc 7.0
+r122 n57 n57___rc 6.0
+r123 n58 n58___rc 7.0
+r124 n59 n59___rc 8.0
+r125 n60 n60___rc 9.0
+r126 n61 n61___rc 7.0
+r127 n62 n62___rc 13.0
+r128 n63 n63___rc 7.0
+r129 n64 n64___rc 6.0
+r130 n65 n65___rc 8.0
+r131 n66 n66___rc 6.0
+r132 n67 n67___rc 13.0
+r133 n68 n68___rc 6.0
+r134 n69 n69___rc 9.0
+r135 n70 n70___rc 7.0
+r136 n71 n71___rc 8.0
+r137 n72 n72___rc 7.0
+r138 n84 n84___rc 8.0
+r139 n85 n85___rc 2.0
+r140 n86 n86___rc 4.0
+r141 n87 n87___rc 12.0
+r142 n88 n88___rc 23.0
+r143 n89 n89___rc 29.0
+r144 n90 n90___rc 15.0
+r145 n92 n92___rc 8.0
+r146 pisos_0__SP1_10_N10 pisos_0__SP1_10_N10___rc 24.0
+r147 pisos_0__SP1_10_N11 pisos_0__SP1_10_N11___rc 15.0
+r148 pisos_0__SP1_10_N12 pisos_0__SP1_10_N12___rc 4.0
+r149 pisos_0__SP1_10_ctr_0_ pisos_0__SP1_10_ctr_0____rc 12.0
+r150 pisos_0__SP1_10_ctr_1_ pisos_0__SP1_10_ctr_1____rc 26.0
+r151 pisos_0__SP1_10_ctr_2_ pisos_0__SP1_10_ctr_2____rc 23.0
+r152 pisos_0__SP1_10_ctr_3_ pisos_0__SP1_10_ctr_3____rc 27.0
+r153 pisos_0__SP1_10_ctr_4_ pisos_0__SP1_10_ctr_4____rc 2.0
+r154 pisos_0__SP1_10_shift_reg_1_ pisos_0__SP1_10_shift_reg_1____rc 57.0
+r155 pisos_0__SP1_10_shift_reg_2_ pisos_0__SP1_10_shift_reg_2____rc 35.0
+r156 pisos_0__SP1_10_shift_reg_3_ pisos_0__SP1_10_shift_reg_3____rc 35.0
+r157 pisos_0__SP1_10_shift_reg_4_ pisos_0__SP1_10_shift_reg_4____rc 52.0
+r158 pisos_0__SP1_10_shift_reg_5_ pisos_0__SP1_10_shift_reg_5____rc 51.0
+r159 pisos_0__SP1_10_shift_reg_6_ pisos_0__SP1_10_shift_reg_6____rc 20.0
+r160 pisos_0__SP1_10_shift_reg_7_ pisos_0__SP1_10_shift_reg_7____rc 39.0
+r161 pisos_0__SP1_10_shift_reg_8_ pisos_0__SP1_10_shift_reg_8____rc 33.0
+r162 pisos_0__SP1_10_shift_reg_9_ pisos_0__SP1_10_shift_reg_9____rc 26.0
+r163 pisos_1__SP1_10_N10 pisos_1__SP1_10_N10___rc 22.0
+r164 pisos_1__SP1_10_N11 pisos_1__SP1_10_N11___rc 9.0
+r165 pisos_1__SP1_10_N12 pisos_1__SP1_10_N12___rc 7.0
+r166 pisos_1__SP1_10_ctr_0_ pisos_1__SP1_10_ctr_0____rc 18.0
+r167 pisos_1__SP1_10_ctr_1_ pisos_1__SP1_10_ctr_1____rc 16.0
+r168 pisos_1__SP1_10_ctr_2_ pisos_1__SP1_10_ctr_2____rc 53.0
+r169 pisos_1__SP1_10_ctr_3_ pisos_1__SP1_10_ctr_3____rc 22.0
+r170 pisos_1__SP1_10_ctr_4_ pisos_1__SP1_10_ctr_4____rc 16.0
+r171 pisos_1__SP1_10_shift_reg_1_ pisos_1__SP1_10_shift_reg_1____rc 10.0
+r172 pisos_1__SP1_10_shift_reg_2_ pisos_1__SP1_10_shift_reg_2____rc 44.0
+r173 pisos_1__SP1_10_shift_reg_3_ pisos_1__SP1_10_shift_reg_3____rc 53.0
+r174 pisos_1__SP1_10_shift_reg_4_ pisos_1__SP1_10_shift_reg_4____rc 8.0
+r175 pisos_1__SP1_10_shift_reg_5_ pisos_1__SP1_10_shift_reg_5____rc 55.0
+r176 pisos_1__SP1_10_shift_reg_6_ pisos_1__SP1_10_shift_reg_6____rc 88.0
+r177 pisos_1__SP1_10_shift_reg_7_ pisos_1__SP1_10_shift_reg_7____rc 98.0
+r178 pisos_1__SP1_10_shift_reg_8_ pisos_1__SP1_10_shift_reg_8____rc 11.0
+r179 pisos_1__SP1_10_shift_reg_9_ pisos_1__SP1_10_shift_reg_9____rc 82.0
+*** Estimated net capacitances from Design Compiler
+c1 CLK_IN___rc VSS_SIPO2_20 1.563332e-15
+c2 DATA_USED_OUT___rc VSS_SIPO2_20 3.97561e-16
+c3 PARALLEL_OUT[0]___rc VSS_SIPO2_20 3.74005e-16
+c4 PARALLEL_OUT[10]___rc VSS_SIPO2_20 5.45277e-16
+c5 PARALLEL_OUT[11]___rc VSS_SIPO2_20 3.40053e-16
+c6 PARALLEL_OUT[12]___rc VSS_SIPO2_20 4.257e-16
+c7 PARALLEL_OUT[13]___rc VSS_SIPO2_20 2.88136e-16
+c8 PARALLEL_OUT[14]___rc VSS_SIPO2_20 6.96247e-16
+c9 PARALLEL_OUT[15]___rc VSS_SIPO2_20 2.32273e-16
+c10 PARALLEL_OUT[16]___rc VSS_SIPO2_20 5.57672e-16
+c11 PARALLEL_OUT[17]___rc VSS_SIPO2_20 2.63053e-16
+c12 PARALLEL_OUT[18]___rc VSS_SIPO2_20 4.85534e-16
+c13 PARALLEL_OUT[19]___rc VSS_SIPO2_20 3.32017e-16
+c14 PARALLEL_OUT[1]___rc VSS_SIPO2_20 1.61735e-16
+c15 PARALLEL_OUT[2]___rc VSS_SIPO2_20 5.94574e-16
+c16 PARALLEL_OUT[3]___rc VSS_SIPO2_20 2.899e-16
+c17 PARALLEL_OUT[4]___rc VSS_SIPO2_20 5.09954e-16
+c18 PARALLEL_OUT[5]___rc VSS_SIPO2_20 3.54407e-16
+c19 PARALLEL_OUT[6]___rc VSS_SIPO2_20 5.79624e-16
+c20 PARALLEL_OUT[7]___rc VSS_SIPO2_20 2.22871e-16
+c21 PARALLEL_OUT[8]___rc VSS_SIPO2_20 4.64867e-16
+c22 PARALLEL_OUT[9]___rc VSS_SIPO2_20 2.46052e-16
+c23 RESET_IN___rc VSS_SIPO2_20 1.520933e-15
+c24 SERIAL_IN[0]___rc VSS_SIPO2_20 1.95618e-16
+c25 SERIAL_IN[1]___rc VSS_SIPO2_20 1.49736e-16
+c26 n116___rc VSS_SIPO2_20 9.3751e-17
+c27 n117___rc VSS_SIPO2_20 2.6276e-16
+c28 n119___rc VSS_SIPO2_20 2.31694e-16
+c29 n121___rc VSS_SIPO2_20 2.42526e-16
+c30 n122___rc VSS_SIPO2_20 1.74159e-16
+c31 n123___rc VSS_SIPO2_20 4.27534e-16
+c32 n124___rc VSS_SIPO2_20 5.69957e-16
+c33 n126___rc VSS_SIPO2_20 6.28904e-16
+c34 n128___rc VSS_SIPO2_20 9.98868e-16
+c35 n129___rc VSS_SIPO2_20 5.02656e-16
+c36 n130___rc VSS_SIPO2_20 1.11118e-16
+c37 n131___rc VSS_SIPO2_20 1.84106e-16
+c38 n133___rc VSS_SIPO2_20 3.83386e-16
+c39 n135___rc VSS_SIPO2_20 7.80279e-16
+c40 n144___rc VSS_SIPO2_20 4.43682e-16
+c41 n148___rc VSS_SIPO2_20 2.78189e-16
+c42 n149___rc VSS_SIPO2_20 6.10295e-16
+c43 n150___rc VSS_SIPO2_20 3.61836e-16
+c44 n151___rc VSS_SIPO2_20 1.25922e-16
+c45 n152___rc VSS_SIPO2_20 5.8373e-17
+c46 n153___rc VSS_SIPO2_20 3.44704e-16
+c47 n154___rc VSS_SIPO2_20 2.70887e-16
+c48 n155___rc VSS_SIPO2_20 2.29828e-16
+c49 n156___rc VSS_SIPO2_20 3.4239e-17
+c50 n158___rc VSS_SIPO2_20 4.66825e-16
+c51 n160___rc VSS_SIPO2_20 1.23787e-16
+c52 n161___rc VSS_SIPO2_20 1.14996e-16
+c53 n162___rc VSS_SIPO2_20 8.6616e-17
+c54 n163___rc VSS_SIPO2_20 3.9057e-17
+c55 n164___rc VSS_SIPO2_20 3.72132e-16
+c56 n165___rc VSS_SIPO2_20 2.28644e-16
+c57 n166___rc VSS_SIPO2_20 1.76152e-16
+c58 n167___rc VSS_SIPO2_20 4.9678e-17
+c59 n168___rc VSS_SIPO2_20 4.1899e-17
+c60 n169___rc VSS_SIPO2_20 2.5341e-16
+c61 n170___rc VSS_SIPO2_20 3.6847e-17
+c62 n171___rc VSS_SIPO2_20 3.30537e-16
+c63 n172___rc VSS_SIPO2_20 3.05729e-16
+c64 n173___rc VSS_SIPO2_20 4.40073e-16
+c65 n174___rc VSS_SIPO2_20 3.276e-17
+c66 n176___rc VSS_SIPO2_20 2.46225e-16
+c67 n177___rc VSS_SIPO2_20 5.36347e-16
+c68 n179___rc VSS_SIPO2_20 3.68584e-16
+c69 n180___rc VSS_SIPO2_20 2.2104e-16
+c70 n181___rc VSS_SIPO2_20 1.32187e-16
+c71 n182___rc VSS_SIPO2_20 3.6631e-16
+c72 n183___rc VSS_SIPO2_20 3.82588e-16
+c73 n184___rc VSS_SIPO2_20 2.4188e-16
+c74 n185___rc VSS_SIPO2_20 5.68335e-16
+c75 n186___rc VSS_SIPO2_20 1.45151e-16
+c76 n187___rc VSS_SIPO2_20 1.00453e-16
+c77 n188___rc VSS_SIPO2_20 2.79309e-16
+c78 n189___rc VSS_SIPO2_20 1.98344e-16
+c79 n213___rc VSS_SIPO2_20 1.06785e-16
+c80 n214___rc VSS_SIPO2_20 2.6074e-17
+c81 n215___rc VSS_SIPO2_20 3.54439e-16
+c82 n216___rc VSS_SIPO2_20 2.7867e-17
+c83 n217___rc VSS_SIPO2_20 1.2595e-17
+c84 n218___rc VSS_SIPO2_20 9.7842e-17
+c85 n219___rc VSS_SIPO2_20 4.28775e-16
+c86 n220___rc VSS_SIPO2_20 5.35003e-16
+c87 n221___rc VSS_SIPO2_20 4.80546e-16
+c88 n222___rc VSS_SIPO2_20 7.3141e-17
+c89 n234___rc VSS_SIPO2_20 9.88004e-16
+c90 n235___rc VSS_SIPO2_20 2.173037e-15
+c91 n237___rc VSS_SIPO2_20 2.157771e-15
+c92 n238___rc VSS_SIPO2_20 2.197483e-15
+c93 n239___rc VSS_SIPO2_20 2.115308e-15
+c94 n241___rc VSS_SIPO2_20 1.231517e-15
+c95 n242___rc VSS_SIPO2_20 1.407587e-15
+c96 n243___rc VSS_SIPO2_20 2.021022e-15
+c97 n244___rc VSS_SIPO2_20 1.984639e-15
+c98 n27___rc VSS_SIPO2_20 5.5156e-17
+c99 n31___rc VSS_SIPO2_20 2.27064e-16
+c100 n32___rc VSS_SIPO2_20 5.32242e-16
+c101 n33___rc VSS_SIPO2_20 2.30977e-16
+c102 n34___rc VSS_SIPO2_20 4.52485e-16
+c103 n35___rc VSS_SIPO2_20 6.12055e-16
+c104 n36___rc VSS_SIPO2_20 3.4988e-16
+c105 n37___rc VSS_SIPO2_20 2.22188e-16
+c106 n38___rc VSS_SIPO2_20 5.17077e-16
+c107 n39___rc VSS_SIPO2_20 5.87588e-16
+c108 n40___rc VSS_SIPO2_20 6.27286e-16
+c109 n44___rc VSS_SIPO2_20 1.09399e-16
+c110 n45___rc VSS_SIPO2_20 5.62221e-16
+c111 n46___rc VSS_SIPO2_20 3.80871e-16
+c112 n47___rc VSS_SIPO2_20 2.00201e-16
+c113 n48___rc VSS_SIPO2_20 4.64923e-16
+c114 n49___rc VSS_SIPO2_20 9.83159e-16
+c115 n50___rc VSS_SIPO2_20 8.71968e-16
+c116 n51___rc VSS_SIPO2_20 4.89819e-16
+c117 n52___rc VSS_SIPO2_20 5.16711e-16
+c118 n53___rc VSS_SIPO2_20 2.29556e-16
+c119 n54___rc VSS_SIPO2_20 9.8169e-17
+c120 n55___rc VSS_SIPO2_20 1.41793e-16
+c121 n56___rc VSS_SIPO2_20 9.2055e-17
+c122 n57___rc VSS_SIPO2_20 7.3128e-17
+c123 n58___rc VSS_SIPO2_20 7.4892e-17
+c124 n59___rc VSS_SIPO2_20 1.05411e-16
+c125 n60___rc VSS_SIPO2_20 1.05917e-16
+c126 n61___rc VSS_SIPO2_20 9.0781e-17
+c127 n62___rc VSS_SIPO2_20 1.55044e-16
+c128 n63___rc VSS_SIPO2_20 8.6505e-17
+c129 n64___rc VSS_SIPO2_20 7.9553e-17
+c130 n65___rc VSS_SIPO2_20 1.17713e-16
+c131 n66___rc VSS_SIPO2_20 5.4121e-17
+c132 n67___rc VSS_SIPO2_20 1.26093e-16
+c133 n68___rc VSS_SIPO2_20 8.7381e-17
+c134 n69___rc VSS_SIPO2_20 1.20069e-16
+c135 n70___rc VSS_SIPO2_20 8.9795e-17
+c136 n71___rc VSS_SIPO2_20 9.0159e-17
+c137 n72___rc VSS_SIPO2_20 7.4994e-17
+c138 n84___rc VSS_SIPO2_20 1.17127e-16
+c139 n85___rc VSS_SIPO2_20 2.4376e-17
+c140 n86___rc VSS_SIPO2_20 4.2526e-17
+c141 n87___rc VSS_SIPO2_20 1.16602e-16
+c142 n88___rc VSS_SIPO2_20 3.05611e-16
+c143 n89___rc VSS_SIPO2_20 3.0557e-16
+c144 n90___rc VSS_SIPO2_20 1.433e-16
+c145 n92___rc VSS_SIPO2_20 7.3815e-17
+c146 pisos_0__SP1_10_N10___rc VSS_SIPO2_20 2.37033e-16
+c147 pisos_0__SP1_10_N11___rc VSS_SIPO2_20 1.89353e-16
+c148 pisos_0__SP1_10_N12___rc VSS_SIPO2_20 6.3466e-17
+c149 pisos_0__SP1_10_ctr_0____rc VSS_SIPO2_20 1.6752e-16
+c150 pisos_0__SP1_10_ctr_1____rc VSS_SIPO2_20 3.88819e-16
+c151 pisos_0__SP1_10_ctr_2____rc VSS_SIPO2_20 3.26276e-16
+c152 pisos_0__SP1_10_ctr_3____rc VSS_SIPO2_20 3.75894e-16
+c153 pisos_0__SP1_10_ctr_4____rc VSS_SIPO2_20 2.7395e-17
+c154 pisos_0__SP1_10_shift_reg_1____rc VSS_SIPO2_20 8.9531e-16
+c155 pisos_0__SP1_10_shift_reg_2____rc VSS_SIPO2_20 4.05235e-16
+c156 pisos_0__SP1_10_shift_reg_3____rc VSS_SIPO2_20 3.22851e-16
+c157 pisos_0__SP1_10_shift_reg_4____rc VSS_SIPO2_20 8.14249e-16
+c158 pisos_0__SP1_10_shift_reg_5____rc VSS_SIPO2_20 7.0328e-16
+c159 pisos_0__SP1_10_shift_reg_6____rc VSS_SIPO2_20 2.51917e-16
+c160 pisos_0__SP1_10_shift_reg_7____rc VSS_SIPO2_20 3.94983e-16
+c161 pisos_0__SP1_10_shift_reg_8____rc VSS_SIPO2_20 5.28445e-16
+c162 pisos_0__SP1_10_shift_reg_9____rc VSS_SIPO2_20 3.25122e-16
+c163 pisos_1__SP1_10_N10___rc VSS_SIPO2_20 2.14755e-16
+c164 pisos_1__SP1_10_N11___rc VSS_SIPO2_20 1.25712e-16
+c165 pisos_1__SP1_10_N12___rc VSS_SIPO2_20 1.02839e-16
+c166 pisos_1__SP1_10_ctr_0____rc VSS_SIPO2_20 2.52306e-16
+c167 pisos_1__SP1_10_ctr_1____rc VSS_SIPO2_20 2.04507e-16
+c168 pisos_1__SP1_10_ctr_2____rc VSS_SIPO2_20 6.06426e-16
+c169 pisos_1__SP1_10_ctr_3____rc VSS_SIPO2_20 3.04094e-16
+c170 pisos_1__SP1_10_ctr_4____rc VSS_SIPO2_20 1.8719e-16
+c171 pisos_1__SP1_10_shift_reg_1____rc VSS_SIPO2_20 1.29858e-16
+c172 pisos_1__SP1_10_shift_reg_2____rc VSS_SIPO2_20 4.0715e-16
+c173 pisos_1__SP1_10_shift_reg_3____rc VSS_SIPO2_20 4.94762e-16
+c174 pisos_1__SP1_10_shift_reg_4____rc VSS_SIPO2_20 1.11208e-16
+c175 pisos_1__SP1_10_shift_reg_5____rc VSS_SIPO2_20 5.12411e-16
+c176 pisos_1__SP1_10_shift_reg_6____rc VSS_SIPO2_20 9.99949e-16
+c177 pisos_1__SP1_10_shift_reg_7____rc VSS_SIPO2_20 1.09311e-15
+c178 pisos_1__SP1_10_shift_reg_8____rc VSS_SIPO2_20 1.48637e-16
+c179 pisos_1__SP1_10_shift_reg_9____rc VSS_SIPO2_20 1.170466e-15
+.ENDS
+*** End
+

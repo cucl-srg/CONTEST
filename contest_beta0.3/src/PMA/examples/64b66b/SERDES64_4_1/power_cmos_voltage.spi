@@ -1,0 +1,11 @@
+ *** ============================================================= *** 
+ *** POWER MEASUREMENTS -- CMOS SERDES ONLY *** 
+ *** ============================================================= *** 
+ *** CMOS LEVEL LOGIC *** 
+ .MEASURE TRAN Idd_Vpdd_cmos_in AVG I(Vpdd_cmos_in) FROM=FROM_TS TO=TO_TS 
+ .MEASURE POWER_Vpdd_cmos_in Param='abs(Idd_Vpdd_cmos_in)*CMOS_VDD_LEVEL' 
+ .MEASURE TRAN Idd_Vdd_ser_cmos AVG I(Vdd_ser_cmos) FROM=FROM_TS TO=TO_TS 
+ .MEASURE POWER_Vdd_ser_cmos Param='abs(Idd_Vdd_ser_cmos)*CMOS_VDD_LEVEL' 
+ .MEASURE TRAN Idd_Vdd_des_cmos AVG I(Vdd_des_cmos) FROM=FROM_TS TO=TO_TS 
+ .MEASURE POWER_Vdd_des_cmos Param='abs(Idd_Vdd_des_cmos)*CMOS_VDD_LEVEL' 
+ *** ============================================================= *** 

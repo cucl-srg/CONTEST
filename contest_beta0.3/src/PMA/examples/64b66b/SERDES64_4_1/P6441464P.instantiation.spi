@@ -1,0 +1,228 @@
+***  Written by Yury Audzevich
+*** 
+***  Comments, suggestions for improvement and criticism welcome
+***  E-mail:  yury.audzevich~at~cl.cam.ac.uk
+*** 
+*** 
+***  Copyright 2003-2013, University of Cambridge, Computer Laboratory. 
+***  Copyright and related rights are licensed under the Hardware License, 
+***  Version 2.0 (the "License"); you may not use this file except in 
+***  compliance with the License. You may obtain a copy of the License at
+***  http://www.cl.cam.ac.uk/research/srg/netos/greenict/projects/contest/. 
+***  Unless required by applicable law or agreed to in writing, software, 
+***  hardware and materials distributed under this License is distributed 
+***  on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+***  either express or implied. See the License for the specific language
+***  governing permissions and limitations under the License.
+*** 
+*** 
+
+************************* REFERENCE CLOCK **************************************
+*** ==== Clock 1 TX & RX +/- at  f = 10.3GHz frequency ======
+X877_0 CLK_IN clkt pvdd_cmos_in gnda_in BUF_X1
+X877_1 CLK_IN clkr pvdd_cmos_in gnda_in BUF_X1
+
+*** chip select TX/RX (cs =!enable) 
+X888_1 CS_TX CSI_TX pvdd_cmos_in gnda_in INV_X1
+X889_1 CS_RX CSI_RX pvdd_cmos_in gnda_in INV_X1
+
+*** =============================================================
+*** Model of 64:4:64 CMOS SerDes  
+*** =============================================================
+
+*** separate chip resets for SER & DES
+X888_2 RESET_INS RESET_SER pvdd_cmos_in gnda_in BUF_X1
+X888_3 RESET_IND RESET_DES pvdd_cmos_in gnda_in BUF_X1
+
+
+*** Instance of 'PISO64_4' -- synth.-ed with synopsys DC
+XDUT
++ VDD_PISO64_4 VSS_PISO64_4
++ CLK4_TX DATA_IN[0] DATA_IN[1] DATA_IN[2] DATA_IN[3] DATA_IN[4] DATA_IN[5] DATA_IN[6] DATA_IN[7] DATA_IN[8] DATA_IN[9] DATA_IN[10] DATA_IN[11] DATA_IN[12] DATA_IN[13] DATA_IN[14] DATA_IN[15] DATA_IN[16] DATA_IN[17] DATA_IN[18] DATA_IN[19] DATA_IN[20] DATA_IN[21] DATA_IN[22] DATA_IN[23] DATA_IN[24] DATA_IN[25] DATA_IN[26] DATA_IN[27] DATA_IN[28] DATA_IN[29] DATA_IN[30] DATA_IN[31] DATA_IN[32] DATA_IN[33] DATA_IN[34] DATA_IN[35] DATA_IN[36] DATA_IN[37] DATA_IN[38] DATA_IN[39] DATA_IN[40] DATA_IN[41] DATA_IN[42] DATA_IN[43] DATA_IN[44] DATA_IN[45] DATA_IN[46] DATA_IN[47] DATA_IN[48] DATA_IN[49] DATA_IN[50] DATA_IN[51] DATA_IN[52] DATA_IN[53] DATA_IN[54] DATA_IN[55] DATA_IN[56] DATA_IN[57] DATA_IN[58] DATA_IN[59] DATA_IN[60] DATA_IN[61] DATA_IN[62] DATA_IN[63] RESET_SER 
++ DATA_USED_OUT SERIAL_OUT[0] SERIAL_OUT[1] SERIAL_OUT[2] SERIAL_OUT[3] 
++ PISO64_4
+*** End
+
+*** CMOS LEVEL OUTPUTS -- MCML CIRCUIT INPUTS 
+X100 SERIAL_OUT[0] add pvdd_cmos_in gnda_in BUF_X1
+X101 SERIAL_OUT[1] bdd pvdd_cmos_in gnda_in BUF_X1
+X102 SERIAL_OUT[2] cdd pvdd_cmos_in gnda_in BUF_X1
+X103 SERIAL_OUT[3] ddd pvdd_cmos_in gnda_in BUF_X1
+
+***************************************************************
+****************** MCML 4:1:4 SERDES **************************
+***************************************************************
+
+X2_2 
++ add bdd cdd ddd clkt CSI_TX outd_2b outi_2b 
++ clk4tx_cmos
++ pvdd_mcmls pvp_dlas pvn_dlas pvp_invs pvn_invs pvp_convs pvn_convs pvdd_cmos_ser gnda_s MCML_SERIAL41
+
+********** NO CHANNEL -- IDEAL INTERCONNECT ***********
+
+X2_3 
++ outd_2b outi_2b clkr CSI_RX
++ clk4rx_cmos
++ out_mcml[1] out_mcml[2] out_mcml[3] out_mcml[4]
++ pvdd_mcmld pvp_dlad pvn_dlad pvp_invd pvn_invd pvp_convd pvn_convd pvdd_cmos_des gnda_d MCML_DESERIAL14
+
+
+*** reshape outputs for the next stage 
+X200 out_mcml[1] SERIAL_IN[0] pvdd_cmos_in gnda_in BUF_X1
+X201 out_mcml[2] SERIAL_IN[1] pvdd_cmos_in gnda_in BUF_X1
+X202 out_mcml[3] SERIAL_IN[2] pvdd_cmos_in gnda_in BUF_X1
+X203 out_mcml[4] SERIAL_IN[3] pvdd_cmos_in gnda_in BUF_X1
+
+*** Clock signals used in CMOS SERDES ***
+X208 clk4tx_cmos CLK4_TX pvdd_cmos_in gnda_in BUF_X1
+X209 clk4rx_cmos CLK4_RX pvdd_cmos_in gnda_in BUF_X1
+
+******************* END OF MCML CIRCUIT ***********************
+
+*** Instance of 'SIPO4_64' -- synth.-ed with synopsys DC
+XDUT1
++ VDD_SIPO4_64 VSS_SIPO4_64
++ CLK4_RX RESET_DES SERIAL_IN[0] SERIAL_IN[1] SERIAL_IN[2] SERIAL_IN[3] DATA_USED_OUTD
++ OUT[0] OUT[1] OUT[2] OUT[3] OUT[4] OUT[5] OUT[6] OUT[7] OUT[8] OUT[9] OUT[10]  OUT[11] OUT[12] OUT[13] OUT[14] OUT[15] OUT[16] OUT[17] OUT[18] OUT[19] OUT[20] OUT[21] OUT[22] OUT[23] OUT[24] OUT[25] OUT[26] OUT[27] OUT[28] OUT[29] OUT[30] OUT[31] OUT[32] OUT[33] OUT[34] OUT[35] OUT[36] OUT[37] OUT[38] OUT[39] OUT[40] OUT[41] OUT[42] OUT[43] OUT[44] OUT[45] OUT[46] OUT[47] OUT[48] OUT[49] OUT[50] OUT[51] OUT[52] OUT[53] OUT[54] OUT[55] OUT[56] OUT[57] OUT[58] OUT[59] OUT[60] OUT[61] OUT[62] OUT[63] 
++ SIPO4_64 
+*** End
+
+*** #1
+X400 OUT[0] PARALLEL_OUT[0] pvdd_cmos_in gnda_in BUF_X1
+X401 OUT[1] PARALLEL_OUT[1] pvdd_cmos_in gnda_in BUF_X1
+X402 OUT[2] PARALLEL_OUT[2] pvdd_cmos_in gnda_in BUF_X1
+X403 OUT[3] PARALLEL_OUT[3] pvdd_cmos_in gnda_in BUF_X1
+X404 OUT[4] PARALLEL_OUT[4] pvdd_cmos_in gnda_in BUF_X1
+X405 OUT[5] PARALLEL_OUT[5] pvdd_cmos_in gnda_in BUF_X1
+X406 OUT[6] PARALLEL_OUT[6] pvdd_cmos_in gnda_in BUF_X1
+X407 OUT[7] PARALLEL_OUT[7] pvdd_cmos_in gnda_in BUF_X1
+X408 OUT[8] PARALLEL_OUT[8] pvdd_cmos_in gnda_in BUF_X1
+X409 OUT[9] PARALLEL_OUT[9] pvdd_cmos_in gnda_in BUF_X1
+X410 OUT[10] PARALLEL_OUT[10] pvdd_cmos_in gnda_in BUF_X1
+X411 OUT[11] PARALLEL_OUT[11] pvdd_cmos_in gnda_in BUF_X1
+X412 OUT[12] PARALLEL_OUT[12] pvdd_cmos_in gnda_in BUF_X1
+X413 OUT[13] PARALLEL_OUT[13] pvdd_cmos_in gnda_in BUF_X1
+X414 OUT[14] PARALLEL_OUT[14] pvdd_cmos_in gnda_in BUF_X1
+X415 OUT[15] PARALLEL_OUT[15] pvdd_cmos_in gnda_in BUF_X1
+*** #2
+X416 OUT[16] PARALLEL_OUT[16] pvdd_cmos_in gnda_in BUF_X1
+X417 OUT[17] PARALLEL_OUT[17] pvdd_cmos_in gnda_in BUF_X1
+X418 OUT[18] PARALLEL_OUT[18] pvdd_cmos_in gnda_in BUF_X1
+X419 OUT[19] PARALLEL_OUT[19] pvdd_cmos_in gnda_in BUF_X1
+X420 OUT[20] PARALLEL_OUT[20] pvdd_cmos_in gnda_in BUF_X1
+X421 OUT[21] PARALLEL_OUT[21] pvdd_cmos_in gnda_in BUF_X1
+X422 OUT[22] PARALLEL_OUT[22] pvdd_cmos_in gnda_in BUF_X1
+X423 OUT[23] PARALLEL_OUT[23] pvdd_cmos_in gnda_in BUF_X1
+X424 OUT[24] PARALLEL_OUT[24] pvdd_cmos_in gnda_in BUF_X1
+X425 OUT[25] PARALLEL_OUT[25] pvdd_cmos_in gnda_in BUF_X1
+X426 OUT[26] PARALLEL_OUT[26] pvdd_cmos_in gnda_in BUF_X1
+X427 OUT[27] PARALLEL_OUT[27] pvdd_cmos_in gnda_in BUF_X1
+X428 OUT[28] PARALLEL_OUT[28] pvdd_cmos_in gnda_in BUF_X1
+X429 OUT[29] PARALLEL_OUT[29] pvdd_cmos_in gnda_in BUF_X1
+X430 OUT[30] PARALLEL_OUT[30] pvdd_cmos_in gnda_in BUF_X1
+X431 OUT[31] PARALLEL_OUT[31] pvdd_cmos_in gnda_in BUF_X1
+*** #3
+X432 OUT[32] PARALLEL_OUT[32] pvdd_cmos_in gnda_in BUF_X1
+X433 OUT[33] PARALLEL_OUT[33] pvdd_cmos_in gnda_in BUF_X1
+X434 OUT[34] PARALLEL_OUT[34] pvdd_cmos_in gnda_in BUF_X1
+X435 OUT[35] PARALLEL_OUT[35] pvdd_cmos_in gnda_in BUF_X1
+X436 OUT[36] PARALLEL_OUT[36] pvdd_cmos_in gnda_in BUF_X1
+X437 OUT[37] PARALLEL_OUT[37] pvdd_cmos_in gnda_in BUF_X1
+X438 OUT[38] PARALLEL_OUT[38] pvdd_cmos_in gnda_in BUF_X1
+X439 OUT[39] PARALLEL_OUT[39] pvdd_cmos_in gnda_in BUF_X1
+X440 OUT[40] PARALLEL_OUT[40] pvdd_cmos_in gnda_in BUF_X1
+X441 OUT[41] PARALLEL_OUT[41] pvdd_cmos_in gnda_in BUF_X1
+X442 OUT[42] PARALLEL_OUT[42] pvdd_cmos_in gnda_in BUF_X1
+X443 OUT[43] PARALLEL_OUT[43] pvdd_cmos_in gnda_in BUF_X1
+X444 OUT[44] PARALLEL_OUT[44] pvdd_cmos_in gnda_in BUF_X1
+X445 OUT[45] PARALLEL_OUT[45] pvdd_cmos_in gnda_in BUF_X1
+X446 OUT[46] PARALLEL_OUT[46] pvdd_cmos_in gnda_in BUF_X1
+X447 OUT[47] PARALLEL_OUT[47] pvdd_cmos_in gnda_in BUF_X1
+*** #4
+X448 OUT[48] PARALLEL_OUT[48] pvdd_cmos_in gnda_in BUF_X1
+X449 OUT[49] PARALLEL_OUT[49] pvdd_cmos_in gnda_in BUF_X1
+X450 OUT[50] PARALLEL_OUT[50] pvdd_cmos_in gnda_in BUF_X1
+X451 OUT[51] PARALLEL_OUT[51] pvdd_cmos_in gnda_in BUF_X1
+X452 OUT[52] PARALLEL_OUT[52] pvdd_cmos_in gnda_in BUF_X1
+X453 OUT[53] PARALLEL_OUT[53] pvdd_cmos_in gnda_in BUF_X1
+X454 OUT[54] PARALLEL_OUT[54] pvdd_cmos_in gnda_in BUF_X1
+X455 OUT[55] PARALLEL_OUT[55] pvdd_cmos_in gnda_in BUF_X1
+X456 OUT[56] PARALLEL_OUT[56] pvdd_cmos_in gnda_in BUF_X1
+X457 OUT[57] PARALLEL_OUT[57] pvdd_cmos_in gnda_in BUF_X1
+X458 OUT[58] PARALLEL_OUT[58] pvdd_cmos_in gnda_in BUF_X1
+X459 OUT[59] PARALLEL_OUT[59] pvdd_cmos_in gnda_in BUF_X1
+X460 OUT[60] PARALLEL_OUT[60] pvdd_cmos_in gnda_in BUF_X1
+X461 OUT[61] PARALLEL_OUT[61] pvdd_cmos_in gnda_in BUF_X1
+X462 OUT[62] PARALLEL_OUT[62] pvdd_cmos_in gnda_in BUF_X1
+X463 OUT[63] PARALLEL_OUT[63] pvdd_cmos_in gnda_in BUF_X1
+
+*** OUPUT LOADS -- make the case more realistic
+*** data
+C51 PARALLEL_OUT[0] 0 CLOAD
+C52 PARALLEL_OUT[1] 0 CLOAD
+C53 PARALLEL_OUT[2] 0 CLOAD
+C54 PARALLEL_OUT[3] 0 CLOAD
+C55 PARALLEL_OUT[4] 0 CLOAD
+C56 PARALLEL_OUT[5] 0 CLOAD
+C57 PARALLEL_OUT[6] 0 CLOAD
+C58 PARALLEL_OUT[7] 0 CLOAD
+C59 PARALLEL_OUT[8] 0 CLOAD
+C510 PARALLEL_OUT[9] 0 CLOAD
+C511 PARALLEL_OUT[10] 0 CLOAD
+C512 PARALLEL_OUT[11] 0 CLOAD
+C513 PARALLEL_OUT[12] 0 CLOAD
+C514 PARALLEL_OUT[13] 0 CLOAD
+C515 PARALLEL_OUT[14] 0 CLOAD
+C516 PARALLEL_OUT[15] 0 CLOAD
+
+C61 PARALLEL_OUT[16] 0 CLOAD
+C62 PARALLEL_OUT[17] 0 CLOAD
+C63 PARALLEL_OUT[18] 0 CLOAD
+C64 PARALLEL_OUT[19] 0 CLOAD
+C65 PARALLEL_OUT[20] 0 CLOAD
+C66 PARALLEL_OUT[21] 0 CLOAD
+C67 PARALLEL_OUT[22] 0 CLOAD
+C68 PARALLEL_OUT[23] 0 CLOAD
+C69 PARALLEL_OUT[24] 0 CLOAD
+C610 PARALLEL_OUT[25] 0 CLOAD
+C611 PARALLEL_OUT[26] 0 CLOAD
+C612 PARALLEL_OUT[27] 0 CLOAD
+C613 PARALLEL_OUT[28] 0 CLOAD
+C614 PARALLEL_OUT[29] 0 CLOAD
+C615 PARALLEL_OUT[30] 0 CLOAD
+C616 PARALLEL_OUT[31] 0 CLOAD
+
+C71 PARALLEL_OUT[32] 0 CLOAD
+C72 PARALLEL_OUT[33] 0 CLOAD
+C73 PARALLEL_OUT[34] 0 CLOAD
+C74 PARALLEL_OUT[35] 0 CLOAD
+C75 PARALLEL_OUT[36] 0 CLOAD
+C76 PARALLEL_OUT[37] 0 CLOAD
+C77 PARALLEL_OUT[38] 0 CLOAD
+C78 PARALLEL_OUT[39] 0 CLOAD
+C79 PARALLEL_OUT[40] 0 CLOAD
+C710 PARALLEL_OUT[41] 0 CLOAD
+C711 PARALLEL_OUT[42] 0 CLOAD
+C712 PARALLEL_OUT[43] 0 CLOAD
+C713 PARALLEL_OUT[44] 0 CLOAD
+C714 PARALLEL_OUT[45] 0 CLOAD
+C715 PARALLEL_OUT[46] 0 CLOAD
+C716 PARALLEL_OUT[47] 0 CLOAD
+
+C81 PARALLEL_OUT[48] 0 CLOAD
+C82 PARALLEL_OUT[49] 0 CLOAD
+C83 PARALLEL_OUT[50] 0 CLOAD
+C84 PARALLEL_OUT[51] 0 CLOAD
+C85 PARALLEL_OUT[52] 0 CLOAD
+C86 PARALLEL_OUT[53] 0 CLOAD
+C87 PARALLEL_OUT[54] 0 CLOAD
+C88 PARALLEL_OUT[55] 0 CLOAD
+C89 PARALLEL_OUT[56] 0 CLOAD
+C810 PARALLEL_OUT[57] 0 CLOAD
+C811 PARALLEL_OUT[58] 0 CLOAD
+C812 PARALLEL_OUT[59] 0 CLOAD
+C813 PARALLEL_OUT[60] 0 CLOAD
+C814 PARALLEL_OUT[61] 0 CLOAD
+C815 PARALLEL_OUT[62] 0 CLOAD
+C816 PARALLEL_OUT[63] 0 CLOAD
+

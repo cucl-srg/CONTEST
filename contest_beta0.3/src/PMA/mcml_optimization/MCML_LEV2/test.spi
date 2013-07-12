@@ -1,0 +1,535 @@
+***  Written by Yury Audzevich
+*** 
+***  Comments, suggestions for improvement and criticism welcome
+***  E-mail:  yury.audzevich~at~cl.cam.ac.uk
+*** 
+*** 
+***  Copyright 2003-2013, University of Cambridge, Computer Laboratory. 
+***  Copyright and related rights are licensed under the Hardware License, 
+***  Version 2.0 (the "License"); you may not use this file except in 
+***  compliance with the License. You may obtain a copy of the License at
+***  http://www.cl.cam.ac.uk/research/srg/netos/greenict/projects/contest/. 
+***  Unless required by applicable law or agreed to in writing, software, 
+***  hardware and materials distributed under this License is distributed 
+***  on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+***  either express or implied. See the License for the specific language
+***  governing permissions and limitations under the License.
+*** 
+*** 
+
+
+***** HSPICE simulation using standard cell designs *****
+
+***** Include MCML cell models and parameters for the analysis *****
+.include "cells.spi"
+.include "params.spi"
+
+**** ================================================= ***
+*** HSPICE OPTIONS ***
+.option post
+.option nomod
+.option co=255
+*.option brief
+.option dcon=1
+.option lis_new=1
+**.option captab 
+.option accurate
+
+**** ================================================= ***
+***** Drive inputs using stimulus in "test.dsi", configure driver widths *****
+*** DSI stimuli is converted into hspice one through the automatic Perl routine (flow_dsi_v0p7.pl) 
+.param beta = "1.3"
+.param dsiwmin = "wmin*10"
+.param dsilmin = "lmin"
+.include "tempdir.stimulus/test-stim.sp"
+
+*** Define optimiser ***
+.model opt1 opt relin=1e-5 relout=1e-5 itropt=200
+
+*** Stop after measures (faster for optimisation)
+.option autostop
+
+
+******** OPT ON/OFF ************
+.if (OPT_PARAM_ON==1)
+*******************************************************************************************
+*** Setup the optimisation sweep (note that keyword order is critical) 			***
+*** 1) Specify optimization variables required (RESULTS keyword).			***
+*** 2) Specify corresponding OPT GOALs in MEASUREMENTs section 				***
+*** (i.e. add below the corresponding GOAL words; use deltaV_a,etc for reference.)	***
+*******************************************************************************************
+.tran PARAM_TIME_S PARAM_TIME_E SWEEP OPTIMIZE=optw RESULTS=deltaV_a,deltaV_b,deltaV_c,deltaV_e,deltaV_d,deltaV_f MODEL=opt1
+
+*.tran PARAM_TIME_S PARAM_TIME_E SWEEP OPTIMIZE=optw RESULTS=mid_c2f1,mid_c2f2,mid_c4f1,mid_c4f2 MODEL=opt1
+*.tran PARAM_TIME_S PARAM_TIME_E SWEEP OPTIMIZE=optw RESULTS=deltaV_cls0,deltaV_cls1,deltaV_cls MODEL=opt1
+
+
+.else
+
+*** Standard run without optimisation
+.tran PARAM_TIME_S PARAM_TIME_E
+.endif
+*******************************
+
+*** MCML and ideal bias supplies
+Vvdd VDD 0 PARAM_MCML_VDD_VOLTAGE
+Vsss VSS 0 PARAM_MCML_VSS_VOLTAGE
+
+Vvrefn VREFN 0 SWEEP_N_BIAS_VOLTAGE
+Vvrefp VREFP 0 SWEEP_P_BIAS_VOLTAGE
+Vvrefls VREFLS 0 SWEEP_LEVEL_SHIFT_VOLTAGE
+
+******* INV voltages ***********
+Vvrefni VREFN_I 0 DC PARAM_INV_VRN
+Vvrefpi VREFP_I 0 DC PARAM_INV_VRP
+
+**** ================================================= ***
+*** DSI has generated DATAn[0] and DATAp[0] stimuli at required MCML levels
+*** clp cln generated separately 
+
+VCcp clp 0 pulse(PARAM_MCML_MIN PARAM_MCML_VDD_VOLTAGE 0 4e-12 4e-12 1.6e-11 4e-11)
+VCcn cln 0 pulse(PARAM_MCML_VDD_VOLTAGE PARAM_MCML_MIN 0 4e-12 4e-12 1.6e-11 4e-11)
+
+VCp2 datcp 0 pulse(PARAM_MCML_MIN PARAM_MCML_VDD_VOLTAGE 0 8e-12 8e-12 3.2e-11 8e-11)
+VCn2 datcn 0 pulse(PARAM_MCML_VDD_VOLTAGE PARAM_MCML_MIN 0 8e-12 8e-12 3.2e-11 8e-11)
+
+VCp3 datdp 0 pulse(PARAM_MCML_MIN PARAM_MCML_VDD_VOLTAGE 4e-11 8e-12 8e-12 3.2e-11 8e-11)
+VCn3 datdn 0 pulse(PARAM_MCML_VDD_VOLTAGE PARAM_MCML_MIN 4e-11 8e-12 8e-12 3.2e-11 8e-11)
+
+*Vdcp dcp 0 pulse(PARAM_MCML_MIN PARAM_MCML_VDD_VOLTAGE 0 1e-11 1e-11 1.6e-10 4e-10)
+*Vdcn dcn 0 pulse(PARAM_MCML_VDD_VOLTAGE PARAM_MCML_MIN 0 1e-11 1e-11 1.6e-10 4e-10)
+
+**** ================================================= ***
+*** Data input passed through a chain of gates of your choise
+
+
+
+.if (GATE_UND_TEST == 1)
+
+*** level shift ***
+*Xls0 clp cln CLKP0 CLKN0 VDD VREFLS VSS L_SHIFT
+*Xls1 clp cln CLKP CLKN VDD VREFLS VSS L_SHIFT
+
+*** no shift ***
+Xclk_inv0 clp cln CLKP0 CLKN0 VDD VREFP_I VREFN_I VSS MCML_INV
+Xclk_inv1 clp cln CLKP CLKN VDD VREFP_I VREFN_I VSS MCML_INV
+
+*** D-latches 
+Xdla0 DATAp DATAn CLKP CLKN Ap An VDD VREFP VREFN VSS MCML_DLA
+Xdla1 Ap An CLKP CLKN Bp Bn VDD VREFP VREFN VSS MCML_DLA
+Xdla2 Bp Bn CLKP CLKN Cp Cn VDD VREFP VREFN VSS MCML_DLA
+Xdla3 Cp Cn CLKP CLKN Dp Dn VDD VREFP VREFN VSS MCML_DLA
+Xdla4 Dp Dn CLKP CLKN Ep En VDD VREFP VREFN VSS MCML_DLA
+Xdla5 Ep En CLKP CLKN Fp Fn VDD VREFP VREFN VSS MCML_DLA
+
+
+*** Freq div test 
+Xdff10 O_n O_p CLKP0 CLKN0 Ot_p Ot_n VDD VREFP VREFN VSS MCML_DLA
+Xdff11 Ot_p Ot_n CLKN0 CLKP0 O_p O_n VDD VREFP VREFN VSS MCML_DLA
+Xdla_clk3 O_p O_n O_pb O_nb VDD VREFP_I VREFN_I VSS MCML_INV
+Xdff12 O2_n O2_p O_pb O_nb Ot2_p Ot2_n VDD VREFP VREFN VSS MCML_DLA
+Xdff13 Ot2_p Ot2_n O_nb O_pb O2_p O2_n VDD VREFP VREFN VSS MCML_DLA
+
+*** fanout test
+*Xdla_inv0 Fp Fn D1p D1n VDD VREFP_I VREFN_I VSS MCML_INV
+*Xdla_inv1 Fp Fn D2p D2n VDD VREFP_I VREFN_I VSS MCML_INV
+*Xdla_inv2 Fp Fn D3p D3n VDD VREFP_I VREFN_I VSS MCML_INV
+*Xdla_inv3 Fp Fn D4p D4n VDD VREFP_I VREFN_I VSS MCML_INV
+
+
+.elseif (GATE_UND_TEST == 2)
+
+** no level shifting
+Xclk_inv0 clp cln CLKP CLKN VDD VREFP_I VREFN_I VSS MCML_INV
+
+*** D-FFs with inverters inside (both for MCML_DFF_MS & MCML_DFF_MSS)
+Xdf0 DATAp DATAn CLKP CLKN Ap An VDD VREFP VREFN VREFP_I VREFN_I VREFLS VSS MCML_DFF_MSS
+Xdf1 Ap An CLKP CLKN Bp Bn VDD VREFP VREFN VREFP_I VREFN_I VREFLS VSS MCML_DFF_MSS
+Xdf2 Bp Bn CLKP CLKN Cp Cn VDD VREFP VREFN VREFP_I VREFN_I VREFLS VSS MCML_DFF_MSS
+Xdf3 Cp Cn CLKP CLKN Dp Dn VDD VREFP VREFN VREFP_I VREFN_I VREFLS VSS MCML_DFF_MSS
+Xdf4 Dp Dn CLKP CLKN Ep En VDD VREFP VREFN VREFP_I VREFN_I VREFLS VSS MCML_DFF_MSS
+Xdf5 Ep En CLKP CLKN Fp Fn VDD VREFP VREFN VREFP_I VREFN_I VREFLS VSS MCML_DFF_MSS
+
+*** fanout
+Xdf_inv0 Fp Fn D1p D1n VDD VREFP_I VREFN_I VSS MCML_INV
+Xdf_inv1 Fp Fn D2p D2n VDD VREFP_I VREFN_I VSS MCML_INV
+Xdf_inv2 Fp Fn D3p D3n VDD VREFP_I VREFN_I VSS MCML_INV
+Xdf_inv3 Fp Fn D4p D4n VDD VREFP_I VREFN_I VSS MCML_INV
+
+
+*** frequency divider test ***
+X005_0 cln clp cln_i clp_i VDD VREFP_I VREFN_I VSS MCML_INV
+
+X1 c_outi c_outd cln_i clp_i c_outd c_outi VDD VREFP VREFN VREFP_I VREFN_I VREFLS VSS MCML_DFF_MS
+X005_1 c_outd c_outi c2d c2i VDD VREFP_I VREFN_I VSS MCML_INV
+
+C81 c2d 0 CLOAD
+C82 c2i 0 CLOAD
+
+.elseif (GATE_UND_TEST == 3)
+
+** no level shifting
+Xclk_inv0 clp cln CLKP CLKN VDD VREFP_I VREFN_I VSS MCML_INV
+
+*** D-FFs without any reamp. (without INVs)
+Xdff0 DATAp DATAn CLKP CLKN Ap An VDD VREFP VREFN VREFP_I VREFN_I VREFLS VSS MCML_DFF
+Xdff1 Ap An CLKP CLKN Bp Bn VDD VREFP VREFN VREFP_I VREFN_I VREFLS VSS MCML_DFF
+Xdff2 Bp Bn CLKP CLKN Cp Cn VDD VREFP VREFN VREFP_I VREFN_I VREFLS VSS MCML_DFF
+Xdff3 Cp Cn CLKP CLKN Dp Dn VDD VREFP VREFN VREFP_I VREFN_I VREFLS VSS MCML_DFF
+Xdff4 Dp Dn CLKP CLKN Ep En VDD VREFP VREFN VREFP_I VREFN_I VREFLS VSS MCML_DFF
+Xdff5 Ep En CLKP CLKN Fp Fn VDD VREFP VREFN VREFP_I VREFN_I VREFLS VSS MCML_DFF
+
+*** fanout test
+Xdff_inv0 Fp Fn D1p D1n VDD VREFP_I VREFN_I VSS MCML_INV
+Xdff_inv1 Fp Fn D2p D2n VDD VREFP_I VREFN_I VSS MCML_INV
+Xdff_inv2 Fp Fn D3p D3n VDD VREFP_I VREFN_I VSS MCML_INV
+Xdff_inv3 Fp Fn D4p D4n VDD VREFP_I VREFN_I VSS MCML_INV
+
+*** frequency divider test ***
+X005_0 cln clp cln_i clp_i VDD VREFP_I VREFN_I VSS MCML_INV
+
+X1 c_outi c_outd cln_i clp_i c_outd c_outi VDD VREFP VREFN VREFP_I VREFN_I VREFLS VSS MCML_DFF
+X005_1 c_outd c_outi c2d c2i VDD VREFP_I VREFN_I VSS MCML_INV
+
+C81 c2d 0 CLOAD
+C82 c2i 0 CLOAD
+
+.elseif (GATE_UND_TEST == 4)
+
+*** no level shifting
+Xclk_inv0 clp cln CLKP CLKN VDD VREFP_I VREFN_I VSS MCML_INV
+
+*** SELs
+*Xsel0 DATAp DATAn DATBp DATBn CLKP CLKN Ap An VDD VREFP VREFN VREFLS VSS MCML_SEL21
+*Xsel1 DATBp DATBn DATBp DATBn CLKP CLKN Bp Bn VDD VREFP VREFN VREFLS VSS MCML_SEL21
+
+Xsel0 DATAp DATAn DATBp DATBn CLKP CLKN Ap An VDD VREFP VREFN VREFLS VSS MCML_SEL21
+Xsel1 datcp datcn datdp datdn CLKP CLKN Bp Bn VDD VREFP VREFN VREFLS VSS MCML_SEL21
+Xsel2 Ap An Bp Bn CLKP CLKN Cp Cn VDD VREFP VREFN VREFLS VSS MCML_SEL21
+*** fanout
+*Xsel_inv0 Ap An Cp Cn VDD VREFP_I VREFN_I VSS MCML_INV
+Xsel_inv1 Ap An Dp Dn VDD VREFP_I VREFN_I VSS MCML_INV
+Xsel_inv2 Ap An Ep En VDD VREFP_I VREFN_I VSS MCML_INV
+Xsel_inv3 Ap An Fp Fn VDD VREFP_I VREFN_I VSS MCML_INV
+
+.elseif (GATE_UND_TEST == 5)
+
+*** no level shifting
+Xclk_inv0 clp cln CLKP CLKN VDD VREFP_I VREFN_I VSS MCML_INV
+
+*** ANDs
+Xand0 DATAp DATAn DATBp DATBn Ap An VDD VREFP VREFN VREFLS VSS MCML_AND
+Xand1 DATAp DATAp DATAp DATAn Bp Bn VDD VREFP VREFN VREFLS VSS MCML_AND
+Xand2 DATAp DATAn CLKP CLKN Cp Cn VDD VREFP VREFN VREFLS VSS MCML_AND
+*** fanout
+Xand_inv0 Ap An D1d D1i VDD VREFP_I VREFN_I VSS MCML_INV
+Xand_inv1 Ap An D2d D2i VDD VREFP_I VREFN_I VSS MCML_INV
+Xand_inv2 Ap An D3d D3i VDD VREFP_I VREFN_I VSS MCML_INV
+Xand_inv3 Ap An D4d D4i VDD VREFP_I VREFN_I VSS MCML_INV
+
+.elseif (GATE_UND_TEST == 6)
+
+*** no level shifting
+Xclk_inv0 clp cln CLKP CLKN VDD VREFP_I VREFN_I VSS MCML_INV
+
+*** ORs
+Xor0 DATAp DATAn DATBp DATBn Ap An VDD VREFP VREFN VREFLS VSS MCML_OR
+Xor1 DATAp DATAp DATAp DATAn Bp Bn VDD VREFP VREFN VREFLS VSS MCML_OR
+Xor2 DATBp DATBn CLKP CLKN Cp Cn VDD VREFP VREFN VREFLS VSS MCML_OR
+
+*** fanout
+Xor_inv0 Ap An D1d D1i VDD VREFP_I VREFN_I VSS MCML_INV
+Xor_inv1 Ap An D2d D2i VDD VREFP_I VREFN_I VSS MCML_INV
+Xor_inv2 Ap An D3d D3i VDD VREFP_I VREFN_I VSS MCML_INV
+Xor_inv3 Ap An D4d D4i VDD VREFP_I VREFN_I VSS MCML_INV
+
+.else
+*** Other gates -- user defined logic
+
+.endif
+
+*** Add small parasitic loads on outputs to be more realistic
+C1 An 0 CLOAD
+C2 Bn 0 CLOAD
+C3 Cn 0 CLOAD
+C4 Dn 0 CLOAD
+C5 En 0 CLOAD
+C6 Fn 0 CLOAD
+C11 Ap 0 CLOAD
+C12 Bp 0 CLOAD
+C13 Cp 0 CLOAD
+C14 Dp 0 CLOAD
+C15 Ep 0 CLOAD
+C16 Fp 0 CLOAD
+
+C005 D1d 0 CLOAD
+C006 D2d 0 CLOAD
+C0011 D3d 0 CLOAD
+C0012 D4d 0 CLOAD
+C0013 D1i 0 CLOAD
+C0014 D2i 0 CLOAD
+C0015 D3i 0 CLOAD
+C0016 D4i 0 CLOAD
+
+**** ================================================= ***
+*** Measurements and optimization goals ***
+**** ================================================= ***
+
+.if (OPT_PARAM_ON==1)
+**** ================================================= ***
+*** satisfy optimization goals
+**** ================================================= ***
+.measure tran maxV_in MAX V(DATAp,VSS) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran maxV_a MAX V(AP,VSS) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran maxV_b MAX V(BP,VSS) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran maxV_c MAX V(CP,VSS) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran maxV_d MAX V(DP,VSS) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran maxV_e MAX V(EP,VSS) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E
+.measure tran maxV_f MAX V(FP,VSS) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E
+
+.measure tran deltaV_in MAX V(DATAp,DATAn) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran deltaV_a MAX V(AP,AN) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E GOAL = ‘PARAM_MCML_SWING’
+.measure tran deltaV_b MAX V(BP,BN) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E GOAL = ‘PARAM_MCML_SWING’
+.measure tran deltaV_c MAX V(CP,CN) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E GOAL = ‘PARAM_MCML_SWING’
+.measure tran deltaV_d MAX V(DP,DN) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E GOAL = ‘PARAM_MCML_SWING’
+.measure tran deltaV_e MAX V(EP,EN) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E GOAL = ‘PARAM_MCML_SWING’
+.measure tran deltaV_f MAX V(FP,FN) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E GOAL = ‘PARAM_MCML_SWING’
+
+*** absolute value of midswing
+.measure mid_Vin Param='maxV_in - (deltaV_in/2)'
+.measure mid_Va Param='maxV_a - (deltaV_a/2)'
+.measure mid_Vb Param='maxV_b - (deltaV_b/2)'
+.measure mid_Vc Param='maxV_c - (deltaV_c/2)'
+.measure mid_Vd Param='maxV_d - (deltaV_d/2)'
+.measure mid_Ve Param='maxV_e - (deltaV_e/2)'
+.measure mid_Vf Param='maxV_f - (deltaV_f/2)'
+
+***** TESTING  MS-DFF *****
+*.measure tran maxV_c2f1 MAX V(c2d_f1,VSS) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+*.measure tran maxV_c2f2 MAX V(c2d_f2,VSS) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+*.measure tran maxV_c4f1 MAX V(c4d_f1,VSS) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+*.measure tran maxV_c4f2 MAX V(c4d_f2,VSS) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+
+*.measure tran deltaV_c2f1 MAX V(c2d_f1,c2i_f1) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E GOAL = ‘PARAM_MCML_SWING’
+*.measure tran deltaV_c2f2 MAX V(c2d_f2,c2i_f2) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E GOAL = ‘PARAM_MCML_SWING’
+*.measure tran deltaV_c4f1 MAX V(c4d_f1,c4i_f1) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E GOAL = ‘PARAM_MCML_SWING’
+*.measure tran deltaV_c4f2 MAX V(c4d_f2,c4i_f2) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E GOAL = ‘PARAM_MCML_SWING’
+
+*.measure mid_c2f1 Param='maxV_c2f1 - (deltaV_c2f1/2)'
+*.measure mid_c2f2 Param='maxV_c2f2 - (deltaV_c2f2/2)'
+*.measure mid_c4f1 Param='maxV_c4f1 - (deltaV_c4f1/2)'
+*.measure mid_c4f2 Param='maxV_c4f2 - (deltaV_c4f2/2)'
+
+**** opting level shifting
+*.measure tran maxV_cls MAX V(CLKP,VSS) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E
+*.measure tran maxV_cls0 MAX V(CLKP0,VSS) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E
+*.measure tran maxV_cls1 MAX V(CLKP1,VSS) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E    
+
+*.measure tran deltaV_cls MAX V(CLKP,CLKN) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E GOAL = 'PARAM_MCML_LS'
+*.measure tran deltaV_cls0 MAX V(CLKP0,CLKN0) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E GOAL = 'PARAM_MCML_LS'
+*.measure tran deltaV_cls1 MAX V(CLKP1,CLKN1) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E GOAL = 'PARAM_MCML_LS'
+
+*.measure mid_cls Param='maxV_cls - (deltaV_cls/2)'
+*.measure mid_cls0 Param='maxV_cls0 - (deltaV_cls0/2)'
+*.measure mid_cls1 Param='maxV_cls1 - (deltaV_cls1/2)'
+
+
+***************************
+
+
+*** Measure AP to BP, use the common level; specify opt goals; comment if not needed
+.meas tran delta_ab TRIG v(AP) VAL='mid_Va' CROSS=1 TARG v(BP) VAL='mid_Va' CROSS=1 GOAL < 20p
+.meas tran delta_bc TRIG v(BP) VAL='mid_Vb' CROSS=1 TARG v(CP) VAL='mid_Vb' CROSS=1 GOAL < 20p
+.meas tran delta_cd TRIG v(CP) VAL='mid_Vc' CROSS=1 TARG v(DP) VAL='mid_Vc' CROSS=1 GOAL < 20p
+.meas tran delta_de TRIG v(DP) VAL='mid_Vd' CROSS=1 TARG v(EP) VAL='mid_Vd' CROSS=1 GOAL < 20p
+.meas tran delta_ef TRIG v(EP) VAL='mid_Ve' CROSS=1 TARG v(FP) VAL='mid_Ve' CROSS=1 GOAL < 20p
+
+*** Measure AP to AN, etc; specify opt goals; comment if not needed
+.meas tran delta_aa TRIG v(AN) VAL='mid_Va' CROSS=1 TARG v(AP) VAL='mid_Va' CROSS=1 GOAL < 20p
+.meas tran delta_bb TRIG v(BN) VAL='mid_Vb' CROSS=1 TARG v(BP) VAL='mid_Vb' CROSS=1 GOAL < 20p
+.meas tran delta_cc TRIG v(CN) VAL='mid_Vc' CROSS=1 TARG v(CP) VAL='mid_Vc' CROSS=1 GOAL < 20p
+.meas tran delta_dd TRIG v(DN) VAL='mid_Vd' CROSS=1 TARG v(DP) VAL='mid_Vd' CROSS=1 GOAL < 20p
+.meas tran delta_ee TRIG v(EN) VAL='mid_Ve' CROSS=1 TARG v(EP) VAL='mid_Ve' CROSS=1 GOAL < 20p
+.meas tran delta_ff TRIG v(FN) VAL='mid_Vf' CROSS=1 TARG v(FP) VAL='mid_Vf' CROSS=1 GOAL < 20p
+
+*** Measure propagation time as 50% mark of V(out) minus 50% mark of V(in); use both differential waveforms
+.meas tran deltaHL_a TRIG v(DATAp) VAL='mid_Vin' RISE=1 TARG v(AP) VAL='mid_Va' RISE=1  	
+.meas tran deltaLH_a TRIG v(DATAn) VAL='mid_Vin' FALL=1 TARG v(AN) VAL='mid_Va' FALL=1  
+.meas tran deltaHL_b TRIG v(AP) VAL='mid_Va' RISE=1 TARG v(BP) VAL='mid_Vb' RISE=1	
+.meas tran deltaLH_b TRIG v(AN) VAL='mid_Va' FALL=1 TARG v(BN) VAL='mid_Vb' FALL=1    
+.meas tran deltaHL_c TRIG v(BP) VAL='mid_Vb' RISE=1 TARG v(CP) VAL='mid_Vc' RISE=1	
+.meas tran deltaLH_c TRIG v(BN) VAL='mid_Vb' FALL=1 TARG v(CN) VAL='mid_Vc' FALL=1 	
+.meas tran deltaHL_d TRIG v(CP) VAL='mid_Vc' RISE=1 TARG v(DP) VAL='mid_Vd' RISE=1	
+.meas tran deltaLH_d TRIG v(CN) VAL='mid_Vc' FALL=1 TARG v(DN) VAL='mid_Vd' FALL=1 	
+.meas tran deltaHL_e TRIG v(DP) VAL='mid_Vd' RISE=1 TARG v(EP) VAL='mid_Ve' RISE=1	
+.meas tran deltaLH_e TRIG v(DN) VAL='mid_Vd' FALL=1 TARG v(EN) VAL='mid_Ve' FALL=1 	
+.meas tran deltaHL_f TRIG v(EP) VAL='mid_Ve' RISE=1 TARG v(FP) VAL='mid_Vf' RISE=1	
+.meas tran deltaLH_f TRIG v(EN) VAL='mid_Ve' FALL=1 TARG v(FN) VAL='mid_Vf' FALL=1	
+
+
+*** prop time is simply (deltaHL+deltaLH)/2
+.meas prop_a Param='(deltaHL_a+deltaLH_a)/2' 
+.meas prop_b Param='(deltaHL_b+deltaLH_b)/2'
+.meas prop_c Param='(deltaHL_c+deltaLH_c)/2' 
+.meas prop_d Param='(deltaHL_d+deltaLH_d)/2' 
+.meas prop_e Param='(deltaHL_e+deltaLH_e)/2' 
+.meas prop_f Param='(deltaHL_f+deltaLH_f)/2'  
+
+*** Measure rise time -- meas can fail if signal is asymmetric, substract 10% of delta V to have 10-90% variation
+.meas tran rise_a TRIG v(AP) VAL='mid_Va - (deltaV_a/2) + (0.1*deltaV_a)' RISE=1 TARG v(AP) VAL='mid_Va + (deltaV_a/2) - (0.1*deltaV_a)' RISE=1 GOAL < 10p
+.meas tran rise_b TRIG v(BP) VAL='mid_Vb - (deltaV_b/2) + (0.1*deltaV_b)' RISE=1 TARG v(BP) VAL='mid_Vb + (deltaV_b/2) - (0.1*deltaV_b)' RISE=1 GOAL < 10p
+.meas tran rise_c TRIG v(CP) VAL='mid_Vc - (deltaV_c/2) + (0.1*deltaV_c)' RISE=1 TARG v(CP) VAL='mid_Vc + (deltaV_c/2) - (0.1*deltaV_c)' RISE=1 GOAL < 10p
+.meas tran rise_d TRIG v(DP) VAL='mid_Vd - (deltaV_d/2) + (0.1*deltaV_d)' RISE=1 TARG v(DP) VAL='mid_Vd + (deltaV_d/2) - (0.1*deltaV_d)' RISE=1 GOAL < 10p
+.meas tran rise_e TRIG v(EP) VAL='mid_Ve - (deltaV_e/2) + (0.1*deltaV_e)' RISE=1 TARG v(EP) VAL='mid_Ve + (deltaV_e/2) - (0.1*deltaV_e)' RISE=1 GOAL < 10p
+.meas tran rise_f TRIG v(FP) VAL='mid_Vf - (deltaV_f/2) + (0.1*deltaV_f)' RISE=1 TARG v(FP) VAL='mid_Vf + (deltaV_f/2) - (0.1*deltaV_f)' RISE=1 GOAL < 10p
+
+*** Measure fall time -- meas can fail if signal is asymmetric, substract 10% to have 10-90% variation
+.meas tran fall_a TRIG v(AN) VAL='mid_Va + (deltaV_a/2) - (0.1*deltaV_a)' FALL=1 TARG v(AN) VAL='mid_Va - (deltaV_a/2) + (0.1*deltaV_a)' FALL=1 GOAL < 10p
+.meas tran fall_b TRIG v(BN) VAL='mid_Vb + (deltaV_b/2) - (0.1*deltaV_b)' FALL=1 TARG v(BN) VAL='mid_Vb - (deltaV_b/2) + (0.1*deltaV_b)' FALL=1 GOAL < 10p
+.meas tran fall_c TRIG v(CN) VAL='mid_Vc + (deltaV_c/2) - (0.1*deltaV_c)' FALL=1 TARG v(CN) VAL='mid_Vc - (deltaV_c/2) + (0.1*deltaV_c)' FALL=1 GOAL < 10p
+.meas tran fall_d TRIG v(DN) VAL='mid_Vd + (deltaV_d/2) - (0.1*deltaV_d)' FALL=1 TARG v(DN) VAL='mid_Vd - (deltaV_d/2) + (0.1*deltaV_d)' FALL=1 GOAL < 10p
+.meas tran fall_e TRIG v(EN) VAL='mid_Ve + (deltaV_e/2) - (0.1*deltaV_e)' FALL=1 TARG v(EN) VAL='mid_Ve - (deltaV_e/2) + (0.1*deltaV_e)' FALL=1 GOAL < 10p
+.meas tran fall_f TRIG v(FN) VAL='mid_Vf + (deltaV_f/2) - (0.1*deltaV_f)' FALL=1 TARG v(FN) VAL='mid_Vf - (deltaV_f/2) + (0.1*deltaV_f)' FALL=1 GOAL < 10p
+
+.else
+
+*** MAX point of positive out
+.measure tran maxV_in MAX V(DATAp,VSS) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran maxV_a MAX V(AP,VSS) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran maxV_b MAX V(BP,VSS) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran maxV_c MAX V(CP,VSS) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran maxV_d MAX V(DP,VSS) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran maxV_e MAX V(EP,VSS) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E
+.measure tran maxV_f MAX V(FP,VSS) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E
+
+*** Point-to-point with positive out
+.measure tran ppV_inp PP V(DATAp) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran ppV_ap PP V(AP) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran ppV_bp PP V(BP) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran ppV_cp PP V(CP) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran ppV_dp PP V(DP) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran ppV_ep PP V(EP) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E
+.measure tran ppV_fp PP V(FP) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E
+
+*** Point-to-point with negative out
+.measure tran ppV_inn PP V(DATAn) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran ppV_an PP V(AN) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran ppV_bn PP V(BN) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran ppV_cn PP V(CN) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran ppV_dn PP V(DN) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E 
+.measure tran ppV_en PP V(EN) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E
+.measure tran ppV_fn PP V(FN) FROM=PARAM_MEAS_S TO=PARAM_MEAS_E
+
+*** delta MAX-MIN (not valid for signals with glitches and asymmetric Vpos and Vneg out waveforms)
+.measure deltaV_in Param='MIN(ppV_inp, ppV_inn)'
+.measure deltaV_a Param='MIN(ppV_ap, ppV_an)'
+.measure deltaV_b Param='MIN(ppV_bp, ppV_bn)'
+.measure deltaV_c Param='MIN(ppV_cp, ppV_cn)'
+.measure deltaV_d Param='MIN(ppV_dp, ppV_dn)'
+.measure deltaV_e Param='MIN(ppV_ep, ppV_en)'
+.measure deltaV_f Param='MIN(ppV_fp, ppV_fn)'
+
+*** absolute value of midswing
+.measure mid_Vin Param='maxV_in - (deltaV_in/2)'
+.measure mid_Va Param='maxV_a - (deltaV_a/2)'
+.measure mid_Vb Param='maxV_b - (deltaV_b/2)'
+.measure mid_Vc Param='maxV_c - (deltaV_c/2)'
+.measure mid_Vd Param='maxV_d - (deltaV_d/2)'
+.measure mid_Ve Param='maxV_e - (deltaV_e/2)'
+.measure mid_Vf Param='maxV_f - (deltaV_f/2)'
+
+*** Measure time interval from AP to BP, etc
+.meas tran delta_ia TRIG v(DATAp) VAL='mid_Vin' CROSS=1 TARG v(AP) VAL='mid_Vin' CROSS=1 
+.meas tran delta_ab TRIG v(AP) VAL='mid_Va' CROSS=1 TARG v(BP) VAL='mid_Va' CROSS=1 
+.meas tran delta_bc TRIG v(BP) VAL='mid_Vb' CROSS=1 TARG v(CP) VAL='mid_Vb' CROSS=1 
+.meas tran delta_cd TRIG v(CP) VAL='mid_Vc' CROSS=1 TARG v(DP) VAL='mid_Vc' CROSS=1 
+.meas tran delta_de TRIG v(DP) VAL='mid_Vd' CROSS=1 TARG v(EP) VAL='mid_Vd' CROSS=1 
+.meas tran delta_ef TRIG v(EP) VAL='mid_Ve' CROSS=1 TARG v(FP) VAL='mid_Ve' CROSS=1
+
+*** Measure time interval from AP to AN, etc
+.meas tran delta_ii TRIG v(DATAn) VAL='mid_Vin' CROSS=1 TARG v(DATAp) VAL='mid_Vin' CROSS=1 
+.meas tran delta_aa TRIG v(AN) VAL='mid_Va' CROSS=1 TARG v(AP) VAL='mid_Va' CROSS=1 
+.meas tran delta_bb TRIG v(BN) VAL='mid_Vb' CROSS=1 TARG v(BP) VAL='mid_Vb' CROSS=1 
+.meas tran delta_cc TRIG v(CN) VAL='mid_Vc' CROSS=1 TARG v(CP) VAL='mid_Vc' CROSS=1 
+.meas tran delta_dd TRIG v(DN) VAL='mid_Vd' CROSS=1 TARG v(DP) VAL='mid_Vd' CROSS=1 
+.meas tran delta_ee TRIG v(EN) VAL='mid_Ve' CROSS=1 TARG v(EP) VAL='mid_Ve' CROSS=1 
+.meas tran delta_ff TRIG v(FN) VAL='mid_Vf' CROSS=1 TARG v(FP) VAL='mid_Vf' CROSS=1 
+
+
+*** Measure propagation time as 50% mark of V(out) minus 50% mark of V(in); use both differential waveforms
+.meas tran deltaHL_a TRIG v(DATAp) VAL='mid_Vin' FALL=1 TARG v(AP) VAL='mid_Va' FALL=1  	
+.meas tran deltaLH_a TRIG v(DATAn) VAL='mid_Vin' RISE=1 TARG v(AN) VAL='mid_Va' RISE=1  
+.meas tran deltaHL_b TRIG v(AN) VAL='mid_Va' RISE=1 TARG v(BN) VAL='mid_Vb' RISE=1	
+.meas tran deltaLH_b TRIG v(AP) VAL='mid_Va' FALL=1 TARG v(BP) VAL='mid_Vb' FALL=1    
+.meas tran deltaHL_c TRIG v(BN) VAL='mid_Vb' RISE=1 TARG v(CN) VAL='mid_Vc' RISE=1	
+.meas tran deltaLH_c TRIG v(BP) VAL='mid_Vb' FALL=1 TARG v(CP) VAL='mid_Vc' FALL=1 	
+.meas tran deltaHL_d TRIG v(CN) VAL='mid_Vc' RISE=1 TARG v(DN) VAL='mid_Vd' RISE=1	
+.meas tran deltaLH_d TRIG v(CP) VAL='mid_Vc' FALL=1 TARG v(DP) VAL='mid_Vd' FALL=1 	
+.meas tran deltaHL_e TRIG v(DN) VAL='mid_Vd' RISE=1 TARG v(EN) VAL='mid_Ve' RISE=1	
+.meas tran deltaLH_e TRIG v(DP) VAL='mid_Vd' FALL=1 TARG v(EP) VAL='mid_Ve' FALL=1 	
+.meas tran deltaHL_f TRIG v(EN) VAL='mid_Ve' RISE=1 TARG v(FN) VAL='mid_Vf' RISE=1	
+.meas tran deltaLH_f TRIG v(EP) VAL='mid_Ve' FALL=1 TARG v(FP) VAL='mid_Vf' FALL=1
+
+*** prop time is simply (deltaHL+deltaLH)/2
+.meas prop_a Param='(deltaHL_a+deltaLH_a)/2' 
+.meas prop_b Param='(deltaHL_b+deltaLH_b)/2'
+.meas prop_c Param='(deltaHL_c+deltaLH_c)/2' 
+.meas prop_d Param='(deltaHL_d+deltaLH_d)/2' 
+.meas prop_e Param='(deltaHL_e+deltaLH_e)/2' 
+.meas prop_f Param='(deltaHL_f+deltaLH_f)/2'  
+
+
+*** Measure rise time -- meas can fail if signal is asymmetric, substract 10% of delta V to have 10-90% variation
+.meas tran rise_in TRIG v(DATAn) VAL='mid_Vin - (deltaV_in/2) + (0.1*deltaV_in)' RISE=1 TARG v(DATAn) VAL='mid_Vin + (deltaV_in/2) - (0.1*deltaV_in)' RISE=1 
+.meas tran rise_a TRIG v(AN) VAL='mid_Va - (deltaV_a/2) + (0.1*deltaV_a)' RISE=1 TARG v(AN) VAL='mid_Va + (deltaV_a/2) - (0.1*deltaV_a)' RISE=1 
+.meas tran rise_b TRIG v(BN) VAL='mid_Vb - (deltaV_b/2) + (0.1*deltaV_b)' RISE=1 TARG v(BN) VAL='mid_Vb + (deltaV_b/2) - (0.1*deltaV_b)' RISE=1 
+.meas tran rise_c TRIG v(CN) VAL='mid_Vc - (deltaV_c/2) + (0.1*deltaV_c)' RISE=1 TARG v(CN) VAL='mid_Vc + (deltaV_c/2) - (0.1*deltaV_c)' RISE=1 
+.meas tran rise_d TRIG v(DN) VAL='mid_Vd - (deltaV_d/2) + (0.1*deltaV_d)' RISE=1 TARG v(DN) VAL='mid_Vd + (deltaV_d/2) - (0.1*deltaV_d)' RISE=1 
+.meas tran rise_e TRIG v(EN) VAL='mid_Ve - (deltaV_e/2) + (0.1*deltaV_e)' RISE=1 TARG v(EN) VAL='mid_Ve + (deltaV_e/2) - (0.1*deltaV_e)' RISE=1 
+.meas tran rise_f TRIG v(FN) VAL='mid_Vf - (deltaV_f/2) + (0.1*deltaV_f)' RISE=1 TARG v(FN) VAL='mid_Vf + (deltaV_f/2) - (0.1*deltaV_f)' RISE=1 
+
+*** Measure fall time -- meas can fail if signal is asymmetric, substract 10% to have 10-90% variation
+.meas tran fall_in TRIG v(DATAp) VAL='mid_Vin + (deltaV_in/2) - (0.1*deltaV_in)' FALL=1 TARG v(DATAp) VAL='mid_Vin - (deltaV_in/2) + (0.1*deltaV_in)' FALL=1 
+.meas tran fall_a TRIG v(AP) VAL='mid_Va + (deltaV_a/2) - (0.1*deltaV_a)' FALL=1 TARG v(AP) VAL='mid_Va - (deltaV_a/2) + (0.1*deltaV_a)' FALL=1 
+.meas tran fall_b TRIG v(BP) VAL='mid_Vb + (deltaV_b/2) - (0.1*deltaV_b)' FALL=1 TARG v(BP) VAL='mid_Vb - (deltaV_b/2) + (0.1*deltaV_b)' FALL=1 
+.meas tran fall_c TRIG v(CP) VAL='mid_Vc + (deltaV_c/2) - (0.1*deltaV_c)' FALL=1 TARG v(CP) VAL='mid_Vc - (deltaV_c/2) + (0.1*deltaV_c)' FALL=1 
+.meas tran fall_d TRIG v(DP) VAL='mid_Vd + (deltaV_d/2) - (0.1*deltaV_d)' FALL=1 TARG v(DP) VAL='mid_Vd - (deltaV_d/2) + (0.1*deltaV_d)' FALL=1 
+.meas tran fall_e TRIG v(EP) VAL='mid_Ve + (deltaV_e/2) - (0.1*deltaV_e)' FALL=1 TARG v(EP) VAL='mid_Ve - (deltaV_e/2) + (0.1*deltaV_e)' FALL=1 
+.meas tran fall_f TRIG v(FP) VAL='mid_Vf + (deltaV_f/2) - (0.1*deltaV_f)' FALL=1 TARG v(FP) VAL='mid_Vf - (deltaV_f/2) + (0.1*deltaV_f)' FALL=1 
+
+.endif
+
+**** Other measurements ****
+.MEASURE TRAN Idd_dla0 AVG I(Xdla0.M9)
+.MEASURE TRAN Idd_dla1 AVG I(Xdla1.M9) 
+.MEASURE TRAN Idd_dla2 AVG I(Xdla2.M9) 
+.MEASURE TRAN Idd_dla3 AVG I(Xdla3.M9) 
+.MEASURE TRAN Idd_dla4 AVG I(Xdla2.M9) 
+.MEASURE TRAN Idd_dla5 AVG I(Xdla3.M9) 
+ 
+.MEASURE DLA0_POWER Param='Idd_dla0*PARAM_MCML_VDD_VOLTAGE'
+.MEASURE DLA1_POWER Param='Idd_dla1*PARAM_MCML_VDD_VOLTAGE'
+.MEASURE DLA2_POWER Param='Idd_dla2*PARAM_MCML_VDD_VOLTAGE'
+.MEASURE DLA3_POWER Param='Idd_dla3*PARAM_MCML_VDD_VOLTAGE'
+.MEASURE DLA4_POWER Param='Idd_dla4*PARAM_MCML_VDD_VOLTAGE'
+.MEASURE DLA5_POWER Param='Idd_dla5*PARAM_MCML_VDD_VOLTAGE'
+
+
+*** Record the parameters in the .mt0 file
+.meas DELIM0 param='0.0'
+.meas tran result_vdd param='PARAM_MCML_VDD_VOLTAGE'
+.meas tran result_vss param='PARAM_MCML_VSS_VOLTAGE'
+
+.meas tran result_pullup_width param='SWEEP_P_WIDTH'
+.meas tran result_pullup_length param='SWEEP_P_LENGTH'
+.meas tran result_pulldown_width param='SWEEP_N_WIDTH'
+.meas tran result_pulldown_length param='SWEEP_N_LENGTH'
+.meas tran result_sink_width param='PARAM_NSOURCE_WIDTH'
+.meas tran result_sink_length param='PARAM_NSOURCE_LENGTH'
+
+.meas tran result_n_bias param='SWEEP_N_BIAS_VOLTAGE'
+.meas tran result_p_bias param='SWEEP_P_BIAS_VOLTAGE'
+.meas tran result_levshift_bias param='SWEEP_LEVEL_SHIFT_VOLTAGE'
+
+
+

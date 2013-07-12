@@ -1,0 +1,132 @@
+***  Written by Yury Audzevich
+*** 
+***  Comments, suggestions for improvement and criticism welcome
+***  E-mail:  yury.audzevich~at~cl.cam.ac.uk
+*** 
+*** 
+***  Copyright 2003-2013, University of Cambridge, Computer Laboratory. 
+***  Copyright and related rights are licensed under the Hardware License, 
+***  Version 2.0 (the "License"); you may not use this file except in 
+***  compliance with the License. You may obtain a copy of the License at
+***  http://www.cl.cam.ac.uk/research/srg/netos/greenict/projects/contest/. 
+***  Unless required by applicable law or agreed to in writing, software, 
+***  hardware and materials distributed under this License is distributed 
+***  on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+***  either express or implied. See the License for the specific language
+***  governing permissions and limitations under the License.
+*** 
+*** 
+
+
+************************* REFERENCE CLOCK **************************************
+*** ==== Clock 1 TX & RX +/- at  f = 12.5GHz frequency ======
+X877_0 CLK_IN clkt pvdd_cmos_in gnda_in BUF_X1
+X877_1 CLK_IN clkr pvdd_cmos_in gnda_in BUF_X1
+
+*** chip select TX/RX (cs =!enable) -- used as a clk gating circuit in mcml 
+X888_1 CS_TX CSI_TX pvdd_cmos_in gnda_in INV_X1
+X889_1 CS_RX CSI_RX pvdd_cmos_in gnda_in INV_X1
+
+*** =============================================================
+*** Model of 20:2:20 CMOS 
+*** =============================================================
+
+*** separate chip resets for SER & DES
+X888_2 RESET_INS RESET_SER pvdd_cmos_in gnda_in BUF_X1
+X889_3 RESET_IND RESET_DES pvdd_cmos_in gnda_in BUF_X1
+
+
+*** Instances of 'PISO20_2' -- synth.-ed with synopsys DC
+XDUT
++ VDD_PISO20_2 VSS_PISO20_2 
++ CLK2_TX DATA_IN[0] DATA_IN[1] DATA_IN[2] DATA_IN[3] DATA_IN[4] DATA_IN[5] DATA_IN[6] DATA_IN[7] DATA_IN[8] DATA_IN[9] DATA_IN[10] DATA_IN[11] DATA_IN[12] DATA_IN[13] DATA_IN[14] DATA_IN[15] DATA_IN[16] DATA_IN[17] DATA_IN[18] DATA_IN[19] RESET_SER 
++ DATA_USED_OUT SERIAL_OUT[0] SERIAL_OUT[1] 
++ PISO20_2 
+*** End
+
+*** CMOS LEVEL OUTPUTS -- MCML CIRCUIT INPUTS 
+X100 SERIAL_OUT[0] add pvdd_cmos_in gnda_in BUF_X1
+X101 SERIAL_OUT[1] bdd pvdd_cmos_in gnda_in BUF_X1
+
+*** =============================================================
+*** Model of 2:1:2 MOS Current Mode Logic SerDes  
+*** =============================================================
+
+************************** MCML CIRCUIT *******************************
+*************************** 2-1-2 ************************************
+X2_2 
++ add bdd clkt CSI_TX outd_2b outi_2b 
++ clk2tx_cmos
++ pvdd_mcmls pvp_dlas pvn_dlas pvp_invs pvn_invs pvp_convs pvn_convs pvdd_cmos_ser gnda_s MCML_SERIAL21
+
+********** NO CHANNEL -- IDEAL INTERCONNECT ***********
+
+X2_3 
++ outd_2b outi_2b clkr CSI_RX
++ clk2rx_cmos
++ out_mcml[1] out_mcml[2] 
++ pvdd_mcmld pvp_dlad pvn_dlad pvp_invd pvn_invd pvp_convd pvn_convd pvdd_cmos_des gnda_d MCML_DESERIAL12
+
+*** reshape outputs for the next stage (6.25Gb/s CMOS)
+X200 out_mcml[1] SERIAL_IN[0] pvdd_cmos_in gnda_in BUF_X1
+X201 out_mcml[2] SERIAL_IN[1] pvdd_cmos_in gnda_in BUF_X1
+
+************************* REFERENCE CLOCK **************************************
+*** Clock signals used in CMOS SERDES ***
+X208 clk2tx_cmos CLK2_TX pvdd_cmos_in gnda_in BUF_X1
+X209 clk2rx_cmos CLK2_RX pvdd_cmos_in gnda_in BUF_X1
+
+************************ END OF MCML CIRCUIT *******************************
+
+*** Instance of 'SIPO2_20'
+XDUT1
++ VDD_SIPO2_20 VSS_SIPO2_20
++ CLK2_RX RESET_DES SERIAL_IN[0] SERIAL_IN[1] 
++ DATA_USED_OUTD OUT[0] OUT[1] OUT[2] OUT[3] OUT[4] OUT[5] OUT[6] OUT[7] OUT[8] OUT[9] OUT[10] OUT[11] OUT[12] OUT[13] OUT[14] OUT[15] OUT[16] OUT[17] OUT[18] OUT[19] 
++ SIPO2_20
+*** End
+
+*** #1
+X400 OUT[0] PARALLEL_OUT[0] pvdd_cmos_in gnda_in BUF_X1
+X401 OUT[1] PARALLEL_OUT[1] pvdd_cmos_in gnda_in BUF_X1
+X402 OUT[2] PARALLEL_OUT[2] pvdd_cmos_in gnda_in BUF_X1
+X403 OUT[3] PARALLEL_OUT[3] pvdd_cmos_in gnda_in BUF_X1
+X404 OUT[4] PARALLEL_OUT[4] pvdd_cmos_in gnda_in BUF_X1
+X405 OUT[5] PARALLEL_OUT[5] pvdd_cmos_in gnda_in BUF_X1
+X406 OUT[6] PARALLEL_OUT[6] pvdd_cmos_in gnda_in BUF_X1
+X407 OUT[7] PARALLEL_OUT[7] pvdd_cmos_in gnda_in BUF_X1
+X408 OUT[8] PARALLEL_OUT[8] pvdd_cmos_in gnda_in BUF_X1
+X409 OUT[9] PARALLEL_OUT[9] pvdd_cmos_in gnda_in BUF_X1
+*** #2
+X410 OUT[10] PARALLEL_OUT[10] pvdd_cmos_in gnda_in BUF_X1
+X411 OUT[11] PARALLEL_OUT[11] pvdd_cmos_in gnda_in BUF_X1
+X412 OUT[12] PARALLEL_OUT[12] pvdd_cmos_in gnda_in BUF_X1
+X413 OUT[13] PARALLEL_OUT[13] pvdd_cmos_in gnda_in BUF_X1
+X414 OUT[14] PARALLEL_OUT[14] pvdd_cmos_in gnda_in BUF_X1
+X415 OUT[15] PARALLEL_OUT[15] pvdd_cmos_in gnda_in BUF_X1
+X416 OUT[16] PARALLEL_OUT[16] pvdd_cmos_in gnda_in BUF_X1
+X417 OUT[17] PARALLEL_OUT[17] pvdd_cmos_in gnda_in BUF_X1
+X418 OUT[18] PARALLEL_OUT[18] pvdd_cmos_in gnda_in BUF_X1
+X419 OUT[19] PARALLEL_OUT[19] pvdd_cmos_in gnda_in BUF_X1
+
+**** EXTERNAL LOADs
+C50 PARALLEL_OUT[0] 0 CLOAD
+C51 PARALLEL_OUT[1] 0 CLOAD
+C52 PARALLEL_OUT[2] 0 CLOAD
+C53 PARALLEL_OUT[3] 0 CLOAD
+C54 PARALLEL_OUT[4] 0 CLOAD
+C55 PARALLEL_OUT[5] 0 CLOAD
+C56 PARALLEL_OUT[6] 0 CLOAD
+C57 PARALLEL_OUT[7] 0 CLOAD
+C58 PARALLEL_OUT[8] 0 CLOAD
+C59 PARALLEL_OUT[9] 0 CLOAD
+C510 PARALLEL_OUT[10] 0 CLOAD
+C511 PARALLEL_OUT[11] 0 CLOAD
+C512 PARALLEL_OUT[12] 0 CLOAD
+C513 PARALLEL_OUT[13] 0 CLOAD
+C514 PARALLEL_OUT[14] 0 CLOAD
+C515 PARALLEL_OUT[15] 0 CLOAD
+C516 PARALLEL_OUT[16] 0 CLOAD
+C517 PARALLEL_OUT[17] 0 CLOAD
+C518 PARALLEL_OUT[18] 0 CLOAD
+C519 PARALLEL_OUT[19] 0 CLOAD

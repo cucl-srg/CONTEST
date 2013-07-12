@@ -1,0 +1,115 @@
+# Copyright 2003-2013, University of Cambridge, Computer Laboratory. 
+# Copyright and related rights are licensed under the Hardware License, 
+# Version 2.0 (the "License"); you may not use this file except in 
+# compliance with the License. You may obtain a copy of the License at
+# http://www.cl.cam.ac.uk/research/srg/netos/greenict/projects/contest/. 
+# Unless required by applicable law or agreed to in writing, software, 
+# hardware and materials distributed under this License is distributed 
+# on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific language
+# governing permissions and limitations under the License.
+#
+#
+
+------------ DLA OPT ----------------
+**** Gates with Level shifting used *****
+****** VARS *******
+.param SWEEP_P_WIDTH=0.28U
+.param SWEEP_P_LENGTH=0.1U
+
+*** pull-down network
+.param SWEEP_N_WIDTH=0.26U
+.param SWEEP_N_LENGTH= 0.06U
+
+*** current sink 
+.param PARAM_NSOURCE_WIDTH = '1.0U'
+.param PARAM_NSOURCE_LENGTH = '0.1U'
+
+*** level shifting current sink
+.param PARAM_LS_N_WIDTH = 0.4U
+.param PARAM_LS_N_LENGTH = 0.05U
+
+.param PARAM_LS_NS_WIDTH = 1.0U
+.param PARAM_LS_NS_LENGTH = 0.1U
+
+*** reference voltages
+.param SWEEP_N_BIAS_VOLTAGE = 0.55V
+.param SWEEP_P_BIAS_VOLTAGE = 50mV
+.param SWEEP_LEVEL_SHIFT_VOLTAGE = 0.1V
+
+**** MEASUREMENTS *****
+ prop_a=  1.1154E-10
+   prop_b=  5.0227E-10
+   prop_c=  5.3784E-10
+   prop_d=  3.3856E-10
+   prop_e=  1.4004E-10
+   prop_f=  5.9515E-11
+   rise_in=  1.9228E-11  targ=  1.9886E-10   trig=  1.7963E-10
+   rise_a=  3.4428E-10  targ=  5.4299E-10   trig=  1.9871E-10
+   rise_b=  1.0521E-09  targ=  1.4404E-09   trig=  3.8837E-10
+   rise_c=  7.3048E-10  targ=  1.7012E-09   trig=  9.7076E-10
+   rise_d=  3.3443E-10  targ=  1.8032E-09   trig=  1.4687E-09
+   rise_e=  1.7540E-10  targ=  1.9039E-09   trig=  1.7285E-09
+   rise_f=  9.6299E-11  targ=  1.9217E-09   trig=  1.8254E-09
+   fall_in=  1.9227E-11  targ=  1.9988E-10   trig=  1.8065E-10
+   fall_a=  9.1426E-10  targ=  1.1022E-09   trig=  1.8796E-10
+   fall_b=  1.3032E-09  targ=  1.5236E-09   trig=  2.2045E-10
+   fall_c=  1.0656E-09  targ=  1.7064E-09   trig=  6.4077E-10
+   fall_d=  7.3619E-10  targ=  1.8795E-09   trig=  1.1433E-09
+   fall_e=  3.4464E-10  targ=  1.9075E-09   trig=  1.5628E-09
+   fall_f=  1.1186E-10  targ=  1.9276E-09   trig=  1.8158E-09
+   idd_dla0=  9.6989E-05  from=  0.0000E+00     to=  6.0000E-09
+   idd_dla1=  9.3717E-05  from=  0.0000E+00     to=  6.0000E-09
+   idd_dla2=  9.2235E-05  from=  0.0000E+00     to=  6.0000E-09
+   idd_dla3=  9.0138E-05  from=  0.0000E+00     to=  6.0000E-09
+   idd_dla4=  9.2235E-05  from=  0.0000E+00     to=  6.0000E-09
+   idd_dla5=  9.0138E-05  from=  0.0000E+00     to=  6.0000E-09
+   dla0_power=  8.7290E-05
+   dla1_power=  8.4346E-05
+   dla2_power=  8.3011E-05
+   dla3_power=  8.1124E-05
+   dla4_power=  8.3011E-05
+   dla5_power=  8.1124E-05
+
+ 
+ -------- OPT 2 -------------
+**** No Level shifting is used *****
+****** VARS *******
+.param SWEEP_P_WIDTH=0.28U
+.param SWEEP_P_LENGTH=0.1U
+
+*** pull-down network
+.param SWEEP_N_WIDTH=0.26U
+.param SWEEP_N_LENGTH= 0.06U
+
+*** current sink 
+.param PARAM_NSOURCE_WIDTH = '1.0U'
+.param PARAM_NSOURCE_LENGTH = '0.1U'
+
+*** reference voltages
+.param SWEEP_N_BIAS_VOLTAGE = 0.55V
+.param SWEEP_P_BIAS_VOLTAGE = 50mV
+
+**** MEASUREMENTS *****
+ prop_a=  2.2861E-11
+ prop_b=  5.8819E-11
+ prop_c=  1.0609E-10
+ prop_d=  1.7426E-10
+ prop_e=  1.4892E-10
+ prop_f= -2.5409E-10
+ rise_in=  1.9324E-11  targ=  1.9903E-10   trig=  1.7971E-10
+ rise_a=  1.0040E-10  targ=  2.9599E-10   trig=  1.9560E-10
+ rise_b=  1.7526E-10  targ=  3.9533E-10   trig=  2.2007E-10
+ rise_c=  3.3754E-10  targ=  6.5806E-10   trig=  3.2052E-10
+ rise_d=  3.3522E-10  targ=  7.5541E-10   trig=  4.2019E-10
+ rise_e=  4.1962E-10  targ=  9.3862E-10   trig=  5.1900E-10
+ rise_f=  2.5586E-10  targ=  9.5440E-10   trig=  6.9854E-10
+ fall_in=  1.9064E-11  targ=  1.9971E-10   trig=  1.8064E-10
+ fall_a=  1.1116E-10  targ=  2.9728E-10   trig=  1.8612E-10
+ fall_b=  1.8741E-10  targ=  3.9927E-10   trig=  2.1186E-10
+ fall_c=  5.0436E-10  targ=  7.3700E-10   trig=  2.3264E-10
+ fall_d=  7.5341E-10  targ=  7.6029E-10   trig=  6.8785E-12
+ fall_e=  1.6233E-09  targ=  2.1353E-09   trig=  5.1192E-10
+ fall_f=  1.1900E-09  targ=  1.1985E-09   trig=  8.5748E-12
+
+

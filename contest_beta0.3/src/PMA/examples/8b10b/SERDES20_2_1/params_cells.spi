@@ -1,0 +1,116 @@
+***  Written by Yury Audzevich
+*** 
+***  Comments, suggestions for improvement and criticism welcome
+***  E-mail:  yury.audzevich~at~cl.cam.ac.uk
+*** 
+*** 
+***  Copyright 2003-2013, University of Cambridge, Computer Laboratory. 
+***  Copyright and related rights are licensed under the Hardware License, 
+***  Version 2.0 (the "License"); you may not use this file except in 
+***  compliance with the License. You may obtain a copy of the License at
+***  http://www.cl.cam.ac.uk/research/srg/netos/greenict/projects/contest/. 
+***  Unless required by applicable law or agreed to in writing, software, 
+***  hardware and materials distributed under this License is distributed 
+***  on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+***  either express or implied. See the License for the specific language
+***  governing permissions and limitations under the License.
+*** 
+*** 
+
+********************************************************************************
+*** This file contains a collection MCML gate parameters used in: 	     ***
+*** 1) single && multi-level MCML logic cells			   	     ***	
+*** 2) CMOS/MCML convertion blocks.					     *** 	
+*** 3) CMOS-only logic blocks						     ***
+********************************************************************************
+
+***** Simulation type, timestep and length *****
+.param FROM_TS = 1ps
+.param TO_TS = 80ns
+
+
+*** MAIN PARAMETERS ***
+
+********************************************************************************
+*** SIZING - Single level logic (SLL) -- MCML INV ***
+
+*** pull-up network
+.param SLL_P_WIDTH = 0.25U
+.param SLL_P_LENGTH = 0.08U
+*** pull-down network
+.param SLL_N_WIDTH = 0.21U
+.param SLL_N_LENGTH = 0.05U
+*** current sink 
+.param SLL_NSOURCE_WIDTH = 1.2U
+.param SLL_NSOURCE_LENGTH = 0.12U
+
+********************************************************************************
+*** SIZING - Double level logic (DLL) -- MCML DLA, DFF, AND, OR, SEL, etc. ***
+
+*** pull-up network
+.param DLL_P_WIDTH = 0.28U
+.param DLL_P_LENGTH = 0.09U
+*** pull-down network
+.param DLL_N_WIDTH = 0.26U
+.param DLL_N_LENGTH = 0.05U
+*** current sink 
+.param DLL_NSOURCE_WIDTH = 1.0U
+.param DLL_NSOURCE_LENGTH = 0.15U
+
+********************************************************************************
+*** SIZING - Level Conversion logic -- CMOS/MCML && MCML/CMOS ***
+
+*** pull-up network
+.param CONV_P_WIDTH = 0.25U
+.param CONV_P_LENGTH = 0.055U
+*** pull-down
+.param CONV_N_WIDTH = 0.21U
+.param CONV_N_LENGTH = 'lmin'
+*** current sink 
+.param CONV_NSOURCE_WIDTH = 1.2U
+.param CONV_NSOURCE_LENGTH = 0.12U
+
+**** CMOS gate dim. 
+.param CONV_CMOS_P_WIDTH = 0.3U
+.param CONV_CMOS_N_WIDTH = 0.21U
+
+********************************************************************************
+***** SIZING - Drive stimulus, used in "test.dsi", driver dimensions *****
+.param beta = "2"
+.param dsiwmin = "wmin*10"
+.param dsilmin = "lmin"
+
+********************************************************************************
+*** SUPPLY VOLTAGES ***
+*** CMOS
+.param CMOS_VDD_LEVEL = 1.1V
+.param CMOS_VSS_LEVEL = 0.0V
+
+*** MCML
+.param MCML_VDD_LEVEL = 0.9V
+.param MCML_VSS_LEVEL = 0.0V
+
+*** BIAS VOLTAGES -- MCML logic types ***
+*** used only if no self-biasing is implemented
+
+*** S-to-D logic -- P-U && P-D nw
+.param CONV_P_BIAS_VOLTAGE = 50mV
+.param CONV_N_BIAS_VOLTAGE = 0.53V
+
+*** SLL logic -- P-U && P-D nw
+.param SLL_P_BIAS_VOLTAGE = 2mV
+.param SLL_N_BIAS_VOLTAGE = 0.53V
+
+*** DLL logic -- P-U && P-D nw
+.param DLL_P_BIAS_VOLTAGE = 50mV
+.param DLL_N_BIAS_VOLTAGE = 0.55V
+
+*** power supply voltage
+.param cml_vdd = 0.9
+.param cmos_vdd = 1.1 
+.param cmos_vss = 0.0 
+
+********************************************************************************
+*** OUTPUT LOAD CAPs ***
+.param CLOAD = 0.05fF
+

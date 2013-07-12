@@ -1,0 +1,66 @@
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+About CONTEST Toolkit:
+
+10 Gbps transceiver's implementation is available as part of CONfigurable Transceiver Energy uSage Toolkit (CONTEST),
+a toolkit that contains a set of Verilog, HSpice, Perl and Tcl scripts/code modules, which permit the automated component’s 
+optimization/design process using standard CMOS technology process libraries. 
+
+
+The toolkit provides a combination of fully-synthesizeble functional blocks that can be used both as a standalone solutions or as a 
+part of more complex combinational approaches for characterization and design of future Physical Layer transmission protocols. 
+
+The toolkit presents a combination of source code files related to each basic building block desing and a set of configuration scripts
+that can simplify the standard procedures of stimuli generation, synthesis, simulation and power analysis. 
+
+
+The authors encourage all toolkit users for their contributions in order to provide an extensive set of functional blocks
+and module binding scripts that can enrich the toolkit's library content and, simplify the development of novel transmission
+protocols in fully-automated way. 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+The structure of the source code: 
+
+
+							src/	
+				  -----------------------------------------------
+				  |						|
+				  |						|
+				PCS/			       			PMA/
+  ----------------------------------------				-------------------------------------------------------------------------	
+  | 		 		 |					|				|					|
+  |				 |					|				|					|			
+ 64b66b/			8b10b/				cmos_synth_and_sim/	mcml_optimization/			   	    examples/						
+------------------		------------------		---------------------	---------------------------------------------  	   --------------------------------	
+|		|		|		 |		|		|	      |	           | 	        |   	       |			|		
+|		|		|		 |		|		|	      |	           |	        |	       |			|	
+simulation/  synthesis/	      simulation/  synthesis/	    CASE10_1/	       CDR/       MCML_CONV/    MCML_LEV1/  MCML_LEV2/	     64b66b/	       	       8b10b/
+							-------------	     						           -------------   	    -------------
+							|	    |								   |	       |   	    |		|	
+							|	    |								   |	       |   	    |		| 	
+						    simulation/  synthesis/						        CDR_10G/  SERDES64_4_1/   CDR_12_5G/  SERDES20_2_1/
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Short Description:
+
+(1) PCS/
+PCS --> Physical Coding Sublayer implementations define specifications for data encoding of a 10Gbps transmission system. 
+PCS is presented by two widely used encoding schemes, i.e. DC-balanced 8b10b code (8b10b/) and a hybrid-scrambled 64b66b 
+code (64b66b/). Each of the desings includes an RTL Verilog HDL source code that can be synthesised into a gate-level netlist
+usign an automated synthesis infrastructure developed by authors which interacts with industry-compliant 
+synthesis tools (synthesis/). In addition, the authors supply a simple design pre/post-synthesis verification (simulation/) 
+environment that can be also used for extraction of power measures from the obtained designs.	        
+
+(2) PMA/
+PMA --> Physical Medium Attachement provides a bridge between encoding blocks, such as given by 8b10b and 64b66b (PCS/), and the 
+high-speed serialization/deserialization (SERDES) units, converting the low-speed parallel data into high-speed serial bit
+stream. The toolkit provides implementations of both standard CMOS technology assisted serialization/deserialization shift 
+registers (PISO/SIPO) and a differential tree-based MOS Current Mode Logic SerDes as building blocks (examples/64b66b/SERDES64_4_1/ 
+and examples/8b10b/SERDES20_2_1/). In addition, a single-stage Clock and Data Recovery circuit optimized for ~10.3GHz 
+(examples/64b66b/CDR_10G/) and ~12.5GHz (examples/8b10b/CDR_12_5G/) operation is presented. Similarly to PCS designs, the 
+design infrastructure includes the synthesis scripts for automated gate-level netlist generation using industrial toolsets and
+a differential MCML optimization flow, that can be used for a custom MCML library design.   
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+

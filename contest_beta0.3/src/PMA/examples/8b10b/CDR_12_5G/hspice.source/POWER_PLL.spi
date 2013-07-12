@@ -1,0 +1,89 @@
+***  Written by Yury Audzevich
+*** 
+***  Comments, suggestions for improvement and criticism welcome
+***  E-mail:  yury.audzevich~at~cl.cam.ac.uk
+*** 
+*** 
+***  Copyright 2003-2013, University of Cambridge, Computer Laboratory. 
+***  Copyright and related rights are licensed under the Hardware License, 
+***  Version 2.0 (the "License"); you may not use this file except in 
+***  compliance with the License. You may obtain a copy of the License at
+***  http://www.cl.cam.ac.uk/research/srg/netos/greenict/projects/contest/. 
+***  Unless required by applicable law or agreed to in writing, software, 
+***  hardware and materials distributed under this License is distributed 
+***  on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+***  either express or implied. See the License for the specific language
+***  governing permissions and limitations under the License.
+*** 
+*** 
+
+
+**** ==================== MEASUREMENTS ============================= ****
+*** POWER MEASUREMENTS -- custom ***
+
+**** BUILT-IN HSPICE METER ****
+.meas tran AVG_POWER_HSPICE AVG POWER FROM=FROM_TS TO=TO_TS
+
+**** POWER OF INDIVIDUAL COMPONENTS ****
+*** opamps
+.MEASURE TRAN p_op1 AVG P(Xop1_real) FROM=FROM_TS TO=TO_TS
+.MEASURE TRAN p_op2 AVG P(Xop3_real) FROM=FROM_TS TO=TO_TS
+
+*** gates
+*** stage 0
+.MEASURE TRAN p_buf1 AVG P(Xbuf01) FROM=FROM_TS TO=TO_TS
+*** stage 1
+.MEASURE TRAN p_inv1 AVG P(Xinv11) FROM=FROM_TS TO=TO_TS
+.MEASURE TRAN p_buf2 AVG P(Xbuf11) FROM=FROM_TS TO=TO_TS
+.MEASURE TRAN p_buf3 AVG P(Xbuf12) FROM=FROM_TS TO=TO_TS
+.MEASURE TRAN p_buf4 AVG P(Xbuf13) FROM=FROM_TS TO=TO_TS
+.MEASURE TRAN p_buf5 AVG P(Xbuf51) FROM=FROM_TS TO=TO_TS
+*** stage 2
+.MEASURE TRAN p_xor1 AVG P(Xxor1) FROM=FROM_TS TO=TO_TS
+.MEASURE TRAN p_xor2 AVG P(Xxor2) FROM=FROM_TS TO=TO_TS
+*** stage 5
+.MEASURE TRAN p_xor3 AVG P(Xxor3) FROM=FROM_TS TO=TO_TS
+.MEASURE TRAN p_dff1 AVG P(Xdff1) FROM=FROM_TS TO=TO_TS
+
+*** level shifter
+.MEASURE TRAN Ilevel_sh AVG I(Xlev_sh.M11) FROM=FROM_TS TO=TO_TS
+
+*** VCO
+.MEASURE TRAN p_vco AVG P(Xvco) FROM=FROM_TS TO=TO_TS
+
+*** delimiter
+.MEASURE DELIM1 Param='0.0'
+.MEASURE DELIM2 Param='0.0'
+.MEASURE DELIM3 Param='0.0'
+
+*** resulting
+.MEASURE POWER_OPAMPS Param='p_op1 + p_op2'
+.MEASURE POWER_GATES Param='p_buf1 + p_buf2 + p_buf3 + p_buf4 + p_buf5 + p_inv1 + p_xor1 + p_xor2 + p_xor3 + p_dff1'
+.MEASURE POWER_LSH Param='Ilevel_sh*PARAM_MCML_VDD_VOLTAGE'
+.MEASURE POWER_VCO Param='p_vco'
+
+**** TOTAL POWER ****
+.MEASURE POWER_TOTAL Param='POWER_VCO + POWER_LSH + POWER_GATES + POWER_OPAMPS'
+
+************ ANOTHER WAY ******
+*** delimiter
+.MEASURE DELIM4 Param='0.0'
+.MEASURE DELIM5 Param='0.0'
+.MEASURE DELIM6 Param='0.0'
+
+.MEASURE TRAN Ivdd_cmos AVG I(Vvdd_cmos) FROM=FROM_TS TO=TO_TS
+.MEASURE TRAN Ivdd_opamp AVG I(Vvdd_opamp) FROM=FROM_TS TO=TO_TS
+.MEASURE TRAN Ivdd AVG I(Vmvdd) FROM=FROM_TS TO=TO_TS
+
+.MEASURE P1_VDD Param='-Ivdd_cmos*PARAM_CMOS_VDD'
+.MEASURE P2_OP Param='-Ivdd_opamp*PARAM_CMOS_VDD'
+.MEASURE P3_MCML Param='-Ivdd*PARAM_MCML_VDD_VOLTAGE'
+
+
+.MEASURE P_TOTAL Param= 'P1_VDD + P2_OP + P3_MCML'
+
+*** FFT
+**** OPERATING FREQUENCY CHECK -- carefully check params ****
+.fft v(VCO_OUT,MVSS) np = 1024 start = 20n stop = 50n freq = 12.0G window = kaiser alfa = 2.5
+
+**** =============================================================== ****

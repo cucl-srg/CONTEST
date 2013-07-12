@@ -1,0 +1,160 @@
+***  Written by Yury Audzevich
+*** 
+***  Comments, suggestions for improvement and criticism welcome
+***  E-mail:  yury.audzevich~at~cl.cam.ac.uk
+*** 
+*** 
+***  Copyright 2003-2013, University of Cambridge, Computer Laboratory. 
+***  Copyright and related rights are licensed under the Hardware License, 
+***  Version 2.0 (the "License"); you may not use this file except in 
+***  compliance with the License. You may obtain a copy of the License at
+***  http://www.cl.cam.ac.uk/research/srg/netos/greenict/projects/contest/. 
+***  Unless required by applicable law or agreed to in writing, software, 
+***  hardware and materials distributed under this License is distributed 
+***  on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+***  either express or implied. See the License for the specific language
+***  governing permissions and limitations under the License.
+*** 
+*** 
+
+***** HSPICE simulation using standard cell designs *****
+
+***** 45nm predictive technology model (FreePDK v1.4)  Typical conditions, 1.1V, 25C *****
+.include "/usr/groups/ecad/kits/commercial45_v2010_12/n45-hspice-model-TT_1V10_25.spi"
+
+*********************************************************************
+*** Subcircuit of a simple MOS CML D-Latch gate
+.subckt MCML_DLA dd di cd ci outd outi mvdd vrfp vrfn gnda 
+M1 outi vrfp mvdd mvdd PMOS_VTL W=SWEEP_P_WIDTH L=SWEEP_P_LENGTH 
+M2 outd vrfp mvdd mvdd PMOS_VTL W=SWEEP_P_WIDTH L=SWEEP_P_LENGTH 
+M3 outi dd ac gnda NMOS_VTL W=SWEEP_N_WIDTH L=SWEEP_N_LENGTH 
+M4 outd di ac gnda NMOS_VTL W=SWEEP_N_WIDTH L=SWEEP_N_LENGTH 
+M5 outi outd bc gnda NMOS_VTL W=SWEEP_N_WIDTH L=SWEEP_N_LENGTH 
+M6 outd outi bc gnda NMOS_VTL W=SWEEP_N_WIDTH L=SWEEP_N_LENGTH 
+M7 ac cd cc gnda NMOS_VTL W=SWEEP_N_WIDTH L=SWEEP_N_LENGTH 
+M8 bc ci cc gnda NMOS_VTL W=SWEEP_N_WIDTH L=SWEEP_N_LENGTH 
+M9 cc vrfn gnda gnda NMOS_VTL W=PARAM_NSOURCE_WIDTH L=PARAM_NSOURCE_LENGTH
+.ends MCML_DLA
+
+
+*********************************************************************
+*** Subcircuit of a simple 2-input level shifter 
+.subckt L_SHIFT ind ini outd outi mvdd vrfn_sf gnda 
+M10 mvdd ind outd gnda NMOS_VTL W=PARAM_LS_N_WIDTH L=PARAM_LS_N_LENGTH
+M11 outd vrfn_sf gnda gnda NMOS_VTL W=PARAM_LS_NS_WIDTH L=PARAM_LS_NS_LENGTH
+M12 mvdd ini outi gnda NMOS_VTL W=PARAM_LS_N_WIDTH L=PARAM_LS_N_LENGTH
+M13 outi vrfn_sf gnda gnda NMOS_VTL W=PARAM_LS_NS_WIDTH L=PARAM_LS_NS_LENGTH
+.ends L_SHIFT
+
+
+*********************************************************************
+*** Subcircuit of a simple MOS CML MUX2_1 gate
+.subckt MCML_SEL21 ad ai bd bi cd ci outd outi mvdd vrfp vrfn vrfn_ls gnda
+* level shift C 
+* X11 cd ci cdd cdi mvdd vrfn_ls gnda L_SHIFT
+* the gate 
+M1 outi vrfp mvdd mvdd PMOS_VTL W=SWEEP_P_WIDTH L=SWEEP_P_LENGTH
+M2 outd vrfp mvdd mvdd PMOS_VTL W=SWEEP_P_WIDTH L=SWEEP_P_LENGTH
+M3 outi ad ac gnda NMOS_VTL W=SWEEP_N_WIDTH L=SWEEP_N_LENGTH
+M4 outd ai ac gnda NMOS_VTL W=SWEEP_N_WIDTH L=SWEEP_N_LENGTH
+M5 outi bd bc gnda NMOS_VTL W=SWEEP_N_WIDTH L=SWEEP_N_LENGTH
+M6 outd bi bc gnda NMOS_VTL W=SWEEP_N_WIDTH L=SWEEP_N_LENGTH
+M7 ac ci cc gnda NMOS_VTL W=SWEEP_N_WIDTH L=SWEEP_N_LENGTH
+M8 bc cd cc gnda NMOS_VTL W=SWEEP_N_WIDTH L=SWEEP_N_LENGTH
+M9 cc vrfn gnda gnda NMOS_VTL W=PARAM_NSOURCE_WIDTH L=PARAM_NSOURCE_LENGTH
+.ends MCML_SEL21
+
+*******************************************************************
+*** Subcircuit of a simple MOS CML AND/NAND gate
+.subckt MCML_AND ad ai bd bi outd outi mvdd vrfp vrfn vrfn_ls gnda
+* level shift A 
+* X11 ad ai add adi mvdd vrfn_ls gnda L_SHIFT
+* the gate
+M1 outi vrfp mvdd mvdd PMOS_VTL W=SWEEP_P_WIDTH L=SWEEP_P_LENGTH 
+M2 outd vrfp mvdd mvdd PMOS_VTL W=SWEEP_P_WIDTH L=SWEEP_P_LENGTH  
+M3 outi bd bc gnda NMOS_VTL W=SWEEP_N_WIDTH L=SWEEP_N_LENGTH
+M4 outd bi bc gnda NMOS_VTL W=SWEEP_N_WIDTH L=SWEEP_N_LENGTH   
+M5 bc ad ac gnda NMOS_VTL W=SWEEP_N_WIDTH L=SWEEP_N_LENGTH  
+M6 outd mvdd vddc gnda NMOS_VTL W=SWEEP_N_WIDTH L=SWEEP_N_LENGTH  
+M7 vddc ai ac gnda NMOS_VTL W=SWEEP_N_WIDTH L=SWEEP_N_LENGTH 
+M8 ac vrfn gnda gnda NMOS_VTL W=PARAM_NSOURCE_WIDTH L=PARAM_NSOURCE_LENGTH
+.ends MCML_AND
+
+*********************************************************************
+*** Subcircuit of a simple MOS CML OR/NOR gate
+.subckt MCML_OR ad ai bd bi outd outi mvdd vrfp vrfn vrfn_ls gnda
+* level shift A 
+* X11 ad ai add adi mvdd vrfn_ls gnda L_SHIFT
+* the gate 
+M1 outd vrfp mvdd mvdd PMOS_VTL W=SWEEP_P_WIDTH L=SWEEP_P_LENGTH
+M2 outi vrfp mvdd mvdd PMOS_VTL W=SWEEP_P_WIDTH L=SWEEP_P_LENGTH 
+M3 outd bi bc gnda NMOS_VTL W=SWEEP_N_WIDTH L=SWEEP_N_LENGTH
+M4 outi bd bc gnda NMOS_VTL W=SWEEP_N_WIDTH L=SWEEP_N_LENGTH
+M5 bc ai ac gnda NMOS_VTL W=SWEEP_N_WIDTH L=SWEEP_N_LENGTH 
+M6 outi mvdd vddc gnda NMOS_VTL W=SWEEP_N_WIDTH L=SWEEP_N_LENGTH
+M7 vddc ad ac gnda NMOS_VTL W=SWEEP_N_WIDTH L=SWEEP_N_LENGTH 
+M8 ac vrfn gnda gnda NMOS_VTL W=PARAM_NSOURCE_WIDTH L=PARAM_NSOURCE_LENGTH
+.ends MCML_OR
+
+*********************************************************************
+*** MCML inverter 
+.subckt MCML_INV An Ap Zn Zp VDD VREFP VREFN VSS
+
+M1 Zn VREFP VDD VDD PMOS_VTL W=PARAM_INV_PW L=PARAM_INV_PL
+M2 Zp VREFP VDD VDD PMOS_VTL W=PARAM_INV_PW L=PARAM_INV_PL
+M3 Zn Ap node1 VSS NMOS_VTL W=PARAM_INV_NW L=PARAM_INV_NL
+M4 Zp An node1 VSS NMOS_VTL W=PARAM_INV_NW L=PARAM_INV_NL
+M5 node1 VREFN VSS VSS NMOS_VTL W=PARAM_INV_NSW L=PARAM_INV_NSL
+
+.ends MCML_INV
+
+*********************************************************************
+*** Subcircuit of a simple MCML Master slave D flip-flop gate
+.subckt MCML_DFF_MS dd di cd ci outd outi 
++ mvdd vrfp_la vrfn_la vrfp_inv vrfn_inv vrfn_ls gnda
+
+* voltage level shifting in second (clock) level
+* X11 cd ci cdd cdi mvdd vrfn_ls gnda L_SHIFT
+* DFF gate
+X1 dd di cd ci outtd_b1 outti_b1 mvdd vrfp_la vrfn_la gnda MCML_DLA
+X100 outtd_b1 outti_b1 outtd outti mvdd vrfp_inv vrfn_inv gnda MCML_INV
+
+X2 outtd outti ci cd outd_f outi_f mvdd vrfp_la vrfn_la gnda MCML_DLA
+X101 outd_f outi_f outd outi mvdd vrfp_inv vrfn_inv gnda MCML_INV
+
+.ends MCML_DFF_MS
+
+
+*********************************************************************
+* Subcircuit of a simple MCML Master-slave-slave D flip-flop gate
+.subckt MCML_DFF_MSS dd di cd ci outd outi 
++ mvdd vrfp_la vrfn_la vrfp_inv vrfn_inv vrfn_ls gnda
+* ==============================================================
+* DFF + D-la
+X1 dd di cd ci outtd_f outti_f mvdd vrfp_la vrfn_la gnda MCML_DLA
+X100 outtd_f outti_f outtd outti mvdd vrfp_inv vrfn_inv gnda MCML_INV
+
+X2 outtd outti ci cd out2td_f out2ti_f mvdd vrfp_la vrfn_la gnda MCML_DLA
+X101 out2td_f out2ti_f out2td out2ti mvdd vrfp_inv vrfn_inv gnda MCML_INV
+
+X3 out2td out2ti cd ci outd_f outi_f mvdd vrfp_la vrfn_la gnda MCML_DLA
+X102 outd_f outi_f outd outi mvdd vrfp_inv vrfn_inv gnda MCML_INV
+
+.ends MCML_DFF_MSS
+*********************************************************************
+
+*********************************************************************
+*** Subcircuit of a MCML Master slave DFF with no buffering
+.subckt MCML_DFF dd di cd ci outd outi 
++ mvdd vrfp_la vrfn_la vrfp_inv vrfn_inv vrfn_ls gnda
+
+* voltage level shifting in second (clock) level
+* X11 cd ci cdd cdi mvdd vrfn_ls gnda L_SHIFT
+* DFF gate
+X1 dd di cd ci outtd outti mvdd vrfp_la vrfn_la gnda MCML_DLA
+X2 outtd outti ci cd outd outi mvdd vrfp_la vrfn_la gnda MCML_DLA
+
+.ends MCML_DFF
+*********************************************************************
+
+

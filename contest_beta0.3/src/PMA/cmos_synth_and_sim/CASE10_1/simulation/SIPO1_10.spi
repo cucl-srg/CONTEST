@@ -1,0 +1,271 @@
+*** 
+***  Copyright 2003-2013, University of Cambridge, Computer Laboratory. 
+***  Copyright and related rights are licensed under the Hardware License, 
+***  Version 2.0 (the "License"); you may not use this file except in 
+***  compliance with the License. You may obtain a copy of the License at
+***  http://www.cl.cam.ac.uk/research/srg/netos/greenict/projects/contest/. 
+***  Unless required by applicable law or agreed to in writing, software, 
+***  hardware and materials distributed under this License is distributed 
+***  on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+***  either express or implied. See the License for the specific language
+***  governing permissions and limitations under the License.
+*** 
+
+*** SPICE structural netlist of 'SIPO1_10' after Design Compiler synthesis, based on port order in '/usr/groups/ecad/kits/commercial45_v2010_12/n45-library-netlist-noparasitics.spi' ***
+
+.SUBCKT SIPO1_10 VDD_SIPO1_10 VSS_SIPO1_10 CLK_IN RESET_IN SERIAL_IN DATA_USED_OUT PARALLEL_OUT[0] PARALLEL_OUT[1] PARALLEL_OUT[2] PARALLEL_OUT[3] PARALLEL_OUT[4] PARALLEL_OUT[5] PARALLEL_OUT[6] PARALLEL_OUT[7] PARALLEL_OUT[8] PARALLEL_OUT[9]  
+*** instances
+xshift_reg_reg_9_  SERIAL_IN___rc n56___rc CLK_IN___rc shift_reg[9] SPICE_NETLIST_UNCONNECTED_1 VDD_SIPO1_10 VSS_SIPO1_10  DFFR_X1
+xshift_reg_reg_8_  shift_reg[9]___rc n56___rc CLK_IN___rc shift_reg[8] SPICE_NETLIST_UNCONNECTED_2 VDD_SIPO1_10 VSS_SIPO1_10  DFFR_X1
+xshift_reg_reg_7_  shift_reg[8]___rc n56___rc CLK_IN___rc shift_reg[7] SPICE_NETLIST_UNCONNECTED_3 VDD_SIPO1_10 VSS_SIPO1_10  DFFR_X1
+xshift_reg_reg_6_  shift_reg[7]___rc n56___rc CLK_IN___rc shift_reg[6] SPICE_NETLIST_UNCONNECTED_4 VDD_SIPO1_10 VSS_SIPO1_10  DFFR_X1
+xshift_reg_reg_5_  shift_reg[6]___rc n56___rc CLK_IN___rc shift_reg[5] SPICE_NETLIST_UNCONNECTED_5 VDD_SIPO1_10 VSS_SIPO1_10  DFFR_X1
+xshift_reg_reg_4_  shift_reg[5]___rc n56___rc CLK_IN___rc shift_reg[4] SPICE_NETLIST_UNCONNECTED_6 VDD_SIPO1_10 VSS_SIPO1_10  DFFR_X1
+xshift_reg_reg_3_  shift_reg[4]___rc n56___rc CLK_IN___rc shift_reg[3] SPICE_NETLIST_UNCONNECTED_7 VDD_SIPO1_10 VSS_SIPO1_10  DFFR_X1
+xshift_reg_reg_2_  shift_reg[3]___rc n56___rc CLK_IN___rc shift_reg[2] SPICE_NETLIST_UNCONNECTED_8 VDD_SIPO1_10 VSS_SIPO1_10  DFFR_X1
+xshift_reg_reg_1_  shift_reg[2]___rc n56___rc CLK_IN___rc shift_reg[1] SPICE_NETLIST_UNCONNECTED_9 VDD_SIPO1_10 VSS_SIPO1_10  DFFR_X1
+xshift_reg_reg_0_  shift_reg[1]___rc n56___rc CLK_IN___rc n118 SPICE_NETLIST_UNCONNECTED_10 VDD_SIPO1_10 VSS_SIPO1_10  DFFR_X1
+xctr_reg_0_  n71___rc n56___rc CLK_IN___rc n125 N7 VDD_SIPO1_10 VSS_SIPO1_10  DFFR_X1
+xctr_reg_1_  N8___rc n56___rc CLK_IN___rc n123 n59 VDD_SIPO1_10 VSS_SIPO1_10  DFFR_X1
+xctr_reg_2_  N9___rc n56___rc CLK_IN___rc ctr[2] n124 VDD_SIPO1_10 VSS_SIPO1_10  DFFR_X1
+xPARALLEL_OUT_reg_9_  n42___rc n56___rc CLK_IN___rc PARALLEL_OUT[9] SPICE_NETLIST_UNCONNECTED_11 VDD_SIPO1_10 VSS_SIPO1_10  DFFR_X1
+xPARALLEL_OUT_reg_8_  n40___rc n56___rc CLK_IN___rc PARALLEL_OUT[8] SPICE_NETLIST_UNCONNECTED_12 VDD_SIPO1_10 VSS_SIPO1_10  DFFR_X1
+xPARALLEL_OUT_reg_7_  n38___rc n56___rc CLK_IN___rc PARALLEL_OUT[7] SPICE_NETLIST_UNCONNECTED_13 VDD_SIPO1_10 VSS_SIPO1_10  DFFR_X1
+xPARALLEL_OUT_reg_6_  n36___rc n56___rc CLK_IN___rc PARALLEL_OUT[6] SPICE_NETLIST_UNCONNECTED_14 VDD_SIPO1_10 VSS_SIPO1_10  DFFR_X1
+xPARALLEL_OUT_reg_5_  n34___rc n56___rc CLK_IN___rc PARALLEL_OUT[5] SPICE_NETLIST_UNCONNECTED_15 VDD_SIPO1_10 VSS_SIPO1_10  DFFR_X1
+xPARALLEL_OUT_reg_4_  n32___rc n56___rc CLK_IN___rc PARALLEL_OUT[4] SPICE_NETLIST_UNCONNECTED_16 VDD_SIPO1_10 VSS_SIPO1_10  DFFR_X1
+xPARALLEL_OUT_reg_3_  n30___rc n56___rc CLK_IN___rc PARALLEL_OUT[3] SPICE_NETLIST_UNCONNECTED_17 VDD_SIPO1_10 VSS_SIPO1_10  DFFR_X1
+xPARALLEL_OUT_reg_2_  n28___rc n56___rc CLK_IN___rc PARALLEL_OUT[2] SPICE_NETLIST_UNCONNECTED_18 VDD_SIPO1_10 VSS_SIPO1_10  DFFR_X1
+xPARALLEL_OUT_reg_1_  n26___rc n56___rc CLK_IN___rc PARALLEL_OUT[1] SPICE_NETLIST_UNCONNECTED_19 VDD_SIPO1_10 VSS_SIPO1_10  DFFR_X1
+xPARALLEL_OUT_reg_0_  n24___rc n56___rc CLK_IN___rc PARALLEL_OUT[0] SPICE_NETLIST_UNCONNECTED_20 VDD_SIPO1_10 VSS_SIPO1_10  DFFR_X1
+xctr_reg_3_  N10___rc n56___rc n68___rc CLK_IN___rc ctr[3] SPICE_NETLIST_UNCONNECTED_21 VDD_SIPO1_10 VSS_SIPO1_10  DFFRS_X1
+xU69  n123___rc N7___rc n74 VDD_SIPO1_10 VSS_SIPO1_10  NOR2_X2
+xU72  n101___rc n92___rc DATA_USED_OUT VDD_SIPO1_10 VSS_SIPO1_10  NOR2_X1
+xU74  n75___rc n93___rc n90 VDD_SIPO1_10 VSS_SIPO1_10  NAND2_X1
+xU76  n73___rc n74___rc n86 VDD_SIPO1_10 VSS_SIPO1_10  NAND2_X2
+xU89  n86___rc PARALLEL_OUT[3]___rc n81 VDD_SIPO1_10 VSS_SIPO1_10  NAND2_X1
+xU92  n86___rc PARALLEL_OUT[5]___rc n84 VDD_SIPO1_10 VSS_SIPO1_10  NAND2_X1
+xU94  n86___rc PARALLEL_OUT[0]___rc n87 VDD_SIPO1_10 VSS_SIPO1_10  NAND2_X1
+xU98  RESET_IN___rc n56 VDD_SIPO1_10 VSS_SIPO1_10  INV_X1
+xU99  ctr[3]___rc n125___rc n92 VDD_SIPO1_10 VSS_SIPO1_10  OR2_X1
+xU100  n71___rc n124___rc ctr[3]___rc n96 VDD_SIPO1_10 VSS_SIPO1_10  AOI21_X1
+xU101  N7___rc ctr[2]___rc n59___rc n93 VDD_SIPO1_10 VSS_SIPO1_10  AOI21_X1
+xU102  ctr[2]___rc n95___rc n94 VDD_SIPO1_10 VSS_SIPO1_10  AND2_X1
+xU65  n88___rc PARALLEL_OUT[7]___rc n77 VDD_SIPO1_10 VSS_SIPO1_10  NAND2_X1
+xU96  n94___rc n90___rc ctr[3]___rc N10 VDD_SIPO1_10 VSS_SIPO1_10  MUX2_X2
+xU59  n68 VDD_SIPO1_10 VSS_SIPO1_10  LOGIC1_X1
+xU60  n99___rc n97___rc N8 VDD_SIPO1_10 VSS_SIPO1_10  NAND2_X1
+xU61  n71___rc n123___rc n97 VDD_SIPO1_10 VSS_SIPO1_10  NAND2_X1
+xU63  n96___rc n59___rc n99 VDD_SIPO1_10 VSS_SIPO1_10  NAND2_X1
+xU70  n86___rc n103 VDD_SIPO1_10 VSS_SIPO1_10  INV_X2
+xU73  n101___rc n71___rc n124___rc n95___rc N9 VDD_SIPO1_10 VSS_SIPO1_10  OAI22_X1
+xU78  n88___rc n108 VDD_SIPO1_10 VSS_SIPO1_10  INV_X2
+xU79  n102___rc n117___rc n42 VDD_SIPO1_10 VSS_SIPO1_10  NAND2_X1
+xU80  n103___rc shift_reg[9]___rc n102 VDD_SIPO1_10 VSS_SIPO1_10  NAND2_X1
+xU81  n104___rc n116___rc n26 VDD_SIPO1_10 VSS_SIPO1_10  NAND2_X1
+xU82  n108___rc shift_reg[1]___rc n104 VDD_SIPO1_10 VSS_SIPO1_10  NAND2_X1
+xU83  n106___rc n105___rc n32 VDD_SIPO1_10 VSS_SIPO1_10  NAND2_X1
+xU84  n86___rc PARALLEL_OUT[4]___rc n105 VDD_SIPO1_10 VSS_SIPO1_10  NAND2_X1
+xU85  n108___rc shift_reg[4]___rc n106 VDD_SIPO1_10 VSS_SIPO1_10  NAND2_X1
+xU86  n107___rc n84___rc n34 VDD_SIPO1_10 VSS_SIPO1_10  NAND2_X1
+xU87  n108___rc shift_reg[5]___rc n107 VDD_SIPO1_10 VSS_SIPO1_10  NAND2_X1
+xU88  n120___rc n109___rc n28 VDD_SIPO1_10 VSS_SIPO1_10  NAND2_X1
+xU90  n110___rc shift_reg[2]___rc n109 VDD_SIPO1_10 VSS_SIPO1_10  NAND2_X1
+xU91  n88___rc n110 VDD_SIPO1_10 VSS_SIPO1_10  INV_X1
+xU93  n111___rc n81___rc n30 VDD_SIPO1_10 VSS_SIPO1_10  NAND2_X1
+xU95  n108___rc shift_reg[3]___rc n111 VDD_SIPO1_10 VSS_SIPO1_10  NAND2_X1
+xU97  n112___rc n113___rc n40 VDD_SIPO1_10 VSS_SIPO1_10  NAND2_X1
+xU103  n86___rc PARALLEL_OUT[8]___rc n112 VDD_SIPO1_10 VSS_SIPO1_10  NAND2_X1
+xU104  n115___rc shift_reg[8]___rc n113 VDD_SIPO1_10 VSS_SIPO1_10  NAND2_X1
+xU105  n114___rc n119___rc n36 VDD_SIPO1_10 VSS_SIPO1_10  NAND2_X1
+xU106  n108___rc shift_reg[6]___rc n114 VDD_SIPO1_10 VSS_SIPO1_10  NAND2_X1
+xU107  n88___rc n115 VDD_SIPO1_10 VSS_SIPO1_10  INV_X1
+xU108  n86___rc PARALLEL_OUT[1]___rc n116 VDD_SIPO1_10 VSS_SIPO1_10  NAND2_X1
+xU109  n86___rc PARALLEL_OUT[9]___rc n117 VDD_SIPO1_10 VSS_SIPO1_10  NAND2_X1
+xU110  n86___rc PARALLEL_OUT[6]___rc n119 VDD_SIPO1_10 VSS_SIPO1_10  NAND2_X1
+xU111  n86___rc PARALLEL_OUT[2]___rc n120 VDD_SIPO1_10 VSS_SIPO1_10  NAND2_X1
+xU112  n87___rc n121___rc n24 VDD_SIPO1_10 VSS_SIPO1_10  NAND2_X1
+xU113  n115___rc n118___rc n121 VDD_SIPO1_10 VSS_SIPO1_10  NAND2_X1
+xU114  n122___rc n77___rc n38 VDD_SIPO1_10 VSS_SIPO1_10  NAND2_X1
+xU115  n110___rc shift_reg[7]___rc n122 VDD_SIPO1_10 VSS_SIPO1_10  NAND2_X1
+xU71  n75___rc n101 VDD_SIPO1_10 VSS_SIPO1_10  CLKBUF_X1
+xU75  n59___rc N7___rc n95 VDD_SIPO1_10 VSS_SIPO1_10  NOR2_X1
+xU77  ctr[2]___rc n59___rc n75 VDD_SIPO1_10 VSS_SIPO1_10  OR2_X2
+xU66  n73___rc n74___rc n88 VDD_SIPO1_10 VSS_SIPO1_10  NAND2_X2
+xU67  ctr[3]___rc ctr[2]___rc n73 VDD_SIPO1_10 VSS_SIPO1_10  NOR2_X2
+xU64  N7___rc n71 VDD_SIPO1_10 VSS_SIPO1_10  CLKBUF_X1
+*** Estimated net resistances from Design Compiler
+r1 CLK_IN CLK_IN___rc 101.0
+r2 DATA_USED_OUT DATA_USED_OUT___rc 4.0
+r3 N10 N10___rc 10.0
+r4 N7 N7___rc 59.0
+r5 N8 N8___rc 12.0
+r6 N9 N9___rc 25.0
+r7 PARALLEL_OUT[0] PARALLEL_OUT[0]___rc 19.0
+r8 PARALLEL_OUT[1] PARALLEL_OUT[1]___rc 17.0
+r9 PARALLEL_OUT[2] PARALLEL_OUT[2]___rc 36.0
+r10 PARALLEL_OUT[3] PARALLEL_OUT[3]___rc 11.0
+r11 PARALLEL_OUT[4] PARALLEL_OUT[4]___rc 24.0
+r12 PARALLEL_OUT[5] PARALLEL_OUT[5]___rc 9.0
+r13 PARALLEL_OUT[6] PARALLEL_OUT[6]___rc 31.0
+r14 PARALLEL_OUT[7] PARALLEL_OUT[7]___rc 16.0
+r15 PARALLEL_OUT[8] PARALLEL_OUT[8]___rc 39.0
+r16 PARALLEL_OUT[9] PARALLEL_OUT[9]___rc 31.0
+r17 RESET_IN RESET_IN___rc 10.0
+r18 SERIAL_IN SERIAL_IN___rc 11.0
+r19 ctr[2] ctr[2]___rc 40.0
+r20 ctr[3] ctr[3]___rc 40.0
+r21 n101 n101___rc 65.0
+r22 n102 n102___rc 1.0
+r23 n103 n103___rc 1.0
+r24 n104 n104___rc 1.0
+r25 n105 n105___rc 2.0
+r26 n106 n106___rc 1.0
+r27 n107 n107___rc 1.0
+r28 n108 n108___rc 35.0
+r29 n109 n109___rc 2.0
+r30 n110 n110___rc 26.0
+r31 n111 n111___rc 1.0
+r32 n112 n112___rc 1.0
+r33 n113 n113___rc 2.0
+r34 n114 n114___rc 1.0
+r35 n115 n115___rc 39.0
+r36 n116 n116___rc 2.0
+r37 n117 n117___rc 2.0
+r38 n118 n118___rc 43.0
+r39 n119 n119___rc 2.0
+r40 n120 n120___rc 1.0
+r41 n121 n121___rc 2.0
+r42 n122 n122___rc 1.0
+r43 n123 n123___rc 36.0
+r44 n124 n124___rc 21.0
+r45 n125 n125___rc 43.0
+r46 n24 n24___rc 6.0
+r47 n26 n26___rc 9.0
+r48 n28 n28___rc 16.0
+r49 n30 n30___rc 11.0
+r50 n32 n32___rc 7.0
+r51 n34 n34___rc 14.0
+r52 n36 n36___rc 17.0
+r53 n38 n38___rc 22.0
+r54 n40 n40___rc 12.0
+r55 n42 n42___rc 7.0
+r56 n56 n56___rc 107.0
+r57 n59 n59___rc 32.0
+r58 n68 n68___rc 4.0
+r59 n71 n71___rc 58.0
+r60 n73 n73___rc 17.0
+r61 n74 n74___rc 16.0
+r62 n75 n75___rc 16.0
+r63 n77 n77___rc 10.0
+r64 n81 n81___rc 8.0
+r65 n84 n84___rc 8.0
+r66 n86 n86___rc 50.0
+r67 n87 n87___rc 15.0
+r68 n88 n88___rc 49.0
+r69 n90 n90___rc 10.0
+r70 n92 n92___rc 45.0
+r71 n93 n93___rc 2.0
+r72 n94 n94___rc 19.0
+r73 n95 n95___rc 31.0
+r74 n96 n96___rc 14.0
+r75 n97 n97___rc 2.0
+r76 n99 n99___rc 1.0
+r77 shift_reg[1] shift_reg[1]___rc 39.0
+r78 shift_reg[2] shift_reg[2]___rc 56.0
+r79 shift_reg[3] shift_reg[3]___rc 94.0
+r80 shift_reg[4] shift_reg[4]___rc 80.0
+r81 shift_reg[5] shift_reg[5]___rc 88.0
+r82 shift_reg[6] shift_reg[6]___rc 68.0
+r83 shift_reg[7] shift_reg[7]___rc 64.0
+r84 shift_reg[8] shift_reg[8]___rc 58.0
+r85 shift_reg[9] shift_reg[9]___rc 76.0
+*** Estimated net capacitances from Design Compiler
+c1 CLK_IN___rc VSS_SIPO1_10 2.870518e-15
+c2 DATA_USED_OUT___rc VSS_SIPO1_10 6.4913e-17
+c3 N10___rc VSS_SIPO1_10 1.31623e-16
+c4 N7___rc VSS_SIPO1_10 9.63741e-16
+c5 N8___rc VSS_SIPO1_10 1.61405e-16
+c6 N9___rc VSS_SIPO1_10 2.87213e-16
+c7 PARALLEL_OUT[0]___rc VSS_SIPO1_10 2.82847e-16
+c8 PARALLEL_OUT[1]___rc VSS_SIPO1_10 2.24665e-16
+c9 PARALLEL_OUT[2]___rc VSS_SIPO1_10 4.70588e-16
+c10 PARALLEL_OUT[3]___rc VSS_SIPO1_10 1.61527e-16
+c11 PARALLEL_OUT[4]___rc VSS_SIPO1_10 3.16194e-16
+c12 PARALLEL_OUT[5]___rc VSS_SIPO1_10 1.41081e-16
+c13 PARALLEL_OUT[6]___rc VSS_SIPO1_10 4.3719e-16
+c14 PARALLEL_OUT[7]___rc VSS_SIPO1_10 2.44091e-16
+c15 PARALLEL_OUT[8]___rc VSS_SIPO1_10 4.75307e-16
+c16 PARALLEL_OUT[9]___rc VSS_SIPO1_10 4.31146e-16
+c17 RESET_IN___rc VSS_SIPO1_10 1.44909e-16
+c18 SERIAL_IN___rc VSS_SIPO1_10 1.75718e-16
+c19 ctr[2]___rc VSS_SIPO1_10 5.86076e-16
+c20 ctr[3]___rc VSS_SIPO1_10 5.83548e-16
+c21 n101___rc VSS_SIPO1_10 8.26495e-16
+c22 n102___rc VSS_SIPO1_10 1.022e-17
+c23 n103___rc VSS_SIPO1_10 1.3766e-17
+c24 n104___rc VSS_SIPO1_10 1.022e-17
+c25 n105___rc VSS_SIPO1_10 2.0525e-17
+c26 n106___rc VSS_SIPO1_10 1.022e-17
+c27 n107___rc VSS_SIPO1_10 1.022e-17
+c28 n108___rc VSS_SIPO1_10 6.61167e-16
+c29 n109___rc VSS_SIPO1_10 2.0525e-17
+c30 n110___rc VSS_SIPO1_10 3.66498e-16
+c31 n111___rc VSS_SIPO1_10 1.022e-17
+c32 n112___rc VSS_SIPO1_10 1.022e-17
+c33 n113___rc VSS_SIPO1_10 2.0525e-17
+c34 n114___rc VSS_SIPO1_10 1.022e-17
+c35 n115___rc VSS_SIPO1_10 5.64842e-16
+c36 n116___rc VSS_SIPO1_10 2.0525e-17
+c37 n117___rc VSS_SIPO1_10 2.0525e-17
+c38 n118___rc VSS_SIPO1_10 6.34235e-16
+c39 n119___rc VSS_SIPO1_10 2.0525e-17
+c40 n120___rc VSS_SIPO1_10 1.022e-17
+c41 n121___rc VSS_SIPO1_10 2.0525e-17
+c42 n122___rc VSS_SIPO1_10 1.022e-17
+c43 n123___rc VSS_SIPO1_10 4.33937e-16
+c44 n124___rc VSS_SIPO1_10 3.12315e-16
+c45 n125___rc VSS_SIPO1_10 5.76041e-16
+c46 n24___rc VSS_SIPO1_10 8.5577e-17
+c47 n26___rc VSS_SIPO1_10 1.31861e-16
+c48 n28___rc VSS_SIPO1_10 2.37929e-16
+c49 n30___rc VSS_SIPO1_10 1.53711e-16
+c50 n32___rc VSS_SIPO1_10 1.0579e-16
+c51 n34___rc VSS_SIPO1_10 1.82695e-16
+c52 n36___rc VSS_SIPO1_10 2.74974e-16
+c53 n38___rc VSS_SIPO1_10 2.88344e-16
+c54 n40___rc VSS_SIPO1_10 1.75796e-16
+c55 n42___rc VSS_SIPO1_10 1.21338e-16
+c56 n56___rc VSS_SIPO1_10 2.993634e-15
+c57 n59___rc VSS_SIPO1_10 5.07121e-16
+c58 n68___rc VSS_SIPO1_10 4.3803e-17
+c59 n71___rc VSS_SIPO1_10 9.53088e-16
+c60 n73___rc VSS_SIPO1_10 2.11756e-16
+c61 n74___rc VSS_SIPO1_10 2.42021e-16
+c62 n75___rc VSS_SIPO1_10 2.27533e-16
+c63 n77___rc VSS_SIPO1_10 1.40597e-16
+c64 n81___rc VSS_SIPO1_10 9.6885e-17
+c65 n84___rc VSS_SIPO1_10 1.02628e-16
+c66 n86___rc VSS_SIPO1_10 1.021132e-15
+c67 n87___rc VSS_SIPO1_10 2.09823e-16
+c68 n88___rc VSS_SIPO1_10 7.78664e-16
+c69 n90___rc VSS_SIPO1_10 1.24485e-16
+c70 n92___rc VSS_SIPO1_10 5.32293e-16
+c71 n93___rc VSS_SIPO1_10 3.5152e-17
+c72 n94___rc VSS_SIPO1_10 2.32948e-16
+c73 n95___rc VSS_SIPO1_10 4.01446e-16
+c74 n96___rc VSS_SIPO1_10 1.77623e-16
+c75 n97___rc VSS_SIPO1_10 2.0525e-17
+c76 n99___rc VSS_SIPO1_10 1.022e-17
+c77 shift_reg[1]___rc VSS_SIPO1_10 5.14668e-16
+c78 shift_reg[2]___rc VSS_SIPO1_10 7.81049e-16
+c79 shift_reg[3]___rc VSS_SIPO1_10 1.232615e-15
+c80 shift_reg[4]___rc VSS_SIPO1_10 1.04087e-15
+c81 shift_reg[5]___rc VSS_SIPO1_10 1.228232e-15
+c82 shift_reg[6]___rc VSS_SIPO1_10 9.10597e-16
+c83 shift_reg[7]___rc VSS_SIPO1_10 9.05023e-16
+c84 shift_reg[8]___rc VSS_SIPO1_10 7.49949e-16
+c85 shift_reg[9]___rc VSS_SIPO1_10 1.030943e-15
+.ENDS
+*** End
+

@@ -1,0 +1,62 @@
+***  Written by Yury Audzevich
+*** 
+***  Comments, suggestions for improvement and criticism welcome
+***  E-mail:  yury.audzevich~at~cl.cam.ac.uk
+*** 
+*** 
+***  Copyright 2003-2013, University of Cambridge, Computer Laboratory. 
+***  Copyright and related rights are licensed under the Hardware License, 
+***  Version 2.0 (the "License"); you may not use this file except in 
+***  compliance with the License. You may obtain a copy of the License at
+***  http://www.cl.cam.ac.uk/research/srg/netos/greenict/projects/contest/. 
+***  Unless required by applicable law or agreed to in writing, software, 
+***  hardware and materials distributed under this License is distributed 
+***  on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+***  either express or implied. See the License for the specific language
+***  governing permissions and limitations under the License.
+*** 
+
+
+*** =============================================================
+*** Model of 10:1:10 CMOS 
+*** =============================================================
+
+************************* REFERENCE CLOCK **************************************
+*** ==== Clock 1 TX & RX +/- at  f = 6.25/2GHz frequency ======
+X877_0 CLK_IN CLK2_TX pvdd_cmos gnda BUF_X1
+X877_1 CLK_IN CLK2_RX pvdd_cmos gnda BUF_X1
+
+*** chip select TX (cs =!enable) -- active low (pload/sload/sshift), in high - hold
+X888_1 RESET_INS RESET_SER pvdd_cmos gnda BUF_X1
+X889_1 RESET_IND RESET_DES pvdd_cmos gnda BUF_X1
+
+*** Instance of 'PISO10_2'
+XDUT
++ VDD_PISO20_2 VSS_PISO20_2 
++ CLK2_TX DATA_IN[0] DATA_IN[1] DATA_IN[2] DATA_IN[3] DATA_IN[4] DATA_IN[5] DATA_IN[6] DATA_IN[7] DATA_IN[8] DATA_IN[9] RESET_SER 
++ DATA_USED_OUT SERIAL_OUT 
++ PISO10_1 
+*** End
+
+*** Interconnect TX -> RX
+X100 SERIAL_OUT SERIAL_IN1 pvdd_cmos gnda INV_X1
+X101 SERIAL_IN1 SERIAL_IN pvdd_cmos gnda INV_X1
+
+*** Instance of 'SIPO1_10'
+XDUT1
++ VDD_SIPO2_20 VSS_SIPO2_20
++ CLK2_RX RESET_DES SERIAL_IN
++ DATA_USED_OUTD PARALLEL_OUT[0] PARALLEL_OUT[1] PARALLEL_OUT[2] PARALLEL_OUT[3] PARALLEL_OUT[4] PARALLEL_OUT[5] PARALLEL_OUT[6] PARALLEL_OUT[7] PARALLEL_OUT[8] PARALLEL_OUT[9] 
++ SIPO1_10
+*** End
+
+C51 PARALLEL_OUT[0] 0 0.05fF
+C52 PARALLEL_OUT[1] 0 0.05fF
+C53 PARALLEL_OUT[2] 0 0.05fF
+C54 PARALLEL_OUT[3] 0 0.05fF
+C55 PARALLEL_OUT[4] 0 0.05fF
+C56 PARALLEL_OUT[5] 0 0.05fF
+C57 PARALLEL_OUT[6] 0 0.05fF
+C58 PARALLEL_OUT[7] 0 0.05fF
+C59 PARALLEL_OUT[8] 0 0.05fF
+C510 PARALLEL_OUT[9] 0 0.05fF

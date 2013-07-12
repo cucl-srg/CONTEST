@@ -1,0 +1,366 @@
+***  Written by Yury Audzevich
+*** 
+***  Comments, suggestions for improvement and criticism welcome
+***  E-mail:  yury.audzevich~at~cl.cam.ac.uk
+*** 
+*** 
+***  Copyright 2003-2013, University of Cambridge, Computer Laboratory. 
+***  Copyright and related rights are licensed under the Hardware License, 
+***  Version 2.0 (the "License"); you may not use this file except in 
+***  compliance with the License. You may obtain a copy of the License at
+***  http://www.cl.cam.ac.uk/research/srg/netos/greenict/projects/contest/. 
+***  Unless required by applicable law or agreed to in writing, software, 
+***  hardware and materials distributed under this License is distributed 
+***  on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+***  either express or implied. See the License for the specific language
+***  governing permissions and limitations under the License.
+*** 
+*** 
+
+***** HSPICE simulation using standard cell designs *****
+
+
+***** Include MCML cell models and parameters for the analysis *****
+.include "cells.spi"
+.include "params.spi"
+
+**** ================================================= ***
+*** HSPICE OPTIONS ***
+.option post
+.option nomod
+.option co=255
+*.option brief
+.option dcon=1
+.option lis_new=1
+**.option captab 
+.option accurate
+
+*** DSI stimuli is converted into hspice one through the automatic Perl routine (flow_dsi_v0p7.pl) 
+.include "tempdir.stimulus/test-stim.sp"
+
+*** Define optimiser ***
+.model opt1 opt relin=1e-5 relout=1e-5 itropt=200
+
+*** Stop after measures (faster for optimisation)
+.option autostop
+
+
+******** OPT ON/OFF ************
+.if (OPT_PARAM_ON==1)
+*******************************************************************************************
+*** Setup the optimisation sweep (note that keyword order is critical) 			***
+*** 1) Specify optimization variables required (RESULTS keyword).			***
+*** 2) Specify corresponding OPT GOALs in MEASUREMENTs section 				***
+*** (i.e. add below the corresponding GOAL words; use deltaV_a,etc for reference.)	***
+*******************************************************************************************
+.tran FROM_TS TO_TS SWEEP OPTIMIZE=optw RESULTS=deltaSW_max1,deltaSW_min1 MODEL=opt1
+*.tran FROM_TS TO_TS SWEEP OPTIMIZE=optw RESULTS=deltaV_a,deltaV_b,deltaV_c,deltaV_d,deltaV_e,deltaV_f MODEL=opt1
+.else
+
+*** Standard run without optimisation
+.tran FROM_TS TO_TS
+.endif
+*******************************
+
+
+*** MCML and ideal bias supplies
+Vvdd VDD 0 PARAM_MCML_VDD_VOLTAGE
+Vsss VSS 0 PARAM_MCML_VSS_VOLTAGE
+*** bias
+Vvrefn VREFN_I 0 SWEEP_N_BIAS_VOLTAGE
+Vvrefp VREFP_I 0 SWEEP_P_BIAS_VOLTAGE
+*** swing
+Vvreflow VREFLOW 0 PARAM_MCML_SWING_LOW
+*** level shifting
+Vls VLEV 0 DC 0.134v
+*** other supplies
+Vvdd_cmos VDD_CMOS 0 DC 1.1v
+Vvdd_opamp VDD_OPAMP 0 DC 1.1v
+Vvss_opamp VSS_OPAMP 0 DC 0.0v
+
+*** test VCO range after opt
+Vctrls VCTRL 0 DC SWEEP_VCO_P_BIAS_VOLTAGE
+
+
+**** ================================================= ***
+*** DSI has generated input data at MCML levels required
+**** a couple of ideal signals for testing
+
+*** clock 1 ***
+VCcp clp 0 pulse(0.6 0.9 0 8e-12 8e-12 3.2e-11 8e-11)
+VCcn cln 0 pulse(0.9 0.6 0 8e-12 8e-12 3.2e-11 8e-11)
+
+*** data 1 ***
+Vdcn ddcn 0 pulse(1.1 0.0 0.5ns 1.6e-11 1.6e-11 6.4e-11 1.6e-10)
+
+************************************************************************
+*** CDR implementation with realistic elements - OPAMPS
+*** the final, post-optimization testing ***
+************************************************************************
+*** 1. Gain stage ***
+**** OPAMP1
+Xop1_real VOUT4 DATA VSS VDD_OPAMP VSS VREFP_I VREFN_I OPAMP_SE
+*** Buffering 1
+Xbuf01 VOUT4 VOUT4_BUF VDD_CMOS VSS BUF_X1
+
+*** 2. Delay + phase shift
+**** INV gate instead of 2-nd OPAMP
+Xinv11 VOUT4_BUF VOUT5 VDD_CMOS VSS INV_X1
+*** Buffering 2
+Xbuf11 VOUT5 VOUT5_BUF1 VDD_CMOS VSS BUF_X1
+Xbuf12 VOUT5_BUF1 VOUT5_BUF2 VDD_CMOS VSS BUF_X1
+Xbuf13 VOUT5_BUF2 VOUT5_BUF VDD_CMOS VSS BUF_X1
+
+*** 3. XOR  gates
+Xxor1 VOUT4_BUF VOUT5_BUF XOR_OUT1 VDD VSS XOR2_X1
+Xxor2 XOR_OUT1 VCO_OUT XOR_OUT2 VDD VSS XOR2_X1
+
+*** 4. LPF for VCO ctrl signal
+R1 XOR_OUT2 LPF_IN 5k
+C1 LPF_IN VSS 0.8p
+
+*** OPAMP3 
+Xop3_real VCO_INO LPF_IN VSS VDD_OPAMP VSS VREFP_I VREFN_I OPAMP_SE
+*** Level shifting
+Xlev_sh VCO_INO VCO_IN VDD_CMOS VSS VLEV L_SHIFTRR
+
+**** 5. VCO + feedback loop
+Xvco VCO_IN VCO_OUT OUTP OUTN VDD_CMOS VDD VSS VCO
+
+**** 6. Retimed signal  
+*** Xxor3 VCO_OUT VSS DFF_IN VDD_CMOS VSS XOR2_X1
+*** Xdff1 DATA DFF_IN Q QN VDD_CMOS VSS DFF_X1
+
+**** OPERATING FREQUENCY ****
+.fft v(VCO_OUT,VSS) np = 1024 start = 20n stop = 50n freq = 12.0G window = kaiser alfa = 2.5
+
+*******************************************************************
+*******************************************************************
+*******************************************************************
+*** CDR implementation with ideal elements - OPAMPS
+*** E element as an ideal opamp -- Exxx n+ n- <VCVS> in+ in- gain 
+*** start optimization/tuning with ideal elements ***
+*******************************************************************
+
+*** 1. Gain stage ***
+*** Ex6_ideal X6_OUTR VSS DATA VSS 1
+*** R121 X6_OUTR XOR_IN1 10k
+
+*** 2. Delay
+*** R122 X6_OUTR CINT 300
+*** C31 CINT VSS 300f
+
+*** Ex2_ideal X2_OUTR VSS VDD_OPAMP CINT 1
+*** R123 X2_OUTR XOR_IN2 10k
+*** 
+*** 3. XOR  gates
+*** Xxor1 XOR_IN1 XOR_IN2 XOR_OUT1 VDD VSS XOR2_X1
+*** Xxor2 XOR_OUT1 VCO_OUT XOR_OUT2 VDD VSS XOR2_X1
+*** 
+*** 4. LPF 
+*** R108 XOR_OUT2 LPF_IN 5k
+*** C2 LPF_IN VSS 0.1p
+*** Ex3_ideal VCO_IN VSS LPF_IN VSS 0.1 
+*** 
+**** 5. VCO + feedback loop
+*** Xvco VCO_IN VCO_OUT OUTP OUTN VDD_CMOS VDD VSS VCO
+*** 
+**** 6. Retimed signal  
+*** Xxor9 VCO_OUT VSS DFF_IN VDD_CMOS VSS XOR2_X1
+*** Xdff1 DATA DFF_IN Q QN VDD_CMOS VSS DFF_X1
+*** 
+****************************************************************
+
+*********************************************************************
+*** OPTIMIZING VCO for XYZGHz (12.5G) operation ***
+*** MCML ring oscillator + all biasing circuits, start opt. procedure here. 
+*** update VCO circuit in cells.spi when done.
+*********************************************************************
+**** uncomment if needed *****
+*** VCTRL = 108mV
+*** Xbias VCTRL VBIASR VDD VSS VCO_VBIAS
+*** R2 VBIASR 0 10k
+*** 
+*** MCML ring buffer with 6 stages *** 
+*** Xin1 Ap An Bp Bn VDD VCTRL VBIASR VSS INV_SL
+*** Xin2 Bp Bn Cp Cn VDD VCTRL VBIASR VSS INV_SL
+*** Xin3 Cp Cn Dp Dn VDD VCTRL VBIASR VSS INV_SL
+*** Xin4 Dp Dn o2p o2n VDD VCTRL VBIASR VSS INV_SL
+*** Xin5 o2p o2n o4p o4n VDD VCTRL VBIASR VSS INV_SL
+*** Xin6 o4p o4n An Ap VDD VCTRL VBIASR VSS INV_SL
+*** 
+*** Differential to single rail conversion ***
+*** Xsr_out OUTRR o4p o4n VDD_CMOS VSS VBIASR BUFF_VCO
+*** 
+*** differential output ***
+*** Xdr_out o4p o4n OUTDP OUTDN VDD VCTRL VBIASR VSS INV_SL
+*** 
+**** OPERATING FREQUENCY ****
+*** .fft v(OUTDP,VSS) np = 1024 start = 1n stop = 40n freq = 12.0G window = gaussian alfa = 2.5
+*** 
+*********************************************************************
+*********************************************************************
+*********************************************************************
+**** ================================================= ***
+*** Measurements and optimization goals ***
+**** ================================================= ***
+
+*** ALL sorts of measurements --- please modify/update according to needs ***
+
+*** average current
+*** .MEASURE TRAN Iccs1 AVG I(Xop0.M5) FROM='1ns' TO='10ns'
+*** .MEASURE TRAN Iccs2 AVG I(Xop0.M7) FROM='1ns' TO='10ns'
+*** .MEASURE TRAN Iccs3 AVG I(Xop0.M2) FROM='1ns' TO='10ns'
+
+*** Voltage swing optimization
+*** .measure tran deltaSW_max MAX V(VDD_OPAMP,VOUT4) FROM='1ns' TO='20ns' GOAL = '0.01'
+*** .measure tran deltaSW_min MIN V(VOUT4,VSS) FROM='1ns' TO='20ns' GOAL = '0.01'
+*** .measure tran deltaSW_max1 MAX V(VDD_OPAMP,VOUT5) FROM='1ns' TO='20ns' GOAL = '0.01'
+*** .measure tran deltaSW_min1 MIN V(VOUT5,VSS) FROM='1ns' TO='20ns' GOAL = '0.01'
+*** .measure tran deltaV_bias MAX V(VBIASI,VBIASR) FROM='2ns' TO='10ns' GOAL = 'PARAM_BIAS_DIFF'
+
+*** Optimizing voltage swing of VCO buffers + checking delay and power 
+*** .MEAS TRAN maxval MAX V(AP,AN) From=100ps To=10ns GOAL = ‘PARAM_MCML_SWING’
+*** .MEAS TRAN ptpval PP V(AP,AN) From=100ps To=10ns
+*** .MEAS TRAN maxDA param='ptpval/2'
+
+*** .measure tran deltaV_a MAX V(AP,AN) FROM='4ns' TO='10ns' GOAL = ‘PARAM_MCML_SWING’
+*** .measure tran deltaV_b MAX V(BP,BN) FROM='4ns' TO='10ns' GOAL = ‘PARAM_MCML_SWING’
+*** .measure tran deltaV_c MAX V(CP,CN) FROM='4ns' TO='10ns' GOAL = ‘PARAM_MCML_SWING’
+*** .measure tran deltaV_d MAX V(DP,DN) FROM='4ns' TO='10ns' GOAL = ‘PARAM_MCML_SWING’
+*** .measure tran deltaV_e MAX V(EP,EN) FROM='4ns' TO='10ns' GOAL = ‘PARAM_MCML_SWING’
+*** .measure tran deltaV_f MAX V(FP,FN) FROM='4ns' TO='10ns' GOAL = ‘PARAM_MCML_SWING’
+
+*** .meas tran DV_A param='(PARAM_MCML_VDD_VOLTAGE + (PARAM_MCML_VDD_VOLTAGE-deltaV_a))/2'
+*** .meas tran DV_B param='(PARAM_MCML_VDD_VOLTAGE + (PARAM_MCML_VDD_VOLTAGE-deltaV_b))/2'
+*** .meas tran DV_C param='(PARAM_MCML_VDD_VOLTAGE + (PARAM_MCML_VDD_VOLTAGE-deltaV_c))/2'
+*** .meas tran DV_D param='(PARAM_MCML_VDD_VOLTAGE + (PARAM_MCML_VDD_VOLTAGE-deltaV_d))/2'
+*** .meas tran DV_E param='(PARAM_MCML_VDD_VOLTAGE + (PARAM_MCML_VDD_VOLTAGE-deltaV_e))/2'
+*** .meas tran DV_F param='(PARAM_MCML_VDD_VOLTAGE + (PARAM_MCML_VDD_VOLTAGE-deltaV_f))/2'
+
+*** .MEASURE TRAN Idd_inv0 AVG I(Xinv1.M5)
+*** .MEASURE TRAN Idd_inv1 AVG I(Xinv2.M5) 
+*** .MEASURE TRAN Idd_inv2 AVG I(Xinv3.M5) 
+*** .MEASURE TRAN Idd_inv3 AVG I(Xinv4.M5) 
+*** .MEASURE TRAN Idd_inv4 AVG I(Xinv5.M5) 
+*** .MEASURE TRAN Idd_inv5 AVG I(Xinv6.M5) 
+ 
+*** .MEASURE I0_POWER Param='Idd_inv0*PARAM_MCML_VDD_VOLTAGE'
+*** .MEASURE I1_POWER Param='Idd_inv1*PARAM_MCML_VDD_VOLTAGE'
+*** .MEASURE I2_POWER Param='Idd_inv2*PARAM_MCML_VDD_VOLTAGE'
+*** .MEASURE I3_POWER Param='Idd_inv3*PARAM_MCML_VDD_VOLTAGE'
+*** .MEASURE I4_POWER Param='Idd_inv4*PARAM_MCML_VDD_VOLTAGE'
+*** .MEASURE I5_POWER Param='Idd_inv5*PARAM_MCML_VDD_VOLTAGE'
+
+
+*** other useful measures - rise/fall times, propagation delays.
+*** Measure AP to ref clp etc
+*** .meas tran delta_ar TRIG v(clp) VAL='PARAM_MCML_MID' CROSS=1 TARG v(AP) VAL='DV_A' CROSS=1 GOAL = '0ps'
+*** .meas tran delta_br TRIG v(clp) VAL='PARAM_MCML_MID' CROSS=1 TARG v(BP) VAL='DV_B' CROSS=1 GOAL = '0ps'
+*** .meas tran delta_cr TRIG v(clp) VAL='PARAM_MCML_MID' CROSS=1 TARG v(CP) VAL='DV_C' CROSS=1 GOAL = '0ps'
+*** .meas tran delta_dr TRIG v(clp) VAL='PARAM_MCML_MID' CROSS=1 TARG v(DP) VAL='DV_D' CROSS=1 GOAL = '0ps'
+*** .meas tran delta_er TRIG v(clp) VAL='PARAM_MCML_MID' CROSS=1 TARG v(EP) VAL='DV_E' CROSS=1 GOAL = '0ps'
+
+*** Measure AP to BP etc
+*** .meas tran delta_ab TRIG v(AP) VAL='DV_A' CROSS=1 TARG v(BP) VAL='DV_B' CROSS=1 GOAL = 'PARAM_DELAY_PER_STAGE'
+*** .meas tran delta_bc TRIG v(BP) VAL='DV_B' CROSS=1 TARG v(CP) VAL='DV_C' CROSS=1 GOAL = 'PARAM_DELAY_PER_STAGE'
+*** .meas tran delta_cd TRIG v(CP) VAL='DV_C' CROSS=1 TARG v(DP) VAL='DV_D' CROSS=1 GOAL = 'PARAM_DELAY_PER_STAGE'
+*** .meas tran delta_de TRIG v(DP) VAL='DV_D' CROSS=1 TARG v(EP) VAL='DV_E' CROSS=1 GOAL = 'PARAM_DELAY_PER_STAGE'
+*** .meas tran delta_ef TRIG v(EP) VAL='DV_E' CROSS=1 TARG v(FP) VAL='DV_F' CROSS=1 GOAL = 'PARAM_DELAY_PER_STAGE'
+
+*** Measure AP to AN etc
+*** .meas tran delta_aa TRIG v(AP) VAL='DV_A' CROSS=1 TARG v(AN) VAL='DV_A' CROSS=1 GOAL < 2p
+*** .meas tran delta_bb TRIG v(BP) VAL='DV_B' CROSS=1 TARG v(BN) VAL='DV_B' CROSS=1 GOAL < 2p
+*** .meas tran delta_cc TRIG v(CP) VAL='DV_C' CROSS=1 TARG v(CN) VAL='DV_C' CROSS=1 GOAL < 2p
+*** .meas tran delta_dd TRIG v(DP) VAL='DV_D' CROSS=1 TARG v(DN) VAL='DV_D' CROSS=1 GOAL < 2p
+*** .meas tran delta_ee TRIG v(EP) VAL='DV_E' CROSS=1 TARG v(EN) VAL='DV_E' CROSS=1 GOAL < 2p
+*** .meas tran delta_ff TRIG v(FP) VAL='DV_F' CROSS=1 TARG v(FN) VAL='DV_F' CROSS=1 GOAL < 2p
+
+*** Measure rise time
+*** .meas tran rise_a TRIG v(AP) VAL='PARAM_MCML_MID-0.14' RISE=1 TARG v(AP) VAL='PARAM_MCML_MID+0.16' RISE=1 GOAL < 2p
+*** .meas tran rise_b TRIG v(BP) VAL='PARAM_MCML_MID-0.15' RISE=1 TARG v(BP) VAL='PARAM_MCML_MID+0.15' RISE=1 GOAL < 2p
+*** .meas tran rise_c TRIG v(CP) VAL='PARAM_MCML_MID-0.15' RISE=1 TARG v(CP) VAL='PARAM_MCML_MID+0.15' RISE=1 GOAL < 2p
+*** .meas tran rise_d TRIG v(DP) VAL='PARAM_MCML_MID-0.15' RISE=1 TARG v(DP) VAL='PARAM_MCML_MID+0.15' RISE=1 GOAL < 2p
+
+*** Measure fall time
+*** .meas tran fall_a TRIG v(AN) VAL='PARAM_MCML_MID+0.15' FALL=1 TARG v(AN) VAL='PARAM_MCML_MID-0.15' FALL=1 GOAL < 2p
+*** .meas tran fall_b TRIG v(BN) VAL='PARAM_MCML_MID+0.15' FALL=1 TARG v(BN) VAL='PARAM_MCML_MID-0.15' FALL=1 GOAL < 2p
+*** .meas tran fall_c TRIG v(CN) VAL='PARAM_MCML_MID+0.15' FALL=1 TARG v(CN) VAL='PARAM_MCML_MID-0.15' FALL=1 GOAL < 2p
+*** .meas tran fall_d TRIG v(DN) VAL='PARAM_MCML_MID+0.15' FALL=1 TARG v(DN) VAL='PARAM_MCML_MID-0.15' FALL=1 GOAL < 2p
+
+
+*** Ways to do POWER MEASUREMENTS ***
+*** CDR circuit related ***
+
+**** BUILT-IN HSPICE METER ****
+*** .meas tran AVG_POWER_HSPICE AVG POWER FROM=FROM_TS TO=TO_TS
+
+**** POWER OF INDIVIDUAL COMPONENTS ****
+*** opamps
+*** .MEASURE TRAN p_op1 AVG P(Xop1_real) FROM=FROM_TS TO=TO_TS
+*** .MEASURE TRAN p_op2 AVG P(Xop2_real) FROM=FROM_TS TO=TO_TS
+*** .MEASURE TRAN p_op3 AVG P(Xop3_real) FROM=FROM_TS TO=TO_TS
+
+*** gates
+*** .MEASURE TRAN p_buf1 AVG P(Xbuf01) FROM=FROM_TS TO=TO_TS
+*** .MEASURE TRAN p_buf2 AVG P(Xbuf11) FROM=FROM_TS TO=TO_TS
+*** .MEASURE TRAN p_buf3 AVG P(Xbuf12) FROM=FROM_TS TO=TO_TS
+*** .MEASURE TRAN p_buf4 AVG P(Xbuf13) FROM=FROM_TS TO=TO_TS
+*** .MEASURE TRAN p_xor1 AVG P(Xxor1) FROM=FROM_TS TO=TO_TS
+*** .MEASURE TRAN p_xor2 AVG P(Xxor2) FROM=FROM_TS TO=TO_TS
+*** .MEASURE TRAN p_xor3 AVG P(Xxor3) FROM=FROM_TS TO=TO_TS
+*** .MEASURE TRAN p_dff1 AVG P(Xdff1) FROM=FROM_TS TO=TO_TS
+
+*** level shifter
+*** .MEASURE TRAN Ilevel_sh AVG I(Xlev_sh.M11) FROM=FROM_TS TO=TO_TS
+
+*** VCO
+*** .MEASURE TRAN p_vco AVG P(Xvco) FROM=FROM_TS TO=TO_TS
+
+*** delimiter
+*** .MEASURE DELIM1 Param='0.0'
+*** .MEASURE DELIM2 Param='0.0'
+*** .MEASURE DELIM3 Param='0.0'
+
+*** resulting
+*** .MEASURE POWER_OPAMPS Param='p_op1 + p_op2 + p_op3'
+*** .MEASURE POWER_GATES Param='p_buf1+p_buf2+p_buf3+p_buf4+p_xor1+p_xor2+p_xor3+p_dff1'
+*** .MEASURE POWER_LSH Param='Ilevel_sh*PARAM_MCML_VDD_VOLTAGE'
+*** .MEASURE POWER_VCO Param='p_vco'
+
+**** TOTAL POWER ****
+*** .MEASURE POWER_TOTAL Param='POWER_VCO + POWER_LSH + POWER_GATES + POWER_OPAMPS'
+
+************ ANOTHER WAY ******
+*** delimiter
+*** .MEASURE DELIM4 Param='0.0'
+*** .MEASURE DELIM5 Param='0.0'
+*** .MEASURE DELIM6 Param='0.0'
+
+*** .MEASURE TRAN Ivdd_cmos AVG I(Vvdd_cmos) FROM=FROM_TS TO=TO_TS
+*** .MEASURE TRAN Ivdd_opamp AVG I(Vvdd_opamp) FROM=FROM_TS TO=TO_TS
+*** .MEASURE TRAN Ivdd AVG I(vvdd) FROM=FROM_TS TO=TO_TS
+
+*** .MEASURE P1_VDD Param='-Ivdd_cmos*PARAM_CMOS_VDD'
+*** .MEASURE P2_OP Param='-Ivdd_opamp*PARAM_CMOS_VDD'
+*** .MEASURE P3_MCML Param='-Ivdd*PARAM_MCML_VDD_VOLTAGE'
+
+
+*** .MEASURE P_TOTAL Param= 'P1_VDD+P2_OP+P3_MCML'
+
+*** FFT -- freq. measurement
+*** define operating frequency 
+*** .fft v(OUTP,OUTN) np=1024
+
+*** Record the parameters in the .mt0 file
+*** .meas tran result_n_bias param='SWEEP_N_BIAS_VOLTAGE'
+*** .meas tran result_p_bias param='SWEEP_P_BIAS_VOLTAGE'
+*** .meas tran result_mcml_vdd param='PARAM_MCML_VDD_VOLTAGE'
+*** .meas tran result_mcml_vss param='PARAM_MCML_VSS_VOLTAGE'
+*** .meas tran result_pulldown_width param='SWEEP_N_WIDTH'
+*** .meas tran result_pullup_width param='SWEEP_P_WIDTH'
+*** .meas tran result_pulldown_length param='SWEEP_N_LENGTH'
+*** .meas tran result_pullup_length param='SWEEP_P_LENGTH'
+*** .meas tran result_levelshift_bias param='SWEEP_LEVEL_SHIFT_VOLTAGE'
+
+

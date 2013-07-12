@@ -1,0 +1,45 @@
+# Copyright 2003-2013, University of Cambridge, Computer Laboratory. 
+# Copyright and related rights are licensed under the Hardware License, 
+# Version 2.0 (the "License"); you may not use this file except in 
+# compliance with the License. You may obtain a copy of the License at
+# http://www.cl.cam.ac.uk/research/srg/netos/greenict/projects/contest/. 
+# Unless required by applicable law or agreed to in writing, software, 
+# hardware and materials distributed under this License is distributed 
+# on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific language
+# governing permissions and limitations under the License.
+#
+#
+
+*** voltage swing ***
+.param PARAM_MCML_SWING = 0.4
+
+*** supply voltages ***
+.param PARAM_MCML_VDD_VOLTAGE = 0.9
+.param PARAM_MCML_VSS_VOLTAGE = 0.0
+
+*** pull-up network
+.param SWEEP_P_WIDTH=0.3U
+.param SWEEP_P_LENGTH=0.06U
+
+*** pull-down network
+.param SWEEP_N_WIDTH=0.3U
+.param SWEEP_N_LENGTH='lmin'
+
+*** current sink 
+.param PARAM_NSOURCE_WIDTH = '1.0U'
+.param PARAM_NSOURCE_LENGTH = '0.1U'
+
+*** reference voltages
+.param SWEEP_N_BIAS_VOLTAGE = 0.65V
+.param SWEEP_P_BIAS_VOLTAGE = 5mV
+.param SWEEP_LEVEL_SHIFT_VOLTAGE = 0.1V
+
+**** MEASUREMENTS *****
+rise_in=  2.0190E-11  targ=  2.0011E-10   trig=  1.7992E-10
+rise_a=  8.6809E-11  targ=  2.8023E-10   trig=  1.9342E-10
+rise_c=  4.2334E-12  targ=  2.5200E-11   trig=  2.0967E-11
+fall_in=  6.5583E-11  targ=  2.0352E-10   trig=  1.3793E-10
+fall_a=  7.6333E-11  targ=  2.7755E-10   trig=  2.0121E-10
+fall_c=  6.4553E-12  targ=  2.8895E-11   trig=  2.2440E-11
+

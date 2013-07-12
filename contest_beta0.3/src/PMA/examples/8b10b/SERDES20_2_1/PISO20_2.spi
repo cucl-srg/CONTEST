@@ -1,0 +1,368 @@
+*** 
+***  Copyright 2003-2013, University of Cambridge, Computer Laboratory. 
+***  Copyright and related rights are licensed under the Hardware License, 
+***  Version 2.0 (the "License"); you may not use this file except in 
+***  compliance with the License. You may obtain a copy of the License at
+***  http://www.cl.cam.ac.uk/research/srg/netos/greenict/projects/contest/. 
+***  Unless required by applicable law or agreed to in writing, software, 
+***  hardware and materials distributed under this License is distributed 
+***  on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+***  either express or implied. See the License for the specific language
+***  governing permissions and limitations under the License.
+*** 
+*** 
+
+*** SPICE structural netlist of 'PISO20_2' after Design Compiler synthesis, based on port order in '/usr/groups/ecad/kits/commercial45_v2010_12/n45-library-netlist-noparasitics.spi' ***
+
+.SUBCKT PISO20_2 VDD_PISO20_2 VSS_PISO20_2 CLK_IN DATA_IN[0] DATA_IN[1] DATA_IN[2] DATA_IN[3] DATA_IN[4] DATA_IN[5] DATA_IN[6] DATA_IN[7] DATA_IN[8] DATA_IN[9] DATA_IN[10] DATA_IN[11] DATA_IN[12] DATA_IN[13] DATA_IN[14] DATA_IN[15] DATA_IN[16] DATA_IN[17] DATA_IN[18] DATA_IN[19]  RESET_IN DATA_USED_OUT SERIAL_OUT[0] SERIAL_OUT[1]  
+*** instances
+xpisos_0__PISO10_ctr_reg_3_  n11___rc n91___rc pisos_0__PISO10_N6___rc n10___rc CLK_IN___rc pisos_0__PISO10_ctr_3_ SPICE_NETLIST_UNCONNECTED_1 VDD_PISO20_2 VSS_PISO20_2  SDFFR_X1
+xpisos_0__PISO10_ctr_reg_0_  n11___rc n93___rc pisos_0__PISO10_N3___rc n10___rc n84___rc pisos_0__PISO10_ctr_0_ pisos_0__PISO10_N3 VDD_PISO20_2 VSS_PISO20_2  SDFFR_X1
+xpisos_0__PISO10_ctr_reg_1_  n11___rc n93___rc pisos_0__PISO10_N4___rc n10___rc n97___rc SPICE_NETLIST_UNCONNECTED_2 n21 VDD_PISO20_2 VSS_PISO20_2  SDFFR_X1
+xpisos_0__PISO10_ctr_reg_2_  n11___rc n94___rc n30___rc n10___rc n85___rc pisos_0__PISO10_ctr_2_ SPICE_NETLIST_UNCONNECTED_3 VDD_PISO20_2 VSS_PISO20_2  SDFFR_X1
+xpisos_0__PISO10_shift_register_reg_9_  pisos_0__PISO10_N16___rc n92___rc n96___rc pisos_0__PISO10_shift_register[9] SPICE_NETLIST_UNCONNECTED_4 VDD_PISO20_2 VSS_PISO20_2  DFFR_X1
+xpisos_0__PISO10_shift_register_reg_8_  pisos_0__PISO10_N15___rc n93___rc n84___rc pisos_0__PISO10_shift_register[8] SPICE_NETLIST_UNCONNECTED_5 VDD_PISO20_2 VSS_PISO20_2  DFFR_X1
+xpisos_0__PISO10_shift_register_reg_7_  pisos_0__PISO10_N14___rc n93___rc n84___rc pisos_0__PISO10_shift_register[7] SPICE_NETLIST_UNCONNECTED_6 VDD_PISO20_2 VSS_PISO20_2  DFFR_X1
+xpisos_0__PISO10_shift_register_reg_6_  pisos_0__PISO10_N13___rc n92___rc n85___rc pisos_0__PISO10_shift_register[6] SPICE_NETLIST_UNCONNECTED_7 VDD_PISO20_2 VSS_PISO20_2  DFFR_X1
+xpisos_0__PISO10_shift_register_reg_5_  pisos_0__PISO10_N12___rc n93___rc n84___rc pisos_0__PISO10_shift_register[5] SPICE_NETLIST_UNCONNECTED_8 VDD_PISO20_2 VSS_PISO20_2  DFFR_X1
+xpisos_0__PISO10_shift_register_reg_4_  pisos_0__PISO10_N11___rc n92___rc CLK_IN___rc pisos_0__PISO10_shift_register[4] SPICE_NETLIST_UNCONNECTED_9 VDD_PISO20_2 VSS_PISO20_2  DFFR_X1
+xpisos_0__PISO10_shift_register_reg_3_  pisos_0__PISO10_N10___rc n94___rc n96___rc pisos_0__PISO10_shift_register[3] SPICE_NETLIST_UNCONNECTED_10 VDD_PISO20_2 VSS_PISO20_2  DFFR_X1
+xpisos_0__PISO10_shift_register_reg_2_  pisos_0__PISO10_N9___rc n94___rc n96___rc pisos_0__PISO10_shift_register[2] SPICE_NETLIST_UNCONNECTED_11 VDD_PISO20_2 VSS_PISO20_2  DFFR_X1
+xpisos_0__PISO10_shift_register_reg_1_  pisos_0__PISO10_N8___rc n91___rc n85___rc pisos_0__PISO10_shift_register[1] SPICE_NETLIST_UNCONNECTED_12 VDD_PISO20_2 VSS_PISO20_2  DFFR_X1
+xpisos_0__PISO10_shift_register_reg_0_  pisos_0__PISO10_N7___rc n91___rc CLK_IN___rc SERIAL_OUT[0] SPICE_NETLIST_UNCONNECTED_13 VDD_PISO20_2 VSS_PISO20_2  DFFR_X1
+xpisos_1__PISO10_ctr_reg_3_  n11___rc n92___rc pisos_1__PISO10_N6___rc n4___rc n96___rc pisos_1__PISO10_ctr_3_ SPICE_NETLIST_UNCONNECTED_14 VDD_PISO20_2 VSS_PISO20_2  SDFFR_X1
+xpisos_1__PISO10_ctr_reg_0_  n11___rc n92___rc pisos_1__PISO10_N3___rc n4___rc n96___rc pisos_1__PISO10_ctr_0_ pisos_1__PISO10_N3 VDD_PISO20_2 VSS_PISO20_2  SDFFR_X1
+xpisos_1__PISO10_ctr_reg_1_  n11___rc n92___rc pisos_1__PISO10_N4___rc n4___rc n85___rc SPICE_NETLIST_UNCONNECTED_15 n16 VDD_PISO20_2 VSS_PISO20_2  SDFFR_X1
+xpisos_1__PISO10_ctr_reg_2_  n11___rc n93___rc n32___rc n4___rc n97___rc pisos_1__PISO10_ctr_2_ SPICE_NETLIST_UNCONNECTED_16 VDD_PISO20_2 VSS_PISO20_2  SDFFR_X1
+xpisos_1__PISO10_shift_register_reg_9_  pisos_1__PISO10_N16___rc n92___rc n85___rc pisos_1__PISO10_shift_register[9] SPICE_NETLIST_UNCONNECTED_17 VDD_PISO20_2 VSS_PISO20_2  DFFR_X1
+xpisos_1__PISO10_shift_register_reg_8_  pisos_1__PISO10_N15___rc n94___rc n96___rc pisos_1__PISO10_shift_register[8] SPICE_NETLIST_UNCONNECTED_18 VDD_PISO20_2 VSS_PISO20_2  DFFR_X1
+xpisos_1__PISO10_shift_register_reg_7_  pisos_1__PISO10_N14___rc n93___rc n84___rc pisos_1__PISO10_shift_register[7] SPICE_NETLIST_UNCONNECTED_19 VDD_PISO20_2 VSS_PISO20_2  DFFR_X1
+xpisos_1__PISO10_shift_register_reg_6_  pisos_1__PISO10_N13___rc n91___rc CLK_IN___rc pisos_1__PISO10_shift_register[6] SPICE_NETLIST_UNCONNECTED_20 VDD_PISO20_2 VSS_PISO20_2  DFFR_X1
+xpisos_1__PISO10_shift_register_reg_5_  pisos_1__PISO10_N12___rc n94___rc n97___rc pisos_1__PISO10_shift_register[5] SPICE_NETLIST_UNCONNECTED_21 VDD_PISO20_2 VSS_PISO20_2  DFFR_X1
+xpisos_1__PISO10_shift_register_reg_4_  pisos_1__PISO10_N11___rc n94___rc n97___rc pisos_1__PISO10_shift_register[4] SPICE_NETLIST_UNCONNECTED_22 VDD_PISO20_2 VSS_PISO20_2  DFFR_X1
+xpisos_1__PISO10_shift_register_reg_3_  pisos_1__PISO10_N10___rc n94___rc n97___rc pisos_1__PISO10_shift_register[3] SPICE_NETLIST_UNCONNECTED_23 VDD_PISO20_2 VSS_PISO20_2  DFFR_X1
+xpisos_1__PISO10_shift_register_reg_2_  pisos_1__PISO10_N9___rc n91___rc CLK_IN___rc pisos_1__PISO10_shift_register[2] SPICE_NETLIST_UNCONNECTED_24 VDD_PISO20_2 VSS_PISO20_2  DFFR_X1
+xpisos_1__PISO10_shift_register_reg_1_  pisos_1__PISO10_N8___rc n91___rc n86___rc pisos_1__PISO10_shift_register[1] SPICE_NETLIST_UNCONNECTED_25 VDD_PISO20_2 VSS_PISO20_2  DFFR_X1
+xpisos_1__PISO10_shift_register_reg_0_  pisos_1__PISO10_N7___rc n91___rc n86___rc SERIAL_OUT[1] SPICE_NETLIST_UNCONNECTED_26 VDD_PISO20_2 VSS_PISO20_2  DFFR_X1
+xU65  DATA_IN[7]___rc pisos_1__PISO10_shift_register[4]___rc n42___rc pisos_1__PISO10_N10 VDD_PISO20_2 VSS_PISO20_2  MUX2_X1
+xU67  n64___rc n60___rc n49 VDD_PISO20_2 VSS_PISO20_2  NAND2_X4
+xU72  pisos_1__PISO10_ctr_3____rc n46 VDD_PISO20_2 VSS_PISO20_2  INV_X2
+xU73  pisos_0__PISO10_ctr_3____rc n53 VDD_PISO20_2 VSS_PISO20_2  INV_X2
+xU74  n21___rc n88___rc pisos_0__PISO10_N4 VDD_PISO20_2 VSS_PISO20_2  XNOR2_X1
+xU75  n66___rc n61___rc pisos_1__PISO10_N4 VDD_PISO20_2 VSS_PISO20_2  XNOR2_X1
+xU76  n21___rc n50___rc n51 VDD_PISO20_2 VSS_PISO20_2  NOR2_X1
+xU81  n16___rc n45___rc n47 VDD_PISO20_2 VSS_PISO20_2  NOR2_X1
+xU82  n49___rc n48___rc pisos_0__PISO10_N16 VDD_PISO20_2 VSS_PISO20_2  NOR2_X1
+xU83  DATA_IN[18]___rc n48 VDD_PISO20_2 VSS_PISO20_2  INV_X1
+xU85  DATA_IN[19]___rc n41 VDD_PISO20_2 VSS_PISO20_2  INV_X1
+xU87  DATA_IN[1]___rc pisos_1__PISO10_shift_register[1]___rc n42___rc pisos_1__PISO10_N7 VDD_PISO20_2 VSS_PISO20_2  MUX2_X1
+xU88  DATA_IN[3]___rc pisos_1__PISO10_shift_register[2]___rc n42___rc pisos_1__PISO10_N8 VDD_PISO20_2 VSS_PISO20_2  MUX2_X1
+xU89  DATA_IN[5]___rc pisos_1__PISO10_shift_register[3]___rc n42___rc pisos_1__PISO10_N9 VDD_PISO20_2 VSS_PISO20_2  MUX2_X1
+xU90  DATA_IN[9]___rc pisos_1__PISO10_shift_register[5]___rc n42___rc pisos_1__PISO10_N11 VDD_PISO20_2 VSS_PISO20_2  MUX2_X1
+xU91  DATA_IN[11]___rc pisos_1__PISO10_shift_register[6]___rc n42___rc pisos_1__PISO10_N12 VDD_PISO20_2 VSS_PISO20_2  MUX2_X1
+xU92  DATA_IN[13]___rc pisos_1__PISO10_shift_register[7]___rc n42___rc pisos_1__PISO10_N13 VDD_PISO20_2 VSS_PISO20_2  MUX2_X1
+xU93  DATA_IN[15]___rc pisos_1__PISO10_shift_register[8]___rc n42___rc pisos_1__PISO10_N14 VDD_PISO20_2 VSS_PISO20_2  MUX2_X1
+xU94  DATA_IN[17]___rc pisos_1__PISO10_shift_register[9]___rc n42___rc pisos_1__PISO10_N15 VDD_PISO20_2 VSS_PISO20_2  MUX2_X1
+xU96  pisos_1__PISO10_ctr_0____rc pisos_1__PISO10_ctr_2____rc n45 VDD_PISO20_2 VSS_PISO20_2  NAND2_X1
+xU97  DATA_IN[0]___rc pisos_0__PISO10_shift_register[1]___rc n49___rc pisos_0__PISO10_N7 VDD_PISO20_2 VSS_PISO20_2  MUX2_X1
+xU98  DATA_IN[2]___rc pisos_0__PISO10_shift_register[2]___rc n49___rc pisos_0__PISO10_N8 VDD_PISO20_2 VSS_PISO20_2  MUX2_X1
+xU99  DATA_IN[4]___rc pisos_0__PISO10_shift_register[3]___rc n49___rc pisos_0__PISO10_N9 VDD_PISO20_2 VSS_PISO20_2  MUX2_X1
+xU100  DATA_IN[6]___rc pisos_0__PISO10_shift_register[4]___rc n49___rc pisos_0__PISO10_N10 VDD_PISO20_2 VSS_PISO20_2  MUX2_X1
+xU101  DATA_IN[8]___rc pisos_0__PISO10_shift_register[5]___rc n49___rc pisos_0__PISO10_N11 VDD_PISO20_2 VSS_PISO20_2  MUX2_X1
+xU102  DATA_IN[10]___rc pisos_0__PISO10_shift_register[6]___rc n49___rc pisos_0__PISO10_N12 VDD_PISO20_2 VSS_PISO20_2  MUX2_X1
+xU103  DATA_IN[12]___rc pisos_0__PISO10_shift_register[7]___rc n49___rc pisos_0__PISO10_N13 VDD_PISO20_2 VSS_PISO20_2  MUX2_X1
+xU104  DATA_IN[14]___rc pisos_0__PISO10_shift_register[8]___rc n49___rc pisos_0__PISO10_N14 VDD_PISO20_2 VSS_PISO20_2  MUX2_X1
+xU105  DATA_IN[16]___rc pisos_0__PISO10_shift_register[9]___rc n49___rc pisos_0__PISO10_N15 VDD_PISO20_2 VSS_PISO20_2  MUX2_X1
+xU106  n60___rc n21___rc pisos_0__PISO10_ctr_3____rc n10 VDD_PISO20_2 VSS_PISO20_2  NAND3_X1
+xU108  n11 VDD_PISO20_2 VSS_PISO20_2  LOGIC0_X1
+xU62  pisos_1__PISO10_ctr_0____rc n43 VDD_PISO20_2 VSS_PISO20_2  INV_X1
+xU56  n29___rc n50___rc n53___rc n40 VDD_PISO20_2 VSS_PISO20_2  NAND3_X1
+xU66  pisos_0__PISO10_ctr_0____rc n50 VDD_PISO20_2 VSS_PISO20_2  INV_X1
+xU55  n31___rc n28 VDD_PISO20_2 VSS_PISO20_2  BUF_X1
+xU59  pisos_1__PISO10_ctr_2____rc n31 VDD_PISO20_2 VSS_PISO20_2  INV_X1
+xU57  pisos_0__PISO10_ctr_2____rc n29 VDD_PISO20_2 VSS_PISO20_2  INV_X2
+xU121  n51___rc n29___rc n30 VDD_PISO20_2 VSS_PISO20_2  XNOR2_X1
+xU125  n46___rc n16___rc n65 VDD_PISO20_2 VSS_PISO20_2  AND2_X2
+xU126  n66___rc n71___rc n34___rc n4 VDD_PISO20_2 VSS_PISO20_2  NAND3_X1
+xU128  n42___rc n41___rc pisos_1__PISO10_N16 VDD_PISO20_2 VSS_PISO20_2  NOR2_X1
+xU129  n65___rc n83___rc n42 VDD_PISO20_2 VSS_PISO20_2  NAND2_X4
+xU132  pisos_1__PISO10_ctr_0____rc n72 VDD_PISO20_2 VSS_PISO20_2  INV_X1
+xU134  n72___rc n46___rc n31___rc n39 VDD_PISO20_2 VSS_PISO20_2  NAND3_X1
+xU135  pisos_1__PISO10_ctr_3____rc n71 VDD_PISO20_2 VSS_PISO20_2  CLKBUF_X1
+xU137  n54___rc n53___rc pisos_0__PISO10_N6 VDD_PISO20_2 VSS_PISO20_2  XNOR2_X1
+xU138  n47___rc n87___rc pisos_1__PISO10_N6 VDD_PISO20_2 VSS_PISO20_2  XNOR2_X1
+xU139  n40___rc n21___rc n39___rc n16___rc DATA_USED_OUT VDD_PISO20_2 VSS_PISO20_2  OAI22_X1
+xU140  n21___rc n70___rc n54 VDD_PISO20_2 VSS_PISO20_2  NOR2_X1
+xU141  pisos_0__PISO10_ctr_2____rc pisos_0__PISO10_ctr_0____rc n70 VDD_PISO20_2 VSS_PISO20_2  NAND2_X1
+xU124  CLK_IN___rc n97 VDD_PISO20_2 VSS_PISO20_2  BUF_X2
+xU133  CLK_IN___rc n96 VDD_PISO20_2 VSS_PISO20_2  BUF_X2
+xU142  RESET_IN___rc n93 VDD_PISO20_2 VSS_PISO20_2  INV_X2
+xU143  RESET_IN___rc n92 VDD_PISO20_2 VSS_PISO20_2  INV_X2
+xU144  RESET_IN___rc n91 VDD_PISO20_2 VSS_PISO20_2  INV_X2
+xU147  RESET_IN___rc n94 VDD_PISO20_2 VSS_PISO20_2  INV_X2
+xU122  pisos_1__PISO10_ctr_0____rc n61 VDD_PISO20_2 VSS_PISO20_2  CLKBUF_X1
+xU131  pisos_1__PISO10_ctr_2____rc n67 VDD_PISO20_2 VSS_PISO20_2  BUF_X1
+xU130  n16___rc n66 VDD_PISO20_2 VSS_PISO20_2  BUF_X2
+xU64  n67___rc n43___rc n34 VDD_PISO20_2 VSS_PISO20_2  NOR2_X1
+xU149  n82___rc n28___rc n32 VDD_PISO20_2 VSS_PISO20_2  XNOR2_X1
+xU150  n16___rc n43___rc n82 VDD_PISO20_2 VSS_PISO20_2  NOR2_X1
+xU151  n43___rc n67___rc n83 VDD_PISO20_2 VSS_PISO20_2  NOR2_X2
+xU152  CLK_IN___rc n84 VDD_PISO20_2 VSS_PISO20_2  BUF_X2
+xU153  CLK_IN___rc n85 VDD_PISO20_2 VSS_PISO20_2  BUF_X2
+xU154  CLK_IN___rc n86 VDD_PISO20_2 VSS_PISO20_2  BUF_X1
+xU155  n46___rc n87 VDD_PISO20_2 VSS_PISO20_2  BUF_X1
+xU156  n29___rc pisos_0__PISO10_ctr_0____rc n60 VDD_PISO20_2 VSS_PISO20_2  AND2_X2
+xU157  n21___rc n53___rc n89 VDD_PISO20_2 VSS_PISO20_2  NAND2_X2
+xU158  pisos_0__PISO10_ctr_0____rc n88 VDD_PISO20_2 VSS_PISO20_2  CLKBUF_X1
+xU159  n89___rc n64 VDD_PISO20_2 VSS_PISO20_2  INV_X2
+*** Estimated net resistances from Design Compiler
+r1 CLK_IN CLK_IN___rc 81.0
+r2 DATA_IN[0] DATA_IN[0]___rc 7.0
+r3 DATA_IN[10] DATA_IN[10]___rc 28.0
+r4 DATA_IN[11] DATA_IN[11]___rc 46.0
+r5 DATA_IN[12] DATA_IN[12]___rc 4.0
+r6 DATA_IN[13] DATA_IN[13]___rc 7.0
+r7 DATA_IN[14] DATA_IN[14]___rc 38.0
+r8 DATA_IN[15] DATA_IN[15]___rc 20.0
+r9 DATA_IN[16] DATA_IN[16]___rc 53.0
+r10 DATA_IN[17] DATA_IN[17]___rc 24.0
+r11 DATA_IN[18] DATA_IN[18]___rc 9.0
+r12 DATA_IN[19] DATA_IN[19]___rc 8.0
+r13 DATA_IN[1] DATA_IN[1]___rc 24.0
+r14 DATA_IN[2] DATA_IN[2]___rc 49.0
+r15 DATA_IN[3] DATA_IN[3]___rc 11.0
+r16 DATA_IN[4] DATA_IN[4]___rc 27.0
+r17 DATA_IN[5] DATA_IN[5]___rc 7.0
+r18 DATA_IN[6] DATA_IN[6]___rc 6.0
+r19 DATA_IN[7] DATA_IN[7]___rc 33.0
+r20 DATA_IN[8] DATA_IN[8]___rc 11.0
+r21 DATA_IN[9] DATA_IN[9]___rc 35.0
+r22 DATA_USED_OUT DATA_USED_OUT___rc 31.0
+r23 RESET_IN RESET_IN___rc 48.0
+r24 SERIAL_OUT[0] SERIAL_OUT[0]___rc 20.0
+r25 SERIAL_OUT[1] SERIAL_OUT[1]___rc 18.0
+r26 n10 n10___rc 86.0
+r27 n11 n11___rc 105.0
+r28 n16 n16___rc 47.0
+r29 n21 n21___rc 54.0
+r30 n28 n28___rc 5.0
+r31 n29 n29___rc 28.0
+r32 n30 n30___rc 15.0
+r33 n31 n31___rc 18.0
+r34 n32 n32___rc 18.0
+r35 n34 n34___rc 14.0
+r36 n39 n39___rc 8.0
+r37 n4 n4___rc 67.0
+r38 n40 n40___rc 5.0
+r39 n41 n41___rc 33.0
+r40 n42 n42___rc 79.0
+r41 n43 n43___rc 34.0
+r42 n45 n45___rc 1.0
+r43 n46 n46___rc 26.0
+r44 n47 n47___rc 14.0
+r45 n48 n48___rc 30.0
+r46 n49 n49___rc 99.0
+r47 n50 n50___rc 30.0
+r48 n51 n51___rc 9.0
+r49 n53 n53___rc 32.0
+r50 n54 n54___rc 16.0
+r51 n60 n60___rc 22.0
+r52 n61 n61___rc 43.0
+r53 n64 n64___rc 3.0
+r54 n65 n65___rc 9.0
+r55 n66 n66___rc 42.0
+r56 n67 n67___rc 31.0
+r57 n70 n70___rc 2.0
+r58 n71 n71___rc 10.0
+r59 n72 n72___rc 10.0
+r60 n82 n82___rc 2.0
+r61 n83 n83___rc 5.0
+r62 n84 n84___rc 49.0
+r63 n85 n85___rc 96.0
+r64 n86 n86___rc 38.0
+r65 n87 n87___rc 11.0
+r66 n88 n88___rc 9.0
+r67 n89 n89___rc 2.0
+r68 n91 n91___rc 104.0
+r69 n92 n92___rc 84.0
+r70 n93 n93___rc 70.0
+r71 n94 n94___rc 61.0
+r72 n96 n96___rc 103.0
+r73 n97 n97___rc 39.0
+r74 pisos_0__PISO10_N10 pisos_0__PISO10_N10___rc 50.0
+r75 pisos_0__PISO10_N11 pisos_0__PISO10_N11___rc 5.0
+r76 pisos_0__PISO10_N12 pisos_0__PISO10_N12___rc 36.0
+r77 pisos_0__PISO10_N13 pisos_0__PISO10_N13___rc 6.0
+r78 pisos_0__PISO10_N14 pisos_0__PISO10_N14___rc 15.0
+r79 pisos_0__PISO10_N15 pisos_0__PISO10_N15___rc 27.0
+r80 pisos_0__PISO10_N16 pisos_0__PISO10_N16___rc 3.0
+r81 pisos_0__PISO10_N3 pisos_0__PISO10_N3___rc 22.0
+r82 pisos_0__PISO10_N4 pisos_0__PISO10_N4___rc 31.0
+r83 pisos_0__PISO10_N6 pisos_0__PISO10_N6___rc 9.0
+r84 pisos_0__PISO10_N7 pisos_0__PISO10_N7___rc 7.0
+r85 pisos_0__PISO10_N8 pisos_0__PISO10_N8___rc 15.0
+r86 pisos_0__PISO10_N9 pisos_0__PISO10_N9___rc 6.0
+r87 pisos_0__PISO10_ctr_0_ pisos_0__PISO10_ctr_0____rc 42.0
+r88 pisos_0__PISO10_ctr_2_ pisos_0__PISO10_ctr_2____rc 27.0
+r89 pisos_0__PISO10_ctr_3_ pisos_0__PISO10_ctr_3____rc 29.0
+r90 pisos_0__PISO10_shift_register[1] pisos_0__PISO10_shift_register[1]___rc 103.0
+r91 pisos_0__PISO10_shift_register[2] pisos_0__PISO10_shift_register[2]___rc 44.0
+r92 pisos_0__PISO10_shift_register[3] pisos_0__PISO10_shift_register[3]___rc 33.0
+r93 pisos_0__PISO10_shift_register[4] pisos_0__PISO10_shift_register[4]___rc 19.0
+r94 pisos_0__PISO10_shift_register[5] pisos_0__PISO10_shift_register[5]___rc 115.0
+r95 pisos_0__PISO10_shift_register[6] pisos_0__PISO10_shift_register[6]___rc 61.0
+r96 pisos_0__PISO10_shift_register[7] pisos_0__PISO10_shift_register[7]___rc 105.0
+r97 pisos_0__PISO10_shift_register[8] pisos_0__PISO10_shift_register[8]___rc 29.0
+r98 pisos_0__PISO10_shift_register[9] pisos_0__PISO10_shift_register[9]___rc 67.0
+r99 pisos_1__PISO10_N10 pisos_1__PISO10_N10___rc 27.0
+r100 pisos_1__PISO10_N11 pisos_1__PISO10_N11___rc 39.0
+r101 pisos_1__PISO10_N12 pisos_1__PISO10_N12___rc 40.0
+r102 pisos_1__PISO10_N13 pisos_1__PISO10_N13___rc 5.0
+r103 pisos_1__PISO10_N14 pisos_1__PISO10_N14___rc 2.0
+r104 pisos_1__PISO10_N15 pisos_1__PISO10_N15___rc 20.0
+r105 pisos_1__PISO10_N16 pisos_1__PISO10_N16___rc 46.0
+r106 pisos_1__PISO10_N3 pisos_1__PISO10_N3___rc 22.0
+r107 pisos_1__PISO10_N4 pisos_1__PISO10_N4___rc 7.0
+r108 pisos_1__PISO10_N6 pisos_1__PISO10_N6___rc 14.0
+r109 pisos_1__PISO10_N7 pisos_1__PISO10_N7___rc 2.0
+r110 pisos_1__PISO10_N8 pisos_1__PISO10_N8___rc 6.0
+r111 pisos_1__PISO10_N9 pisos_1__PISO10_N9___rc 8.0
+r112 pisos_1__PISO10_ctr_0_ pisos_1__PISO10_ctr_0____rc 26.0
+r113 pisos_1__PISO10_ctr_2_ pisos_1__PISO10_ctr_2____rc 24.0
+r114 pisos_1__PISO10_ctr_3_ pisos_1__PISO10_ctr_3____rc 11.0
+r115 pisos_1__PISO10_shift_register[1] pisos_1__PISO10_shift_register[1]___rc 27.0
+r116 pisos_1__PISO10_shift_register[2] pisos_1__PISO10_shift_register[2]___rc 23.0
+r117 pisos_1__PISO10_shift_register[3] pisos_1__PISO10_shift_register[3]___rc 78.0
+r118 pisos_1__PISO10_shift_register[4] pisos_1__PISO10_shift_register[4]___rc 61.0
+r119 pisos_1__PISO10_shift_register[5] pisos_1__PISO10_shift_register[5]___rc 62.0
+r120 pisos_1__PISO10_shift_register[6] pisos_1__PISO10_shift_register[6]___rc 28.0
+r121 pisos_1__PISO10_shift_register[7] pisos_1__PISO10_shift_register[7]___rc 60.0
+r122 pisos_1__PISO10_shift_register[8] pisos_1__PISO10_shift_register[8]___rc 72.0
+r123 pisos_1__PISO10_shift_register[9] pisos_1__PISO10_shift_register[9]___rc 48.0
+*** Estimated net capacitances from Design Compiler
+c1 CLK_IN___rc VSS_PISO20_2 1.499725e-15
+c2 DATA_IN[0]___rc VSS_PISO20_2 9.75e-17
+c3 DATA_IN[10]___rc VSS_PISO20_2 3.4579e-16
+c4 DATA_IN[11]___rc VSS_PISO20_2 4.84666e-16
+c5 DATA_IN[12]___rc VSS_PISO20_2 5.6152e-17
+c6 DATA_IN[13]___rc VSS_PISO20_2 1.05134e-16
+c7 DATA_IN[14]___rc VSS_PISO20_2 4.37939e-16
+c8 DATA_IN[15]___rc VSS_PISO20_2 2.07116e-16
+c9 DATA_IN[16]___rc VSS_PISO20_2 5.55758e-16
+c10 DATA_IN[17]___rc VSS_PISO20_2 3.23696e-16
+c11 DATA_IN[18]___rc VSS_PISO20_2 1.4565e-16
+c12 DATA_IN[19]___rc VSS_PISO20_2 1.16869e-16
+c13 DATA_IN[1]___rc VSS_PISO20_2 2.39457e-16
+c14 DATA_IN[2]___rc VSS_PISO20_2 4.63239e-16
+c15 DATA_IN[3]___rc VSS_PISO20_2 1.36221e-16
+c16 DATA_IN[4]___rc VSS_PISO20_2 2.66964e-16
+c17 DATA_IN[5]___rc VSS_PISO20_2 8.3839e-17
+c18 DATA_IN[6]___rc VSS_PISO20_2 7.3315e-17
+c19 DATA_IN[7]___rc VSS_PISO20_2 3.20443e-16
+c20 DATA_IN[8]___rc VSS_PISO20_2 1.66354e-16
+c21 DATA_IN[9]___rc VSS_PISO20_2 3.4239e-16
+c22 DATA_USED_OUT___rc VSS_PISO20_2 4.88988e-16
+c23 RESET_IN___rc VSS_PISO20_2 7.72421e-16
+c24 SERIAL_OUT[0]___rc VSS_PISO20_2 1.87853e-16
+c25 SERIAL_OUT[1]___rc VSS_PISO20_2 2.6209e-16
+c26 n10___rc VSS_PISO20_2 1.091869e-15
+c27 n11___rc VSS_PISO20_2 1.757234e-15
+c28 n16___rc VSS_PISO20_2 6.86839e-16
+c29 n21___rc VSS_PISO20_2 7.93039e-16
+c30 n28___rc VSS_PISO20_2 4.6946e-17
+c31 n29___rc VSS_PISO20_2 3.08908e-16
+c32 n30___rc VSS_PISO20_2 2.09777e-16
+c33 n31___rc VSS_PISO20_2 1.98976e-16
+c34 n32___rc VSS_PISO20_2 2.23785e-16
+c35 n34___rc VSS_PISO20_2 1.90602e-16
+c36 n39___rc VSS_PISO20_2 1.08924e-16
+c37 n4___rc VSS_PISO20_2 9.87601e-16
+c38 n40___rc VSS_PISO20_2 7.4162e-17
+c39 n41___rc VSS_PISO20_2 3.65855e-16
+c40 n42___rc VSS_PISO20_2 1.520708e-15
+c41 n43___rc VSS_PISO20_2 4.44565e-16
+c42 n45___rc VSS_PISO20_2 6.394e-18
+c43 n46___rc VSS_PISO20_2 3.62493e-16
+c44 n47___rc VSS_PISO20_2 1.54351e-16
+c45 n48___rc VSS_PISO20_2 4.92751e-16
+c46 n49___rc VSS_PISO20_2 1.823048e-15
+c47 n50___rc VSS_PISO20_2 3.49789e-16
+c48 n51___rc VSS_PISO20_2 1.37931e-16
+c49 n53___rc VSS_PISO20_2 3.90191e-16
+c50 n54___rc VSS_PISO20_2 1.67734e-16
+c51 n60___rc VSS_PISO20_2 2.62815e-16
+c52 n61___rc VSS_PISO20_2 5.04733e-16
+c53 n64___rc VSS_PISO20_2 4.2387e-17
+c54 n65___rc VSS_PISO20_2 8.6487e-17
+c55 n66___rc VSS_PISO20_2 4.34187e-16
+c56 n67___rc VSS_PISO20_2 4.12203e-16
+c57 n70___rc VSS_PISO20_2 1.7809e-17
+c58 n71___rc VSS_PISO20_2 1.28908e-16
+c59 n72___rc VSS_PISO20_2 1.54208e-16
+c60 n82___rc VSS_PISO20_2 2.7188e-17
+c61 n83___rc VSS_PISO20_2 7.5364e-17
+c62 n84___rc VSS_PISO20_2 7.0918e-16
+c63 n85___rc VSS_PISO20_2 1.327472e-15
+c64 n86___rc VSS_PISO20_2 4.673e-16
+c65 n87___rc VSS_PISO20_2 1.27302e-16
+c66 n88___rc VSS_PISO20_2 1.00492e-16
+c67 n89___rc VSS_PISO20_2 1.826e-17
+c68 n91___rc VSS_PISO20_2 1.642781e-15
+c69 n92___rc VSS_PISO20_2 1.185136e-15
+c70 n93___rc VSS_PISO20_2 1.22831e-15
+c71 n94___rc VSS_PISO20_2 1.030117e-15
+c72 n96___rc VSS_PISO20_2 1.539184e-15
+c73 n97___rc VSS_PISO20_2 5.54647e-16
+c74 pisos_0__PISO10_N10___rc VSS_PISO20_2 4.85986e-16
+c75 pisos_0__PISO10_N11___rc VSS_PISO20_2 7.851e-17
+c76 pisos_0__PISO10_N12___rc VSS_PISO20_2 4.04726e-16
+c77 pisos_0__PISO10_N13___rc VSS_PISO20_2 7.9433e-17
+c78 pisos_0__PISO10_N14___rc VSS_PISO20_2 1.9908e-16
+c79 pisos_0__PISO10_N15___rc VSS_PISO20_2 2.9045e-16
+c80 pisos_0__PISO10_N16___rc VSS_PISO20_2 2.963e-17
+c81 pisos_0__PISO10_N3___rc VSS_PISO20_2 2.02554e-16
+c82 pisos_0__PISO10_N4___rc VSS_PISO20_2 3.41274e-16
+c83 pisos_0__PISO10_N6___rc VSS_PISO20_2 1.23213e-16
+c84 pisos_0__PISO10_N7___rc VSS_PISO20_2 9.7584e-17
+c85 pisos_0__PISO10_N8___rc VSS_PISO20_2 1.39709e-16
+c86 pisos_0__PISO10_N9___rc VSS_PISO20_2 6.3342e-17
+c87 pisos_0__PISO10_ctr_0____rc VSS_PISO20_2 5.17545e-16
+c88 pisos_0__PISO10_ctr_2____rc VSS_PISO20_2 3.89487e-16
+c89 pisos_0__PISO10_ctr_3____rc VSS_PISO20_2 3.04827e-16
+c90 pisos_0__PISO10_shift_register[1]___rc VSS_PISO20_2 1.14849e-15
+c91 pisos_0__PISO10_shift_register[2]___rc VSS_PISO20_2 5.12915e-16
+c92 pisos_0__PISO10_shift_register[3]___rc VSS_PISO20_2 3.2872e-16
+c93 pisos_0__PISO10_shift_register[4]___rc VSS_PISO20_2 2.8569e-16
+c94 pisos_0__PISO10_shift_register[5]___rc VSS_PISO20_2 1.297196e-15
+c95 pisos_0__PISO10_shift_register[6]___rc VSS_PISO20_2 8.08651e-16
+c96 pisos_0__PISO10_shift_register[7]___rc VSS_PISO20_2 1.256273e-15
+c97 pisos_0__PISO10_shift_register[8]___rc VSS_PISO20_2 2.87589e-16
+c98 pisos_0__PISO10_shift_register[9]___rc VSS_PISO20_2 9.15729e-16
+c99 pisos_1__PISO10_N10___rc VSS_PISO20_2 2.53403e-16
+c100 pisos_1__PISO10_N11___rc VSS_PISO20_2 3.60768e-16
+c101 pisos_1__PISO10_N12___rc VSS_PISO20_2 4.35388e-16
+c102 pisos_1__PISO10_N13___rc VSS_PISO20_2 5.2945e-17
+c103 pisos_1__PISO10_N14___rc VSS_PISO20_2 2.7652e-17
+c104 pisos_1__PISO10_N15___rc VSS_PISO20_2 2.15147e-16
+c105 pisos_1__PISO10_N16___rc VSS_PISO20_2 4.35648e-16
+c106 pisos_1__PISO10_N3___rc VSS_PISO20_2 2.02554e-16
+c107 pisos_1__PISO10_N4___rc VSS_PISO20_2 1.05844e-16
+c108 pisos_1__PISO10_N6___rc VSS_PISO20_2 1.87444e-16
+c109 pisos_1__PISO10_N7___rc VSS_PISO20_2 2.1489e-17
+c110 pisos_1__PISO10_N8___rc VSS_PISO20_2 5.6346e-17
+c111 pisos_1__PISO10_N9___rc VSS_PISO20_2 9.9543e-17
+c112 pisos_1__PISO10_ctr_0____rc VSS_PISO20_2 4.24297e-16
+c113 pisos_1__PISO10_ctr_2____rc VSS_PISO20_2 3.75991e-16
+c114 pisos_1__PISO10_ctr_3____rc VSS_PISO20_2 1.41236e-16
+c115 pisos_1__PISO10_shift_register[1]___rc VSS_PISO20_2 3.04958e-16
+c116 pisos_1__PISO10_shift_register[2]___rc VSS_PISO20_2 3.03153e-16
+c117 pisos_1__PISO10_shift_register[3]___rc VSS_PISO20_2 7.92309e-16
+c118 pisos_1__PISO10_shift_register[4]___rc VSS_PISO20_2 6.0665e-16
+c119 pisos_1__PISO10_shift_register[5]___rc VSS_PISO20_2 6.3013e-16
+c120 pisos_1__PISO10_shift_register[6]___rc VSS_PISO20_2 3.54486e-16
+c121 pisos_1__PISO10_shift_register[7]___rc VSS_PISO20_2 5.77543e-16
+c122 pisos_1__PISO10_shift_register[8]___rc VSS_PISO20_2 9.86072e-16
+c123 pisos_1__PISO10_shift_register[9]___rc VSS_PISO20_2 4.57039e-16
+.ENDS
+*** End
+

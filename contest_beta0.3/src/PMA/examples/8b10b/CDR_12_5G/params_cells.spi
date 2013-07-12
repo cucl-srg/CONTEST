@@ -1,0 +1,83 @@
+***  Written by Yury Audzevich
+*** 
+***  Comments, suggestions for improvement and criticism welcome
+***  E-mail:  yury.audzevich~at~cl.cam.ac.uk
+*** 
+*** 
+***  Copyright 2003-2013, University of Cambridge, Computer Laboratory. 
+***  Copyright and related rights are licensed under the Hardware License, 
+***  Version 2.0 (the "License"); you may not use this file except in 
+***  compliance with the License. You may obtain a copy of the License at
+***  http://www.cl.cam.ac.uk/research/srg/netos/greenict/projects/contest/. 
+***  Unless required by applicable law or agreed to in writing, software, 
+***  hardware and materials distributed under this License is distributed 
+***  on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+***  either express or implied. See the License for the specific language
+***  governing permissions and limitations under the License.
+*** 
+*** 
+
+
+********************************************************************************
+*** This file contains a collection MCML gate parameters used in: 	     ***
+*** 1) single-level MCML logic cells			   	     	     ***	
+*** 2) CMOS/MCML convertion blocks.					     *** 	
+*** 3) CMOS-only logic blocks						     ***
+********************************************************************************
+
+*** MAIN PARAMETERS ***
+
+***** time interval *****
+.param FROM_TS = 1ps
+.param TO_TS = 80ns
+
+***** DSI params *****
+.param beta = "1.3"
+.param dsiwmin = "wmin*10"
+.param dsilmin = "lmin"
+
+*** Parameters
+.param PARAM_CMOS_VDD = 1.1V 
+.param PARAM_CMOS_VSS = 0.0V
+.param PARAM_MCML_VDD_VOLTAGE = 0.9V
+.param PARAM_MCML_VSS_VOLTAGE = 0.0V
+.param PARAM_OP_N_BIAS_VOLTAGE = 0.75V
+.param PARAM_OP_P_BIAS_VOLTAGE = 5mV
+.param PARAM_LEVEL_SHIFT_VOLTAGE = 0.136V
+
+********************************************************************************
+*** SIZING - Single level logic (SLL) -- MCML INV, etc ***
+*** OPAMP sizing is kept as is after optimization - check MCML_cells.spi ****
+
+*** pull-up network
+.param SLL_P_WIDTH = 0.3U
+.param SLL_P_LENGTH = 'lmin*2'
+*** pull-down network
+.param SLL_N_WIDTH = 0.2U
+.param SLL_N_LENGTH = 'lmin'
+*** current sink 
+.param SLL_NSOURCE_WIDTH = 1.2U
+.param SLL_NSOURCE_LENGTH = 'lmin*2'
+
+*** SIZING - level shifting (LS) - NMOS only
+*** upper tran has identical dim to SLL_N
+*** current sink 
+.param LS_NSOURCE_WIDTH = 1.0U
+.param LS_NSOURCE_LENGTH = 'lmin'
+
+
+********************************************************************************
+**** SIZING - CMOS gate dimensions 
+.param CONV_CMOS_P_WIDTH = 0.3U
+.param CONV_CMOS_N_WIDTH = 0.2U
+*
+.param CONV_CMOS_LENGTH = 'lmin'
+
+********************************************************************************
+*** loads - used in LPF
+.param CLOAD_LPF = 0.2p  
+.param RLOAD_LPF = 5k
+*** VCO
+.param RLOAD_VCO = 10k
+
+

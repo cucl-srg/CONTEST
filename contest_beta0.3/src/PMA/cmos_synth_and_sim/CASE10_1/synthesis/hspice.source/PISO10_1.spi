@@ -1,0 +1,223 @@
+*** 
+***  Copyright 2003-2013, University of Cambridge, Computer Laboratory. 
+***  Copyright and related rights are licensed under the Hardware License, 
+***  Version 2.0 (the "License"); you may not use this file except in 
+***  compliance with the License. You may obtain a copy of the License at
+***  http://www.cl.cam.ac.uk/research/srg/netos/greenict/projects/contest/. 
+***  Unless required by applicable law or agreed to in writing, software, 
+***  hardware and materials distributed under this License is distributed 
+***  on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+***  either express or implied. See the License for the specific language
+***  governing permissions and limitations under the License.
+*** 
+
+*** SPICE structural netlist of 'PISO10_1' after Design Compiler synthesis, based on port order in '/usr/groups/ecad/kits/commercial45_v2010_12/n45-library-netlist-noparasitics.spi' ***
+
+.SUBCKT PISO10_1 VDD_PISO10_1 VSS_PISO10_1 CLK_IN PARALLEL_IN[0] PARALLEL_IN[1] PARALLEL_IN[2] PARALLEL_IN[3] PARALLEL_IN[4] PARALLEL_IN[5] PARALLEL_IN[6] PARALLEL_IN[7] PARALLEL_IN[8] PARALLEL_IN[9] RESET_IN DATA_USED_OUT SERIAL_OUT  
+*** instances
+xctr_reg_0_  n19___rc n17___rc n31___rc n18___rc CLK_IN___rc n74 N3 VDD_PISO10_1 VSS_PISO10_1  SDFFR_X1
+xctr_reg_3_  n19___rc n17___rc n34___rc n18___rc CLK_IN___rc ctr[3] n77 VDD_PISO10_1 VSS_PISO10_1  SDFFR_X1
+xctr_reg_1_  n19___rc n17___rc N4___rc n18___rc CLK_IN___rc ctr[1] SPICE_NETLIST_UNCONNECTED_1 VDD_PISO10_1 VSS_PISO10_1  SDFFR_X1
+xctr_reg_2_  n19___rc n17___rc N5___rc n18___rc CLK_IN___rc ctr[2] n75 VDD_PISO10_1 VSS_PISO10_1  SDFFR_X1
+xshift_register_reg_8_  N15___rc n17___rc CLK_IN___rc shift_register[8] SPICE_NETLIST_UNCONNECTED_2 VDD_PISO10_1 VSS_PISO10_1  DFFR_X1
+xshift_register_reg_6_  N13___rc n17___rc CLK_IN___rc shift_register[6] SPICE_NETLIST_UNCONNECTED_3 VDD_PISO10_1 VSS_PISO10_1  DFFR_X1
+xshift_register_reg_5_  N12___rc n17___rc CLK_IN___rc shift_register[5] SPICE_NETLIST_UNCONNECTED_4 VDD_PISO10_1 VSS_PISO10_1  DFFR_X1
+xshift_register_reg_4_  N11___rc n17___rc CLK_IN___rc shift_register[4] SPICE_NETLIST_UNCONNECTED_5 VDD_PISO10_1 VSS_PISO10_1  DFFR_X1
+xshift_register_reg_3_  N10___rc n17___rc CLK_IN___rc shift_register[3] SPICE_NETLIST_UNCONNECTED_6 VDD_PISO10_1 VSS_PISO10_1  DFFR_X1
+xshift_register_reg_2_  N9___rc n17___rc CLK_IN___rc shift_register[2] SPICE_NETLIST_UNCONNECTED_7 VDD_PISO10_1 VSS_PISO10_1  DFFR_X1
+xshift_register_reg_1_  N8___rc n17___rc CLK_IN___rc shift_register[1] SPICE_NETLIST_UNCONNECTED_8 VDD_PISO10_1 VSS_PISO10_1  DFFR_X1
+xshift_register_reg_0_  N7___rc n17___rc CLK_IN___rc SERIAL_OUT SPICE_NETLIST_UNCONNECTED_9 VDD_PISO10_1 VSS_PISO10_1  DFFR_X1
+xshift_register_reg_7_  PARALLEL_IN[7]___rc n17___rc n70___rc shift_register[8]___rc n30___rc CLK_IN___rc shift_register[7] SPICE_NETLIST_UNCONNECTED_10 VDD_PISO10_1 VSS_PISO10_1  SDFFRS_X1
+xU41  n33___rc n25 VDD_PISO10_1 VSS_PISO10_1  BUF_X1
+xU48  ctr[1]___rc ctr[2]___rc n28 VDD_PISO10_1 VSS_PISO10_1  NAND2_X1
+xU49  n72___rc n74___rc n18 VDD_PISO10_1 VSS_PISO10_1  NAND2_X1
+xU62  RESET_IN___rc n17 VDD_PISO10_1 VSS_PISO10_1  INV_X1
+xU67  n47___rc n51___rc N16 VDD_PISO10_1 VSS_PISO10_1  NOR2_X1
+xU68  PARALLEL_IN[9]___rc n51 VDD_PISO10_1 VSS_PISO10_1  INV_X1
+xU69  PARALLEL_IN[0]___rc shift_register[1]___rc n47___rc N7 VDD_PISO10_1 VSS_PISO10_1  MUX2_X1
+xU71  PARALLEL_IN[2]___rc shift_register[3]___rc n47___rc N9 VDD_PISO10_1 VSS_PISO10_1  MUX2_X1
+xU73  PARALLEL_IN[4]___rc shift_register[5]___rc n61___rc N11 VDD_PISO10_1 VSS_PISO10_1  MUX2_X1
+xU75  PARALLEL_IN[6]___rc shift_register[7]___rc n61___rc N13 VDD_PISO10_1 VSS_PISO10_1  MUX2_X1
+xU77  n19 VDD_PISO10_1 VSS_PISO10_1  LOGIC0_X1
+xshift_register_reg_9_  N16___rc n17___rc CLK_IN___rc shift_register[9] SPICE_NETLIST_UNCONNECTED_11 VDD_PISO10_1 VSS_PISO10_1  DFFR_X1
+xU54  ctr[1]___rc n32 VDD_PISO10_1 VSS_PISO10_1  BUF_X1
+xU40  n30 VDD_PISO10_1 VSS_PISO10_1  LOGIC1_X1
+xU44  n71___rc n77___rc n37 VDD_PISO10_1 VSS_PISO10_1  AND2_X2
+xU51  n58___rc n69___rc n59___rc N15 VDD_PISO10_1 VSS_PISO10_1  OAI21_X1
+xU52  n69___rc shift_register[9]___rc n58 VDD_PISO10_1 VSS_PISO10_1  NAND2_X1
+xU56  PARALLEL_IN[8]___rc n59 VDD_PISO10_1 VSS_PISO10_1  INV_X1
+xU57  n60___rc n39 VDD_PISO10_1 VSS_PISO10_1  INV_X2
+xU58  n71___rc n77___rc n60 VDD_PISO10_1 VSS_PISO10_1  NAND2_X1
+xU59  n39___rc n74___rc n69 VDD_PISO10_1 VSS_PISO10_1  NAND2_X1
+xU60  n62___rc n52___rc n63___rc N10 VDD_PISO10_1 VSS_PISO10_1  OAI21_X1
+xU63  n52___rc shift_register[4]___rc n62 VDD_PISO10_1 VSS_PISO10_1  NAND2_X1
+xU64  PARALLEL_IN[3]___rc n63 VDD_PISO10_1 VSS_PISO10_1  INV_X1
+xU65  n65___rc n70___rc n66___rc N8 VDD_PISO10_1 VSS_PISO10_1  OAI21_X1
+xU70  n70___rc shift_register[2]___rc n65 VDD_PISO10_1 VSS_PISO10_1  NAND2_X1
+xU72  PARALLEL_IN[1]___rc n66 VDD_PISO10_1 VSS_PISO10_1  INV_X1
+xU74  n67___rc n73___rc n68___rc N12 VDD_PISO10_1 VSS_PISO10_1  OAI21_X1
+xU76  n73___rc shift_register[6]___rc n67 VDD_PISO10_1 VSS_PISO10_1  NAND2_X1
+xU78  PARALLEL_IN[5]___rc n68 VDD_PISO10_1 VSS_PISO10_1  INV_X1
+xU79  n39___rc n74___rc n52 VDD_PISO10_1 VSS_PISO10_1  NAND2_X1
+xU80  n37___rc n74___rc n70 VDD_PISO10_1 VSS_PISO10_1  NAND2_X1
+xU81  n71___rc ctr[3]___rc n72 VDD_PISO10_1 VSS_PISO10_1  AND2_X1
+xU82  ctr[2]___rc ctr[1]___rc n71 VDD_PISO10_1 VSS_PISO10_1  NOR2_X2
+xU83  n33___rc n77___rc n34 VDD_PISO10_1 VSS_PISO10_1  XNOR2_X1
+xU84  ctr[2]___rc n32___rc n74___rc n54 VDD_PISO10_1 VSS_PISO10_1  AOI21_X1
+xU85  n39___rc n74___rc n73 VDD_PISO10_1 VSS_PISO10_1  NAND2_X1
+xU86  n32___rc n31___rc n75___rc n77___rc DATA_USED_OUT VDD_PISO10_1 VSS_PISO10_1  AND4_X1
+xU55  n25___rc n54___rc N5 VDD_PISO10_1 VSS_PISO10_1  NOR2_X1
+xU50  n39___rc n74___rc n61 VDD_PISO10_1 VSS_PISO10_1  NAND2_X2
+xU47  n37___rc n74___rc n47 VDD_PISO10_1 VSS_PISO10_1  NAND2_X2
+xU46  n28___rc N3___rc n33 VDD_PISO10_1 VSS_PISO10_1  NOR2_X2
+xU53  N3___rc n31 VDD_PISO10_1 VSS_PISO10_1  BUF_X2
+xU42  n31___rc n32___rc N4 VDD_PISO10_1 VSS_PISO10_1  XNOR2_X1
+*** Estimated net resistances from Design Compiler
+r1 CLK_IN CLK_IN___rc 99.0
+r2 DATA_USED_OUT DATA_USED_OUT___rc 57.0
+r3 N10 N10___rc 7.0
+r4 N11 N11___rc 13.0
+r5 N12 N12___rc 29.0
+r6 N13 N13___rc 15.0
+r7 N15 N15___rc 8.0
+r8 N16 N16___rc 22.0
+r9 N3 N3___rc 28.0
+r10 N4 N4___rc 16.0
+r11 N5 N5___rc 14.0
+r12 N7 N7___rc 11.0
+r13 N8 N8___rc 16.0
+r14 N9 N9___rc 43.0
+r15 PARALLEL_IN[0] PARALLEL_IN[0]___rc 28.0
+r16 PARALLEL_IN[1] PARALLEL_IN[1]___rc 40.0
+r17 PARALLEL_IN[2] PARALLEL_IN[2]___rc 23.0
+r18 PARALLEL_IN[3] PARALLEL_IN[3]___rc 10.0
+r19 PARALLEL_IN[4] PARALLEL_IN[4]___rc 20.0
+r20 PARALLEL_IN[5] PARALLEL_IN[5]___rc 24.0
+r21 PARALLEL_IN[6] PARALLEL_IN[6]___rc 34.0
+r22 PARALLEL_IN[7] PARALLEL_IN[7]___rc 32.0
+r23 PARALLEL_IN[8] PARALLEL_IN[8]___rc 13.0
+r24 PARALLEL_IN[9] PARALLEL_IN[9]___rc 11.0
+r25 RESET_IN RESET_IN___rc 13.0
+r26 SERIAL_OUT SERIAL_OUT___rc 6.0
+r27 ctr[1] ctr[1]___rc 51.0
+r28 ctr[2] ctr[2]___rc 42.0
+r29 ctr[3] ctr[3]___rc 28.0
+r30 n17 n17___rc 88.0
+r31 n18 n18___rc 39.0
+r32 n19 n19___rc 49.0
+r33 n25 n25___rc 10.0
+r34 n28 n28___rc 38.0
+r35 n30 n30___rc 5.0
+r36 n31 n31___rc 48.0
+r37 n32 n32___rc 35.0
+r38 n33 n33___rc 10.0
+r39 n34 n34___rc 12.0
+r40 n37 n37___rc 1.0
+r41 n39 n39___rc 11.0
+r42 n47 n47___rc 25.0
+r43 n51 n51___rc 3.0
+r44 n52 n52___rc 40.0
+r45 n54 n54___rc 4.0
+r46 n58 n58___rc 2.0
+r47 n59 n59___rc 1.0
+r48 n60 n60___rc 2.0
+r49 n61 n61___rc 12.0
+r50 n62 n62___rc 2.0
+r51 n63 n63___rc 1.0
+r52 n65 n65___rc 2.0
+r53 n66 n66___rc 1.0
+r54 n67 n67___rc 2.0
+r55 n68 n68___rc 1.0
+r56 n69 n69___rc 12.0
+r57 n70 n70___rc 19.0
+r58 n71 n71___rc 7.0
+r59 n72 n72___rc 23.0
+r60 n73 n73___rc 18.0
+r61 n74 n74___rc 38.0
+r62 n75 n75___rc 38.0
+r63 n77 n77___rc 45.0
+r64 shift_register[1] shift_register[1]___rc 61.0
+r65 shift_register[2] shift_register[2]___rc 39.0
+r66 shift_register[3] shift_register[3]___rc 8.0
+r67 shift_register[4] shift_register[4]___rc 64.0
+r68 shift_register[5] shift_register[5]___rc 54.0
+r69 shift_register[6] shift_register[6]___rc 63.0
+r70 shift_register[7] shift_register[7]___rc 42.0
+r71 shift_register[8] shift_register[8]___rc 38.0
+r72 shift_register[9] shift_register[9]___rc 40.0
+*** Estimated net capacitances from Design Compiler
+c1 CLK_IN___rc VSS_PISO10_1 2.047484e-15
+c2 DATA_USED_OUT___rc VSS_PISO10_1 6.92878e-16
+c3 N10___rc VSS_PISO10_1 1.01363e-16
+c4 N11___rc VSS_PISO10_1 1.62042e-16
+c5 N12___rc VSS_PISO10_1 3.35797e-16
+c6 N13___rc VSS_PISO10_1 1.7824e-16
+c7 N15___rc VSS_PISO10_1 1.00253e-16
+c8 N16___rc VSS_PISO10_1 2.48497e-16
+c9 N3___rc VSS_PISO10_1 3.55405e-16
+c10 N4___rc VSS_PISO10_1 2.01551e-16
+c11 N5___rc VSS_PISO10_1 1.66629e-16
+c12 N7___rc VSS_PISO10_1 1.5065e-16
+c13 N8___rc VSS_PISO10_1 1.98883e-16
+c14 N9___rc VSS_PISO10_1 5.38458e-16
+c15 PARALLEL_IN[0]___rc VSS_PISO10_1 3.8005e-16
+c16 PARALLEL_IN[1]___rc VSS_PISO10_1 4.51842e-16
+c17 PARALLEL_IN[2]___rc VSS_PISO10_1 2.65573e-16
+c18 PARALLEL_IN[3]___rc VSS_PISO10_1 1.33877e-16
+c19 PARALLEL_IN[4]___rc VSS_PISO10_1 2.47929e-16
+c20 PARALLEL_IN[5]___rc VSS_PISO10_1 2.84236e-16
+c21 PARALLEL_IN[6]___rc VSS_PISO10_1 3.96527e-16
+c22 PARALLEL_IN[7]___rc VSS_PISO10_1 3.74218e-16
+c23 PARALLEL_IN[8]___rc VSS_PISO10_1 1.62562e-16
+c24 PARALLEL_IN[9]___rc VSS_PISO10_1 1.60533e-16
+c25 RESET_IN___rc VSS_PISO10_1 1.6891e-16
+c26 SERIAL_OUT___rc VSS_PISO10_1 7.919e-17
+c27 ctr[1]___rc VSS_PISO10_1 6.83356e-16
+c28 ctr[2]___rc VSS_PISO10_1 5.54166e-16
+c29 ctr[3]___rc VSS_PISO10_1 3.5763e-16
+c30 n17___rc VSS_PISO10_1 1.858175e-15
+c31 n18___rc VSS_PISO10_1 5.54099e-16
+c32 n19___rc VSS_PISO10_1 6.97066e-16
+c33 n25___rc VSS_PISO10_1 1.13628e-16
+c34 n28___rc VSS_PISO10_1 4.41791e-16
+c35 n30___rc VSS_PISO10_1 6.1214e-17
+c36 n31___rc VSS_PISO10_1 6.28369e-16
+c37 n32___rc VSS_PISO10_1 4.56631e-16
+c38 n33___rc VSS_PISO10_1 1.27284e-16
+c39 n34___rc VSS_PISO10_1 1.52465e-16
+c40 n37___rc VSS_PISO10_1 1.5654e-17
+c41 n39___rc VSS_PISO10_1 1.68776e-16
+c42 n47___rc VSS_PISO10_1 3.17041e-16
+c43 n51___rc VSS_PISO10_1 3.4217e-17
+c44 n52___rc VSS_PISO10_1 4.92905e-16
+c45 n54___rc VSS_PISO10_1 5.4336e-17
+c46 n58___rc VSS_PISO10_1 1.9978e-17
+c47 n59___rc VSS_PISO10_1 1.2531e-17
+c48 n60___rc VSS_PISO10_1 1.941e-17
+c49 n61___rc VSS_PISO10_1 1.55016e-16
+c50 n62___rc VSS_PISO10_1 1.9978e-17
+c51 n63___rc VSS_PISO10_1 1.2531e-17
+c52 n65___rc VSS_PISO10_1 1.9978e-17
+c53 n66___rc VSS_PISO10_1 1.2531e-17
+c54 n67___rc VSS_PISO10_1 1.9978e-17
+c55 n68___rc VSS_PISO10_1 1.2531e-17
+c56 n69___rc VSS_PISO10_1 1.63542e-16
+c57 n70___rc VSS_PISO10_1 2.44551e-16
+c58 n71___rc VSS_PISO10_1 1.00192e-16
+c59 n72___rc VSS_PISO10_1 3.06415e-16
+c60 n73___rc VSS_PISO10_1 2.3468e-16
+c61 n74___rc VSS_PISO10_1 6.94717e-16
+c62 n75___rc VSS_PISO10_1 4.31302e-16
+c63 n77___rc VSS_PISO10_1 6.40339e-16
+c64 shift_register[1]___rc VSS_PISO10_1 7.16416e-16
+c65 shift_register[2]___rc VSS_PISO10_1 4.85356e-16
+c66 shift_register[3]___rc VSS_PISO10_1 9.4293e-17
+c67 shift_register[4]___rc VSS_PISO10_1 7.23339e-16
+c68 shift_register[5]___rc VSS_PISO10_1 6.90945e-16
+c69 shift_register[6]___rc VSS_PISO10_1 7.73957e-16
+c70 shift_register[7]___rc VSS_PISO10_1 4.93016e-16
+c71 shift_register[8]___rc VSS_PISO10_1 4.76216e-16
+c72 shift_register[9]___rc VSS_PISO10_1 4.5326e-16
+.ENDS
+*** End
+

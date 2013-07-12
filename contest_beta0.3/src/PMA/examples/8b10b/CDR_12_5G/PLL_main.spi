@@ -1,0 +1,74 @@
+***  Written by Yury Audzevich
+*** 
+***  Comments, suggestions for improvement and criticism welcome
+***  E-mail:  yury.audzevich~at~cl.cam.ac.uk
+*** 
+*** 
+***  Copyright 2003-2013, University of Cambridge, Computer Laboratory. 
+***  Copyright and related rights are licensed under the Hardware License, 
+***  Version 2.0 (the "License"); you may not use this file except in 
+***  compliance with the License. You may obtain a copy of the License at
+***  http://www.cl.cam.ac.uk/research/srg/netos/greenict/projects/contest/. 
+***  Unless required by applicable law or agreed to in writing, software, 
+***  hardware and materials distributed under this License is distributed 
+***  on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+***  either express or implied. See the License for the specific language
+***  governing permissions and limitations under the License.
+*** 
+*** 
+
+
+**** ==================== NETLIST ============================= ***
+*** debug case of transitions on every cycle ***
+** Vdcn ddcn 0 pulse(1.1 0.0 0.5ns 1.6e-11 1.6e-11 6.4e-11 1.6e-10)
+
+*****************************************************************
+****** CIRCUIT OF A SIMPLE CLOCK AND DATA RECOVERY CIRCUIT ******
+*****************************************************************
+**** Contains 6 stages ****
+
+*** 1. Gain stage ***
+**** OPAMP1
+Xop1_real VOUT4 DATA MVSS VDD_OPAMP MVSS VREFP_I VREFN_I OPAMP_SE
+*** Buffering 1
+Xbuf01 VOUT4 VOUT4_BUF VDD_CMOS VSS_CMOS BUF_X1
+
+*** 2. Delay + phase shift
+**** INV gate reshape instead of OPAMP
+Xinv11 VOUT4_BUF VOUT5 VDD_CMOS VSS_CMOS INV_X1
+*** Buffering 2 for frequency doubler
+Xbuf11 VOUT5 VOUT5_BUF1 VDD_CMOS VSS_CMOS BUF_X1
+Xbuf12 VOUT5_BUF1 VOUT5_BUF2 VDD_CMOS VSS_CMOS BUF_X1
+Xbuf13 VOUT5_BUF2 VOUT5_BUF VDD_CMOS VSS_CMOS BUF_X1
+
+*** 3. XOR  gates -- phase error
+Xxor1 VOUT4_BUF VOUT5_BUF XOR_OUT1 MVDD VSS_CMOS XOR2_X1
+*** feedback
+Xxor2 XOR_OUT1 VCO_OUT XOR_OUT2 MVDD VSS_CMOS XOR2_X1
+
+*** 4. LPF for VCO ctrl signal
+R1 XOR_OUT2 LPF_IN RLOAD_LPF
+C1 LPF_IN VSS_CMOS CLOAD_LPF
+
+*** OPAMP3 
+Xop3_real VCO_INO LPF_IN MVSS VDD_OPAMP MVSS VREFP_I VREFN_I OPAMP_SE
+*** Level shifting
+Xlev_sh VCO_INO VCO_IN VDD_CMOS MVSS VLEV L_SHIFTRR
+
+**** 5. VCO + feedback loop
+Xvco VCO_IN VCO_OUT OUTP OUTN VDD_CMOS MVDD MVSS VCO
+*** reshaping
+Xbuf51 VCO_OUT CLK_VCO VDD_CMOS VSS_CMOS BUF_X1
+
+**** 6. Retiming of the signal 
+Xxor3 CLK_VCO VSS_CMOS DFF_CLK VDD_CMOS VSS_CMOS XOR2_X1
+Xdff1 DATA DFF_CLK Q QN VDD_CMOS VSS_CMOS DFF_X1
+
+
+****************** NOTICE **********************************
+*** Realistic opamp instantiation order : 
+*** Xxx <OUT> <IN+> <IN-> <MVDD> <MVSS> <VALOAD> <VBIAS> OPAMP_SE
+
+****************************************************************
+****************************************************************
+****************************************************************

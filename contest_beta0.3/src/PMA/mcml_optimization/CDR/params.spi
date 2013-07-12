@@ -1,0 +1,112 @@
+***  Written by Yury Audzevich
+*** 
+***  Comments, suggestions for improvement and criticism welcome
+***  E-mail:  yury.audzevich~at~cl.cam.ac.uk
+*** 
+*** 
+***  Copyright 2003-2013, University of Cambridge, Computer Laboratory. 
+***  Copyright and related rights are licensed under the Hardware License, 
+***  Version 2.0 (the "License"); you may not use this file except in 
+***  compliance with the License. You may obtain a copy of the License at
+***  http://www.cl.cam.ac.uk/research/srg/netos/greenict/projects/contest/. 
+***  Unless required by applicable law or agreed to in writing, software, 
+***  hardware and materials distributed under this License is distributed 
+***  on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+***  either express or implied. See the License for the specific language
+***  governing permissions and limitations under the License.
+*** 
+*** 
+
+*** 45nm predictive technology model (FreePDK v1.4),  Typical conditions, 1.1V, 25C ***
+
+********************************************************************************
+*** This file contains a collection of Design Parameters used in: 	     ***
+*** optimization of MCML cells & realistic OPAMP circuits		     ***	
+********************************************************************************
+
+*** MAIN PARAMETERS ***
+
+*** Optimization ON/OFF ('1'/'0')  ***
+.param OPT_PARAM_ON=0
+
+
+*** simulation time
+.param FROM_TS = '1ps'
+.param TO_TS   = '60ns'
+
+*** DSI-related, configure driver widths 
+.param beta = "1.3"
+.param dsiwmin = "wmin*10"
+.param dsilmin = "lmin"
+
+
+*** Setup MCML voltage ranges ***
+*** supply
+.param PARAM_CMOS_VDD = '1.1v' 
+.param PARAM_MCML_VDD_VOLTAGE = '0.9v'
+.param PARAM_MCML_VSS_VOLTAGE = '0.0'
+
+*** voltage swing
+.param PARAM_MCML_SWING = '0.31'
+*** derived
+.param PARAM_MCML_SWING_LOW = '(PARAM_MCML_VDD_VOLTAGE-PARAM_MCML_SWING)'
+.param PARAM_MCML_MID = '(PARAM_MCML_VDD_VOLTAGE + (PARAM_MCML_VDD_VOLTAGE-PARAM_MCML_SWING))/2'
+*** other
+.param PARAM_DELAY_PER_STAGE = '10ps'
+.param PARAM_BIAS_DIFF = '0.0001'
+.param PARAM_DATA_SWING = '1.1'
+
+
+*** Define parameters to optimise and the ones to have fixed - the format is optw(initial, min, max, step)
+*** In general HSPICE is more successful with fewer parameters to optimise when circuit has nonlinear responses to small deltas
+
+*** reference voltages
+*.param SWEEP_N_BIAS_VOLTAGE = optw(0.5, 0.1, 0.9, 0.001)
+.param SWEEP_N_BIAS_VOLTAGE = 0.75V
+
+*.param SWEEP_P_BIAS_VOLTAGE = optw(75m, 1m, 450m , 1m)
+.param SWEEP_P_BIAS_VOLTAGE = 5mV
+
+*.param SWEEP_LEVEL_SHIFT_VOLTAGE = optw(0.35, 0.2, 0.5 , 0.001)
+.param SWEEP_LEVEL_SHIFT_VOLTAGE = 0.35V
+
+*.param SWEEP_VCOP_BIAS_VOLTAGE = optw(75m, 1m, 450m , 1m)
+.param SWEEP_VCO_P_BIAS_VOLTAGE = 350mV
+
+*** transistor dimensions
+**.param SWEEP_N_WIDTH = optw(0.3U, wmin, 1.2U, 0.001U)
+.param SWEEP_N_WIDTH=0.2U
+
+*.param SWEEP_N_LENGTH = optw(lmin, lmin, 0.5U, 0.005U)
+.param SWEEP_N_LENGTH='lmin'
+
+*.param SWEEP_P_WIDTH = optw(0.3U, wmin, 1.2U, 0.001U)
+.param SWEEP_P_WIDTH=0.3U
+
+**.param SWEEP_P_LENGTH = optw(lmin, lmin, 0.5U, 0.005U)
+.param SWEEP_P_LENGTH='lmin*2'
+
+*** OPAMP optimization
+*.param SWEEP_C_VALUE = optw(0.1pF, 0.01pF, 100pF, 0.001pF)
+.param SWEEP_C_VALUE = 0.001p 
+
+*.param SWEEP_WIDTH1 = optw(wmin, wmin, 4.2U, 0.001U)
+*.param SWEEP_WIDTH1 = 0.40U
+.param SWEEP_WIDTH1 = 0.95U
+
+*.param SWEEP_LENGTH1 = optw(lmin, lmin, 0.5U, 0.005U)
+*.param SWEEP_LENGTH1='lmin*2'
+
+*.param SWEEP_WIDTH2 = optw(wmin, wmin, 4.2U, 0.001U)
+.param SWEEP_WIDTH2 = 0.10U
+
+*.param SWEEP_LENGTH2 = optw(lmin, lmin, 0.5U, 0.005U)
+*.param SWEEP_LENGTH2='lmin*2'
+
+*.param SWEEP_WIDTH3 = optw(wmin, wmin, 4.2U, 0.001U)
+*.param SWEEP_WIDTH3 = 5.0U
+.param SWEEP_WIDTH3 = 0.3U
+
+*.param SWEEP_WIDTH4 = optw(wmin, wmin, 4.2U, 0.001U)
+*.param SWEEP_WIDTH4 = 1.0U
+

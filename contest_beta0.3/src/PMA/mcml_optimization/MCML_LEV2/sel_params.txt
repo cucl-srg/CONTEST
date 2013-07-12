@@ -1,0 +1,56 @@
+# Copyright 2003-2013, University of Cambridge, Computer Laboratory. 
+# Copyright and related rights are licensed under the Hardware License, 
+# Version 2.0 (the "License"); you may not use this file except in 
+# compliance with the License. You may obtain a copy of the License at
+# http://www.cl.cam.ac.uk/research/srg/netos/greenict/projects/contest/. 
+# Unless required by applicable law or agreed to in writing, software, 
+# hardware and materials distributed under this License is distributed 
+# on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific language
+# governing permissions and limitations under the License.
+#
+#
+
+------------ DLA OPT ----------------
+
+****** VARS *******
+
+*** Please comment/uncomment parameters that are needed for opt (2-4 parameters at a time for speed) ***
+.param PARAM_MCML_SWING = 0.4
+
+*** supply voltages ***
+.param PARAM_MCML_VDD_VOLTAGE = 0.9
+.param PARAM_MCML_VSS_VOLTAGE = 0.0
+
+*** pull-up network
+.param SWEEP_P_WIDTH=0.35U
+.param SWEEP_P_LENGTH=0.06U
+
+*** pull-down network
+.param SWEEP_N_WIDTH=0.3U
+.param SWEEP_N_LENGTH='lmin'
+
+*** current sink 
+.param PARAM_NSOURCE_WIDTH = '1.0U'
+.param PARAM_NSOURCE_LENGTH = '0.1U'
+
+*** reference voltages
+.param SWEEP_N_BIAS_VOLTAGE = 0.65V
+.param SWEEP_P_BIAS_VOLTAGE = 5mV
+.param SWEEP_LEVEL_SHIFT_VOLTAGE = 0.1V
+
+****  MEASUREMENTS ****
+rise_in=  1.9998E-11  targ=  1.9957E-10   trig=  1.7957E-10
+rise_a=  9.7303E-11  targ=  2.7997E-10   trig=  1.8266E-10
+rise_b=  1.5498E-11  targ=  2.7616E-10   trig=  2.6066E-10
+rise_c=  9.4132E-11  targ=  2.8172E-10   trig=  1.8759E-10
+rise_d=  9.4132E-11  targ=  2.8172E-10   trig=  1.8759E-10
+rise_e=  9.4132E-11  targ=  2.8172E-10   trig=  1.8759E-10
+rise_f=  9.4132E-11  targ=  2.8172E-10   trig=  1.8759E-10
+fall_in=  1.8869E-11  targ=  1.9948E-10   trig=  1.8061E-10
+fall_a=  1.0263E-10  targ=  2.9116E-10   trig=  1.8853E-10
+fall_b=  5.1758E-11  targ=  3.1998E-10   trig=  2.6823E-10
+fall_c=  2.8990E-10  targ=  2.9452E-10   trig=  4.6244E-12
+fall_d=  2.8990E-10  targ=  2.9452E-10   trig=  4.6244E-12
+fall_e=  2.8990E-10  targ=  2.9452E-10   trig=  4.6244E-12
+fall_f=  2.8990E-10  targ=  2.9452E-10   trig=  4.6244E-12

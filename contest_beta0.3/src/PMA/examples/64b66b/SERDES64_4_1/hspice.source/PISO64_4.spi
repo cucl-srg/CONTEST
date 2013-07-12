@@ -1,0 +1,781 @@
+*** 
+***  Copyright 2003-2013, University of Cambridge, Computer Laboratory. 
+***  Copyright and related rights are licensed under the Hardware License, 
+***  Version 2.0 (the "License"); you may not use this file except in 
+***  compliance with the License. You may obtain a copy of the License at
+***  http://www.cl.cam.ac.uk/research/srg/netos/greenict/projects/contest/. 
+***  Unless required by applicable law or agreed to in writing, software, 
+***  hardware and materials distributed under this License is distributed 
+***  on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+***  either express or implied. See the License for the specific language
+***  governing permissions and limitations under the License.
+*** 
+*** 
+
+*** SPICE structural netlist of 'PISO64_4' after Design Compiler synthesis, based on port order in '/usr/groups/ecad/kits/commercial45_v2010_12/n45-library-netlist-noparasitics.spi' ***
+
+.SUBCKT PISO64_4 VDD_PISO64_4 VSS_PISO64_4 CLK_IN DATA_IN[0] DATA_IN[1] DATA_IN[2] DATA_IN[3] DATA_IN[4] DATA_IN[5] DATA_IN[6] DATA_IN[7] DATA_IN[8] DATA_IN[9] DATA_IN[10] DATA_IN[11] DATA_IN[12] DATA_IN[13] DATA_IN[14] DATA_IN[15] DATA_IN[16] DATA_IN[17] DATA_IN[18] DATA_IN[19] DATA_IN[20] DATA_IN[21] DATA_IN[22] DATA_IN[23] DATA_IN[24] DATA_IN[25] DATA_IN[26] DATA_IN[27] DATA_IN[28] DATA_IN[29] DATA_IN[30] DATA_IN[31] DATA_IN[32] DATA_IN[33] DATA_IN[34] DATA_IN[35] DATA_IN[36] DATA_IN[37] DATA_IN[38] DATA_IN[39] DATA_IN[40] DATA_IN[41] DATA_IN[42] DATA_IN[43] DATA_IN[44] DATA_IN[45] DATA_IN[46] DATA_IN[47] DATA_IN[48] DATA_IN[49] DATA_IN[50] DATA_IN[51] DATA_IN[52] DATA_IN[53] DATA_IN[54] DATA_IN[55] DATA_IN[56] DATA_IN[57] DATA_IN[58] DATA_IN[59] DATA_IN[60] DATA_IN[61] DATA_IN[62] DATA_IN[63] RESET_IN DATA_USED_OUT SERIAL_OUT[0] SERIAL_OUT[1] SERIAL_OUT[2] SERIAL_OUT[3]  
+*** instances
+xpisos_0__PISO16_ctr_reg_1_  pisos_0__PISO16_N4___rc n111___rc n115___rc pisos_0__PISO16_ctr_1_ SPICE_NETLIST_UNCONNECTED_1 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_0__PISO16_ctr_reg_2_  pisos_0__PISO16_N5___rc n109___rc n115___rc pisos_0__PISO16_ctr_2_ SPICE_NETLIST_UNCONNECTED_2 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_0__PISO16_ctr_reg_3_  pisos_0__PISO16_N6___rc n109___rc n115___rc pisos_0__PISO16_ctr_3_ SPICE_NETLIST_UNCONNECTED_3 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_0__PISO16_shift_register_reg_15_  pisos_0__PISO16_N22___rc n111___rc n114___rc pisos_0__PISO16_shift_register[15] SPICE_NETLIST_UNCONNECTED_4 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_0__PISO16_shift_register_reg_14_  pisos_0__PISO16_N21___rc n112___rc n114___rc pisos_0__PISO16_shift_register[14] SPICE_NETLIST_UNCONNECTED_5 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_0__PISO16_shift_register_reg_13_  pisos_0__PISO16_N20___rc n112___rc n114___rc pisos_0__PISO16_shift_register[13] SPICE_NETLIST_UNCONNECTED_6 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_0__PISO16_shift_register_reg_12_  pisos_0__PISO16_N19___rc n112___rc n114___rc pisos_0__PISO16_shift_register[12] SPICE_NETLIST_UNCONNECTED_7 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_0__PISO16_shift_register_reg_11_  pisos_0__PISO16_N18___rc n112___rc n114___rc pisos_0__PISO16_shift_register[11] SPICE_NETLIST_UNCONNECTED_8 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_0__PISO16_shift_register_reg_10_  pisos_0__PISO16_N17___rc n110___rc n115___rc pisos_0__PISO16_shift_register[10] SPICE_NETLIST_UNCONNECTED_9 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_0__PISO16_shift_register_reg_9_  pisos_0__PISO16_N16___rc n109___rc n115___rc pisos_0__PISO16_shift_register[9] SPICE_NETLIST_UNCONNECTED_10 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_0__PISO16_shift_register_reg_8_  pisos_0__PISO16_N15___rc n109___rc n115___rc pisos_0__PISO16_shift_register[8] SPICE_NETLIST_UNCONNECTED_11 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_0__PISO16_shift_register_reg_7_  pisos_0__PISO16_N14___rc n112___rc n114___rc pisos_0__PISO16_shift_register[7] SPICE_NETLIST_UNCONNECTED_12 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_0__PISO16_shift_register_reg_6_  pisos_0__PISO16_N13___rc n112___rc n114___rc pisos_0__PISO16_shift_register[6] SPICE_NETLIST_UNCONNECTED_13 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_0__PISO16_shift_register_reg_5_  pisos_0__PISO16_N12___rc n112___rc n114___rc pisos_0__PISO16_shift_register[5] SPICE_NETLIST_UNCONNECTED_14 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_0__PISO16_shift_register_reg_4_  pisos_0__PISO16_N11___rc n111___rc n115___rc pisos_0__PISO16_shift_register[4] SPICE_NETLIST_UNCONNECTED_15 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_0__PISO16_shift_register_reg_3_  pisos_0__PISO16_N10___rc n112___rc n114___rc pisos_0__PISO16_shift_register[3] SPICE_NETLIST_UNCONNECTED_16 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_0__PISO16_shift_register_reg_2_  pisos_0__PISO16_N9___rc n112___rc n114___rc pisos_0__PISO16_shift_register[2] SPICE_NETLIST_UNCONNECTED_17 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_0__PISO16_shift_register_reg_1_  pisos_0__PISO16_N8___rc n112___rc n114___rc pisos_0__PISO16_shift_register[1] SPICE_NETLIST_UNCONNECTED_18 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_0__PISO16_shift_register_reg_0_  pisos_0__PISO16_N7___rc n112___rc n114___rc SERIAL_OUT[0] SPICE_NETLIST_UNCONNECTED_19 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_1__PISO16_ctr_reg_1_  pisos_1__PISO16_N4___rc n112___rc n114___rc pisos_1__PISO16_ctr_1_ SPICE_NETLIST_UNCONNECTED_20 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_1__PISO16_ctr_reg_2_  pisos_1__PISO16_N5___rc n111___rc n114___rc pisos_1__PISO16_ctr_2_ SPICE_NETLIST_UNCONNECTED_21 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_1__PISO16_ctr_reg_3_  pisos_1__PISO16_N6___rc n112___rc n114___rc pisos_1__PISO16_ctr_3_ SPICE_NETLIST_UNCONNECTED_22 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_1__PISO16_shift_register_reg_15_  pisos_1__PISO16_N22___rc n112___rc n114___rc pisos_1__PISO16_shift_register[15] SPICE_NETLIST_UNCONNECTED_23 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_1__PISO16_shift_register_reg_14_  pisos_1__PISO16_N21___rc n111___rc n115___rc pisos_1__PISO16_shift_register[14] SPICE_NETLIST_UNCONNECTED_24 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_1__PISO16_shift_register_reg_13_  pisos_1__PISO16_N20___rc n111___rc n114___rc pisos_1__PISO16_shift_register[13] SPICE_NETLIST_UNCONNECTED_25 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_1__PISO16_shift_register_reg_12_  pisos_1__PISO16_N19___rc n112___rc n114___rc pisos_1__PISO16_shift_register[12] SPICE_NETLIST_UNCONNECTED_26 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_1__PISO16_shift_register_reg_11_  pisos_1__PISO16_N18___rc n109___rc n115___rc pisos_1__PISO16_shift_register[11] SPICE_NETLIST_UNCONNECTED_27 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_1__PISO16_shift_register_reg_10_  pisos_1__PISO16_N17___rc n109___rc n115___rc pisos_1__PISO16_shift_register[10] SPICE_NETLIST_UNCONNECTED_28 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_1__PISO16_shift_register_reg_9_  pisos_1__PISO16_N16___rc n111___rc n115___rc pisos_1__PISO16_shift_register[9] SPICE_NETLIST_UNCONNECTED_29 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_1__PISO16_shift_register_reg_8_  pisos_1__PISO16_N15___rc n110___rc n115___rc pisos_1__PISO16_shift_register[8] SPICE_NETLIST_UNCONNECTED_30 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_1__PISO16_shift_register_reg_7_  pisos_1__PISO16_N14___rc n110___rc n114___rc pisos_1__PISO16_shift_register[7] SPICE_NETLIST_UNCONNECTED_31 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_1__PISO16_shift_register_reg_6_  pisos_1__PISO16_N13___rc n109___rc n115___rc pisos_1__PISO16_shift_register[6] SPICE_NETLIST_UNCONNECTED_32 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_1__PISO16_shift_register_reg_5_  pisos_1__PISO16_N12___rc n110___rc n115___rc pisos_1__PISO16_shift_register[5] SPICE_NETLIST_UNCONNECTED_33 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_1__PISO16_shift_register_reg_4_  pisos_1__PISO16_N11___rc n109___rc n115___rc pisos_1__PISO16_shift_register[4] SPICE_NETLIST_UNCONNECTED_34 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_1__PISO16_shift_register_reg_3_  pisos_1__PISO16_N10___rc n111___rc n115___rc pisos_1__PISO16_shift_register[3] SPICE_NETLIST_UNCONNECTED_35 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_1__PISO16_shift_register_reg_2_  pisos_1__PISO16_N9___rc n110___rc n115___rc pisos_1__PISO16_shift_register[2] SPICE_NETLIST_UNCONNECTED_36 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_1__PISO16_shift_register_reg_1_  pisos_1__PISO16_N8___rc n110___rc n115___rc pisos_1__PISO16_shift_register[1] SPICE_NETLIST_UNCONNECTED_37 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_1__PISO16_shift_register_reg_0_  pisos_1__PISO16_N7___rc n110___rc n115___rc SERIAL_OUT[1] SPICE_NETLIST_UNCONNECTED_38 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_2__PISO16_ctr_reg_1_  pisos_2__PISO16_N4___rc n111___rc n115___rc pisos_2__PISO16_ctr_1_ SPICE_NETLIST_UNCONNECTED_39 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_2__PISO16_ctr_reg_2_  pisos_2__PISO16_N5___rc n111___rc n115___rc pisos_2__PISO16_ctr_2_ SPICE_NETLIST_UNCONNECTED_40 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_2__PISO16_ctr_reg_3_  pisos_2__PISO16_N6___rc n109___rc n115___rc pisos_2__PISO16_ctr_3_ SPICE_NETLIST_UNCONNECTED_41 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_2__PISO16_shift_register_reg_15_  pisos_2__PISO16_N22___rc n112___rc n114___rc pisos_2__PISO16_shift_register[15] SPICE_NETLIST_UNCONNECTED_42 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_2__PISO16_shift_register_reg_14_  pisos_2__PISO16_N21___rc n112___rc n114___rc pisos_2__PISO16_shift_register[14] SPICE_NETLIST_UNCONNECTED_43 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_2__PISO16_shift_register_reg_13_  pisos_2__PISO16_N20___rc n109___rc n115___rc pisos_2__PISO16_shift_register[13] SPICE_NETLIST_UNCONNECTED_44 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_2__PISO16_shift_register_reg_12_  pisos_2__PISO16_N19___rc n112___rc n114___rc pisos_2__PISO16_shift_register[12] SPICE_NETLIST_UNCONNECTED_45 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_2__PISO16_shift_register_reg_11_  pisos_2__PISO16_N18___rc n110___rc n115___rc pisos_2__PISO16_shift_register[11] SPICE_NETLIST_UNCONNECTED_46 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_2__PISO16_shift_register_reg_10_  pisos_2__PISO16_N17___rc n112___rc n114___rc pisos_2__PISO16_shift_register[10] SPICE_NETLIST_UNCONNECTED_47 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_2__PISO16_shift_register_reg_9_  pisos_2__PISO16_N16___rc n111___rc CLK_IN___rc pisos_2__PISO16_shift_register[9] SPICE_NETLIST_UNCONNECTED_48 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_2__PISO16_shift_register_reg_8_  pisos_2__PISO16_N15___rc n109___rc n115___rc pisos_2__PISO16_shift_register[8] SPICE_NETLIST_UNCONNECTED_49 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_2__PISO16_shift_register_reg_7_  pisos_2__PISO16_N14___rc n112___rc n114___rc pisos_2__PISO16_shift_register[7] SPICE_NETLIST_UNCONNECTED_50 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_2__PISO16_shift_register_reg_6_  pisos_2__PISO16_N13___rc n112___rc n114___rc pisos_2__PISO16_shift_register[6] SPICE_NETLIST_UNCONNECTED_51 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_2__PISO16_shift_register_reg_5_  pisos_2__PISO16_N12___rc n112___rc n114___rc pisos_2__PISO16_shift_register[5] SPICE_NETLIST_UNCONNECTED_52 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_2__PISO16_shift_register_reg_4_  pisos_2__PISO16_N11___rc n112___rc n114___rc pisos_2__PISO16_shift_register[4] SPICE_NETLIST_UNCONNECTED_53 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_2__PISO16_shift_register_reg_3_  pisos_2__PISO16_N10___rc n110___rc n115___rc pisos_2__PISO16_shift_register[3] SPICE_NETLIST_UNCONNECTED_54 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_2__PISO16_shift_register_reg_2_  pisos_2__PISO16_N9___rc n112___rc n114___rc pisos_2__PISO16_shift_register[2] SPICE_NETLIST_UNCONNECTED_55 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_2__PISO16_shift_register_reg_1_  pisos_2__PISO16_N8___rc n109___rc n115___rc pisos_2__PISO16_shift_register[1] SPICE_NETLIST_UNCONNECTED_56 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_2__PISO16_shift_register_reg_0_  pisos_2__PISO16_N7___rc n112___rc n114___rc SERIAL_OUT[2] SPICE_NETLIST_UNCONNECTED_57 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_3__PISO16_ctr_reg_1_  pisos_3__PISO16_N4___rc n112___rc n115___rc pisos_3__PISO16_ctr_1_ SPICE_NETLIST_UNCONNECTED_58 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_3__PISO16_ctr_reg_2_  pisos_3__PISO16_N5___rc n110___rc n115___rc pisos_3__PISO16_ctr_2_ SPICE_NETLIST_UNCONNECTED_59 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_3__PISO16_ctr_reg_3_  pisos_3__PISO16_N6___rc n111___rc n115___rc pisos_3__PISO16_ctr_3_ SPICE_NETLIST_UNCONNECTED_60 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_3__PISO16_shift_register_reg_15_  pisos_3__PISO16_N22___rc n110___rc n115___rc pisos_3__PISO16_shift_register[15] SPICE_NETLIST_UNCONNECTED_61 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_3__PISO16_shift_register_reg_14_  pisos_3__PISO16_N21___rc n110___rc n115___rc pisos_3__PISO16_shift_register[14] SPICE_NETLIST_UNCONNECTED_62 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_3__PISO16_shift_register_reg_13_  pisos_3__PISO16_N20___rc n112___rc n114___rc pisos_3__PISO16_shift_register[13] SPICE_NETLIST_UNCONNECTED_63 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_3__PISO16_shift_register_reg_12_  pisos_3__PISO16_N19___rc n109___rc n115___rc pisos_3__PISO16_shift_register[12] SPICE_NETLIST_UNCONNECTED_64 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_3__PISO16_shift_register_reg_11_  pisos_3__PISO16_N18___rc n109___rc n115___rc pisos_3__PISO16_shift_register[11] SPICE_NETLIST_UNCONNECTED_65 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_3__PISO16_shift_register_reg_10_  pisos_3__PISO16_N17___rc n112___rc n114___rc pisos_3__PISO16_shift_register[10] SPICE_NETLIST_UNCONNECTED_66 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_3__PISO16_shift_register_reg_9_  pisos_3__PISO16_N16___rc n112___rc n114___rc pisos_3__PISO16_shift_register[9] SPICE_NETLIST_UNCONNECTED_67 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_3__PISO16_shift_register_reg_8_  pisos_3__PISO16_N15___rc n112___rc n114___rc pisos_3__PISO16_shift_register[8] SPICE_NETLIST_UNCONNECTED_68 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_3__PISO16_shift_register_reg_7_  pisos_3__PISO16_N14___rc n110___rc n115___rc pisos_3__PISO16_shift_register[7] SPICE_NETLIST_UNCONNECTED_69 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_3__PISO16_shift_register_reg_6_  pisos_3__PISO16_N13___rc n110___rc n115___rc pisos_3__PISO16_shift_register[6] SPICE_NETLIST_UNCONNECTED_70 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_3__PISO16_shift_register_reg_5_  pisos_3__PISO16_N12___rc n111___rc n114___rc pisos_3__PISO16_shift_register[5] SPICE_NETLIST_UNCONNECTED_71 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_3__PISO16_shift_register_reg_4_  pisos_3__PISO16_N11___rc n111___rc n115___rc pisos_3__PISO16_shift_register[4] SPICE_NETLIST_UNCONNECTED_72 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_3__PISO16_shift_register_reg_3_  pisos_3__PISO16_N10___rc n111___rc n114___rc pisos_3__PISO16_shift_register[3] SPICE_NETLIST_UNCONNECTED_73 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_3__PISO16_shift_register_reg_2_  pisos_3__PISO16_N9___rc n109___rc n115___rc pisos_3__PISO16_shift_register[2] SPICE_NETLIST_UNCONNECTED_74 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_3__PISO16_shift_register_reg_1_  pisos_3__PISO16_N8___rc n110___rc n115___rc pisos_3__PISO16_shift_register[1] SPICE_NETLIST_UNCONNECTED_75 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xpisos_3__PISO16_shift_register_reg_0_  pisos_3__PISO16_N7___rc n110___rc n115___rc SERIAL_OUT[3] SPICE_NETLIST_UNCONNECTED_76 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xU111  n41___rc n24___rc pisos_3__PISO16_ctr_1____rc pisos_3__PISO16_N4 VDD_PISO64_4 VSS_PISO64_4  AOI21_X1
+xU112  n24___rc pisos_3__PISO16_ctr_1____rc n41 VDD_PISO64_4 VSS_PISO64_4  NOR2_X1
+xU113  n39___rc n24___rc pisos_2__PISO16_ctr_1____rc pisos_2__PISO16_N4 VDD_PISO64_4 VSS_PISO64_4  AOI21_X1
+xU114  n24___rc pisos_2__PISO16_ctr_1____rc n39 VDD_PISO64_4 VSS_PISO64_4  NOR2_X1
+xU115  n37___rc n24___rc pisos_1__PISO16_ctr_1____rc pisos_1__PISO16_N4 VDD_PISO64_4 VSS_PISO64_4  AOI21_X1
+xU116  n24___rc pisos_1__PISO16_ctr_1____rc n37 VDD_PISO64_4 VSS_PISO64_4  NOR2_X1
+xU117  n35___rc n24___rc pisos_0__PISO16_ctr_1____rc pisos_0__PISO16_N4 VDD_PISO64_4 VSS_PISO64_4  AOI21_X1
+xU118  n24___rc pisos_0__PISO16_ctr_1____rc n35 VDD_PISO64_4 VSS_PISO64_4  NOR2_X1
+xU141  n95___rc n73___rc pisos_1__PISO16_N22 VDD_PISO64_4 VSS_PISO64_4  NOR2_X1
+xU142  DATA_IN[61]___rc n73 VDD_PISO64_4 VSS_PISO64_4  INV_X1
+xU143  n72___rc n71___rc pisos_2__PISO16_N22 VDD_PISO64_4 VSS_PISO64_4  NOR2_X1
+xU144  DATA_IN[62]___rc n71 VDD_PISO64_4 VSS_PISO64_4  INV_X1
+xU145  n70___rc n69___rc pisos_3__PISO16_N22 VDD_PISO64_4 VSS_PISO64_4  NOR2_X1
+xU146  DATA_IN[63]___rc n69 VDD_PISO64_4 VSS_PISO64_4  INV_X1
+xU147  n77___rc n76___rc pisos_0__PISO16_N22 VDD_PISO64_4 VSS_PISO64_4  NOR2_X1
+xU148  DATA_IN[60]___rc n76 VDD_PISO64_4 VSS_PISO64_4  INV_X1
+xU149  pisos_0__PISO16_ctr_2____rc pisos_0__PISO16_ctr_3____rc n75 VDD_PISO64_4 VSS_PISO64_4  NOR2_X1
+xU150  n24___rc n68___rc n67___rc DATA_USED_OUT VDD_PISO64_4 VSS_PISO64_4  AOI21_X1
+xU151  n66___rc n65___rc n67 VDD_PISO64_4 VSS_PISO64_4  AND2_X1
+xU152  pisos_2__PISO16_ctr_3____rc n63 VDD_PISO64_4 VSS_PISO64_4  INV_X1
+xU153  pisos_2__PISO16_ctr_2____rc n64 VDD_PISO64_4 VSS_PISO64_4  INV_X1
+xU154  pisos_3__PISO16_ctr_3____rc n61 VDD_PISO64_4 VSS_PISO64_4  INV_X1
+xU155  pisos_3__PISO16_ctr_2____rc n62 VDD_PISO64_4 VSS_PISO64_4  INV_X1
+xU156  n60___rc n59___rc n68 VDD_PISO64_4 VSS_PISO64_4  AND2_X1
+xU157  pisos_1__PISO16_ctr_3____rc n57 VDD_PISO64_4 VSS_PISO64_4  INV_X1
+xU158  pisos_1__PISO16_ctr_2____rc n58 VDD_PISO64_4 VSS_PISO64_4  INV_X1
+xU159  pisos_0__PISO16_ctr_3____rc n55 VDD_PISO64_4 VSS_PISO64_4  INV_X1
+xU160  pisos_0__PISO16_ctr_2____rc n56 VDD_PISO64_4 VSS_PISO64_4  INV_X1
+xU162  n56___rc n55___rc pisos_0__PISO16_ctr_1____rc n60 VDD_PISO64_4 VSS_PISO64_4  NAND3_X1
+xU163  n58___rc n57___rc pisos_1__PISO16_ctr_1____rc n59 VDD_PISO64_4 VSS_PISO64_4  NAND3_X1
+xU164  n62___rc n61___rc pisos_3__PISO16_ctr_1____rc n66 VDD_PISO64_4 VSS_PISO64_4  NAND3_X1
+xU165  n64___rc n63___rc pisos_2__PISO16_ctr_1____rc n65 VDD_PISO64_4 VSS_PISO64_4  NAND3_X1
+xU166  DATA_IN[3]___rc pisos_3__PISO16_shift_register[1]___rc n70___rc pisos_3__PISO16_N7 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU167  DATA_IN[7]___rc pisos_3__PISO16_shift_register[2]___rc n70___rc pisos_3__PISO16_N8 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU168  DATA_IN[11]___rc pisos_3__PISO16_shift_register[3]___rc n70___rc pisos_3__PISO16_N9 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU169  DATA_IN[15]___rc pisos_3__PISO16_shift_register[4]___rc n70___rc pisos_3__PISO16_N10 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU170  DATA_IN[19]___rc pisos_3__PISO16_shift_register[5]___rc n70___rc pisos_3__PISO16_N11 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU171  DATA_IN[23]___rc pisos_3__PISO16_shift_register[6]___rc n70___rc pisos_3__PISO16_N12 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU172  DATA_IN[27]___rc pisos_3__PISO16_shift_register[7]___rc n70___rc pisos_3__PISO16_N13 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU173  DATA_IN[31]___rc pisos_3__PISO16_shift_register[8]___rc n70___rc pisos_3__PISO16_N14 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU174  DATA_IN[35]___rc pisos_3__PISO16_shift_register[9]___rc n70___rc pisos_3__PISO16_N15 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU175  DATA_IN[39]___rc pisos_3__PISO16_shift_register[10]___rc n70___rc pisos_3__PISO16_N16 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU176  DATA_IN[43]___rc pisos_3__PISO16_shift_register[11]___rc n70___rc pisos_3__PISO16_N17 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU177  DATA_IN[47]___rc pisos_3__PISO16_shift_register[12]___rc n70___rc pisos_3__PISO16_N18 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU178  DATA_IN[51]___rc pisos_3__PISO16_shift_register[13]___rc n70___rc pisos_3__PISO16_N19 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU179  DATA_IN[55]___rc pisos_3__PISO16_shift_register[14]___rc n70___rc pisos_3__PISO16_N20 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU180  DATA_IN[59]___rc pisos_3__PISO16_shift_register[15]___rc n70___rc pisos_3__PISO16_N21 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU181  DATA_IN[2]___rc pisos_2__PISO16_shift_register[1]___rc n72___rc pisos_2__PISO16_N7 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU182  DATA_IN[6]___rc pisos_2__PISO16_shift_register[2]___rc n72___rc pisos_2__PISO16_N8 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU183  DATA_IN[10]___rc pisos_2__PISO16_shift_register[3]___rc n72___rc pisos_2__PISO16_N9 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU184  DATA_IN[14]___rc pisos_2__PISO16_shift_register[4]___rc n72___rc pisos_2__PISO16_N10 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU185  DATA_IN[18]___rc pisos_2__PISO16_shift_register[5]___rc n72___rc pisos_2__PISO16_N11 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU186  DATA_IN[22]___rc pisos_2__PISO16_shift_register[6]___rc n72___rc pisos_2__PISO16_N12 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU187  DATA_IN[26]___rc pisos_2__PISO16_shift_register[7]___rc n72___rc pisos_2__PISO16_N13 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU188  DATA_IN[30]___rc pisos_2__PISO16_shift_register[8]___rc n72___rc pisos_2__PISO16_N14 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU189  DATA_IN[34]___rc pisos_2__PISO16_shift_register[9]___rc n72___rc pisos_2__PISO16_N15 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU190  DATA_IN[38]___rc pisos_2__PISO16_shift_register[10]___rc n72___rc pisos_2__PISO16_N16 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU191  DATA_IN[42]___rc pisos_2__PISO16_shift_register[11]___rc n72___rc pisos_2__PISO16_N17 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU192  DATA_IN[46]___rc pisos_2__PISO16_shift_register[12]___rc n72___rc pisos_2__PISO16_N18 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU193  DATA_IN[50]___rc pisos_2__PISO16_shift_register[13]___rc n72___rc pisos_2__PISO16_N19 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU194  DATA_IN[54]___rc pisos_2__PISO16_shift_register[14]___rc n72___rc pisos_2__PISO16_N20 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU195  DATA_IN[58]___rc pisos_2__PISO16_shift_register[15]___rc n72___rc pisos_2__PISO16_N21 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU196  DATA_IN[1]___rc pisos_1__PISO16_shift_register[1]___rc n95___rc pisos_1__PISO16_N7 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU197  DATA_IN[5]___rc pisos_1__PISO16_shift_register[2]___rc n95___rc pisos_1__PISO16_N8 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU198  DATA_IN[9]___rc pisos_1__PISO16_shift_register[3]___rc n95___rc pisos_1__PISO16_N9 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU199  DATA_IN[13]___rc pisos_1__PISO16_shift_register[4]___rc n95___rc pisos_1__PISO16_N10 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU200  DATA_IN[17]___rc pisos_1__PISO16_shift_register[5]___rc n95___rc pisos_1__PISO16_N11 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU201  DATA_IN[21]___rc pisos_1__PISO16_shift_register[6]___rc n95___rc pisos_1__PISO16_N12 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU202  DATA_IN[25]___rc pisos_1__PISO16_shift_register[7]___rc n95___rc pisos_1__PISO16_N13 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU203  DATA_IN[29]___rc pisos_1__PISO16_shift_register[8]___rc n95___rc pisos_1__PISO16_N14 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU204  DATA_IN[33]___rc pisos_1__PISO16_shift_register[9]___rc n95___rc pisos_1__PISO16_N15 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU205  DATA_IN[37]___rc pisos_1__PISO16_shift_register[10]___rc n95___rc pisos_1__PISO16_N16 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU206  DATA_IN[41]___rc pisos_1__PISO16_shift_register[11]___rc n95___rc pisos_1__PISO16_N17 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU207  DATA_IN[45]___rc pisos_1__PISO16_shift_register[12]___rc n95___rc pisos_1__PISO16_N18 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU208  DATA_IN[49]___rc pisos_1__PISO16_shift_register[13]___rc n95___rc pisos_1__PISO16_N19 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU209  DATA_IN[53]___rc pisos_1__PISO16_shift_register[14]___rc n95___rc pisos_1__PISO16_N20 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU210  DATA_IN[57]___rc pisos_1__PISO16_shift_register[15]___rc n95___rc pisos_1__PISO16_N21 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU211  DATA_IN[0]___rc pisos_0__PISO16_shift_register[1]___rc n77___rc pisos_0__PISO16_N7 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU212  DATA_IN[4]___rc pisos_0__PISO16_shift_register[2]___rc n77___rc pisos_0__PISO16_N8 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU213  DATA_IN[8]___rc pisos_0__PISO16_shift_register[3]___rc n77___rc pisos_0__PISO16_N9 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU214  DATA_IN[12]___rc pisos_0__PISO16_shift_register[4]___rc n77___rc pisos_0__PISO16_N10 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU215  DATA_IN[16]___rc pisos_0__PISO16_shift_register[5]___rc n77___rc pisos_0__PISO16_N11 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU216  DATA_IN[20]___rc pisos_0__PISO16_shift_register[6]___rc n77___rc pisos_0__PISO16_N12 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU217  DATA_IN[24]___rc pisos_0__PISO16_shift_register[7]___rc n77___rc pisos_0__PISO16_N13 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU218  DATA_IN[28]___rc pisos_0__PISO16_shift_register[8]___rc n77___rc pisos_0__PISO16_N14 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU219  DATA_IN[32]___rc pisos_0__PISO16_shift_register[9]___rc n77___rc pisos_0__PISO16_N15 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU220  DATA_IN[36]___rc pisos_0__PISO16_shift_register[10]___rc n77___rc pisos_0__PISO16_N16 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU221  DATA_IN[40]___rc pisos_0__PISO16_shift_register[11]___rc n77___rc pisos_0__PISO16_N17 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU222  DATA_IN[44]___rc pisos_0__PISO16_shift_register[12]___rc n77___rc pisos_0__PISO16_N18 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU223  DATA_IN[48]___rc pisos_0__PISO16_shift_register[13]___rc n77___rc pisos_0__PISO16_N19 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU224  DATA_IN[52]___rc pisos_0__PISO16_shift_register[14]___rc n77___rc pisos_0__PISO16_N20 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU225  DATA_IN[56]___rc pisos_0__PISO16_shift_register[15]___rc n77___rc pisos_0__PISO16_N21 VDD_PISO64_4 VSS_PISO64_4  MUX2_X1
+xU228  n24___rc pisos_0__PISO16_ctr_1____rc n80 VDD_PISO64_4 VSS_PISO64_4  NAND2_X1
+xU229  n82___rc n56___rc n80___rc pisos_0__PISO16_N5 VDD_PISO64_4 VSS_PISO64_4  AOI21_X1
+xU230  pisos_0__PISO16_ctr_3____rc n82___rc pisos_0__PISO16_N6 VDD_PISO64_4 VSS_PISO64_4  XOR2_X1
+xU233  n24___rc pisos_1__PISO16_ctr_1____rc n84 VDD_PISO64_4 VSS_PISO64_4  NAND2_X1
+xU234  n86___rc n58___rc n84___rc pisos_1__PISO16_N5 VDD_PISO64_4 VSS_PISO64_4  AOI21_X1
+xU235  pisos_1__PISO16_ctr_3____rc n86___rc pisos_1__PISO16_N6 VDD_PISO64_4 VSS_PISO64_4  XOR2_X1
+xU238  n24___rc pisos_2__PISO16_ctr_1____rc n88 VDD_PISO64_4 VSS_PISO64_4  NAND2_X1
+xU239  n90___rc n64___rc n88___rc pisos_2__PISO16_N5 VDD_PISO64_4 VSS_PISO64_4  AOI21_X1
+xU240  pisos_2__PISO16_ctr_3____rc n90___rc pisos_2__PISO16_N6 VDD_PISO64_4 VSS_PISO64_4  XOR2_X1
+xU243  n24___rc pisos_3__PISO16_ctr_1____rc n92 VDD_PISO64_4 VSS_PISO64_4  NAND2_X1
+xU244  n94___rc n62___rc n92___rc pisos_3__PISO16_N5 VDD_PISO64_4 VSS_PISO64_4  AOI21_X1
+xU245  pisos_3__PISO16_ctr_3____rc n94___rc pisos_3__PISO16_N6 VDD_PISO64_4 VSS_PISO64_4  XOR2_X1
+xpisos_3__PISO16_ctr_reg_0_  pisos_3__PISO16_N3___rc n112___rc n114___rc pisos_3__PISO16_ctr_0_ pisos_3__PISO16_N3 VDD_PISO64_4 VSS_PISO64_4  DFFR_X1
+xU121  n80___rc n56___rc n82 VDD_PISO64_4 VSS_PISO64_4  NOR2_X1
+xU123  n84___rc n58___rc n86 VDD_PISO64_4 VSS_PISO64_4  NOR2_X1
+xU125  n64___rc n88___rc n90 VDD_PISO64_4 VSS_PISO64_4  NOR2_X1
+xU127  n62___rc n92___rc n94 VDD_PISO64_4 VSS_PISO64_4  NOR2_X1
+xU98  n34___rc pisos_3__PISO16_ctr_0____rc n78 VDD_PISO64_4 VSS_PISO64_4  AND2_X1
+xU104  n30___rc n29___rc pisos_3__PISO16_ctr_0____rc n28 VDD_PISO64_4 VSS_PISO64_4  AND3_X1
+xU119  pisos_0__PISO16_ctr_1____rc n34 VDD_PISO64_4 VSS_PISO64_4  INV_X1
+xU101  pisos_1__PISO16_ctr_1____rc n27 VDD_PISO64_4 VSS_PISO64_4  INV_X1
+xU105  pisos_2__PISO16_ctr_1____rc n30 VDD_PISO64_4 VSS_PISO64_4  INV_X1
+xU106  pisos_2__PISO16_ctr_2____rc pisos_2__PISO16_ctr_3____rc n29 VDD_PISO64_4 VSS_PISO64_4  NOR2_X1
+xU97  pisos_3__PISO16_ctr_0____rc n24 VDD_PISO64_4 VSS_PISO64_4  BUF_X2
+xU109  pisos_3__PISO16_ctr_1____rc n33 VDD_PISO64_4 VSS_PISO64_4  INV_X1
+xU110  pisos_3__PISO16_ctr_2____rc pisos_3__PISO16_ctr_3____rc n32 VDD_PISO64_4 VSS_PISO64_4  NOR2_X1
+xU108  n33___rc n32___rc pisos_3__PISO16_ctr_0____rc n31 VDD_PISO64_4 VSS_PISO64_4  AND3_X1
+xU140  n27___rc n26___rc pisos_3__PISO16_ctr_0____rc n95 VDD_PISO64_4 VSS_PISO64_4  NAND3_X2
+xU226  n106___rc n111 VDD_PISO64_4 VSS_PISO64_4  INV_X2
+xU232  n106___rc n109 VDD_PISO64_4 VSS_PISO64_4  INV_X2
+xU227  n106___rc n110 VDD_PISO64_4 VSS_PISO64_4  INV_X2
+xU161  CLK_IN___rc n114 VDD_PISO64_4 VSS_PISO64_4  BUF_X8
+xU128  n78___rc n75___rc n77 VDD_PISO64_4 VSS_PISO64_4  NAND2_X2
+xU103  n28___rc n72 VDD_PISO64_4 VSS_PISO64_4  INV_X2
+xU107  n31___rc n70 VDD_PISO64_4 VSS_PISO64_4  INV_X2
+xU242  RESET_IN___rc n108 VDD_PISO64_4 VSS_PISO64_4  BUF_X1
+xU102  pisos_1__PISO16_ctr_2____rc pisos_1__PISO16_ctr_3____rc n26 VDD_PISO64_4 VSS_PISO64_4  NOR2_X1
+xU237  n108___rc n112 VDD_PISO64_4 VSS_PISO64_4  INV_X4
+xU139  CLK_IN___rc n115 VDD_PISO64_4 VSS_PISO64_4  BUF_X4
+xU246  RESET_IN___rc n106 VDD_PISO64_4 VSS_PISO64_4  BUF_X2
+*** Estimated net resistances from Design Compiler
+r1 CLK_IN CLK_IN___rc 68.0
+r2 DATA_IN[0] DATA_IN[0]___rc 16.0
+r3 DATA_IN[10] DATA_IN[10]___rc 11.0
+r4 DATA_IN[11] DATA_IN[11]___rc 29.0
+r5 DATA_IN[12] DATA_IN[12]___rc 39.0
+r6 DATA_IN[13] DATA_IN[13]___rc 28.0
+r7 DATA_IN[14] DATA_IN[14]___rc 8.0
+r8 DATA_IN[15] DATA_IN[15]___rc 49.0
+r9 DATA_IN[16] DATA_IN[16]___rc 19.0
+r10 DATA_IN[17] DATA_IN[17]___rc 14.0
+r11 DATA_IN[18] DATA_IN[18]___rc 15.0
+r12 DATA_IN[19] DATA_IN[19]___rc 29.0
+r13 DATA_IN[1] DATA_IN[1]___rc 6.0
+r14 DATA_IN[20] DATA_IN[20]___rc 6.0
+r15 DATA_IN[21] DATA_IN[21]___rc 7.0
+r16 DATA_IN[22] DATA_IN[22]___rc 12.0
+r17 DATA_IN[23] DATA_IN[23]___rc 24.0
+r18 DATA_IN[24] DATA_IN[24]___rc 29.0
+r19 DATA_IN[25] DATA_IN[25]___rc 14.0
+r20 DATA_IN[26] DATA_IN[26]___rc 17.0
+r21 DATA_IN[27] DATA_IN[27]___rc 5.0
+r22 DATA_IN[28] DATA_IN[28]___rc 24.0
+r23 DATA_IN[29] DATA_IN[29]___rc 10.0
+r24 DATA_IN[2] DATA_IN[2]___rc 5.0
+r25 DATA_IN[30] DATA_IN[30]___rc 34.0
+r26 DATA_IN[31] DATA_IN[31]___rc 27.0
+r27 DATA_IN[32] DATA_IN[32]___rc 27.0
+r28 DATA_IN[33] DATA_IN[33]___rc 32.0
+r29 DATA_IN[34] DATA_IN[34]___rc 8.0
+r30 DATA_IN[35] DATA_IN[35]___rc 24.0
+r31 DATA_IN[36] DATA_IN[36]___rc 43.0
+r32 DATA_IN[37] DATA_IN[37]___rc 12.0
+r33 DATA_IN[38] DATA_IN[38]___rc 33.0
+r34 DATA_IN[39] DATA_IN[39]___rc 21.0
+r35 DATA_IN[3] DATA_IN[3]___rc 9.0
+r36 DATA_IN[40] DATA_IN[40]___rc 8.0
+r37 DATA_IN[41] DATA_IN[41]___rc 6.0
+r38 DATA_IN[42] DATA_IN[42]___rc 42.0
+r39 DATA_IN[43] DATA_IN[43]___rc 16.0
+r40 DATA_IN[44] DATA_IN[44]___rc 23.0
+r41 DATA_IN[45] DATA_IN[45]___rc 20.0
+r42 DATA_IN[46] DATA_IN[46]___rc 7.0
+r43 DATA_IN[47] DATA_IN[47]___rc 15.0
+r44 DATA_IN[48] DATA_IN[48]___rc 13.0
+r45 DATA_IN[49] DATA_IN[49]___rc 42.0
+r46 DATA_IN[4] DATA_IN[4]___rc 9.0
+r47 DATA_IN[50] DATA_IN[50]___rc 7.0
+r48 DATA_IN[51] DATA_IN[51]___rc 29.0
+r49 DATA_IN[52] DATA_IN[52]___rc 15.0
+r50 DATA_IN[53] DATA_IN[53]___rc 33.0
+r51 DATA_IN[54] DATA_IN[54]___rc 31.0
+r52 DATA_IN[55] DATA_IN[55]___rc 19.0
+r53 DATA_IN[56] DATA_IN[56]___rc 8.0
+r54 DATA_IN[57] DATA_IN[57]___rc 19.0
+r55 DATA_IN[58] DATA_IN[58]___rc 24.0
+r56 DATA_IN[59] DATA_IN[59]___rc 7.0
+r57 DATA_IN[5] DATA_IN[5]___rc 5.0
+r58 DATA_IN[60] DATA_IN[60]___rc 6.0
+r59 DATA_IN[61] DATA_IN[61]___rc 1.0
+r60 DATA_IN[62] DATA_IN[62]___rc 33.0
+r61 DATA_IN[63] DATA_IN[63]___rc 15.0
+r62 DATA_IN[6] DATA_IN[6]___rc 9.0
+r63 DATA_IN[7] DATA_IN[7]___rc 5.0
+r64 DATA_IN[8] DATA_IN[8]___rc 15.0
+r65 DATA_IN[9] DATA_IN[9]___rc 7.0
+r66 DATA_USED_OUT DATA_USED_OUT___rc 42.0
+r67 RESET_IN RESET_IN___rc 100.0
+r68 SERIAL_OUT[0] SERIAL_OUT[0]___rc 27.0
+r69 SERIAL_OUT[1] SERIAL_OUT[1]___rc 6.0
+r70 SERIAL_OUT[2] SERIAL_OUT[2]___rc 3.0
+r71 SERIAL_OUT[3] SERIAL_OUT[3]___rc 60.0
+r72 n106 n106___rc 137.0
+r73 n108 n108___rc 64.0
+r74 n109 n109___rc 92.0
+r75 n110 n110___rc 177.0
+r76 n111 n111___rc 142.0
+r77 n112 n112___rc 170.0
+r78 n114 n114___rc 166.0
+r79 n115 n115___rc 167.0
+r80 n24 n24___rc 47.0
+r81 n26 n26___rc 21.0
+r82 n27 n27___rc 15.0
+r83 n28 n28___rc 18.0
+r84 n29 n29___rc 33.0
+r85 n30 n30___rc 27.0
+r86 n31 n31___rc 25.0
+r87 n32 n32___rc 14.0
+r88 n33 n33___rc 22.0
+r89 n34 n34___rc 31.0
+r90 n35 n35___rc 5.0
+r91 n37 n37___rc 3.0
+r92 n39 n39___rc 4.0
+r93 n41 n41___rc 8.0
+r94 n55 n55___rc 7.0
+r95 n56 n56___rc 22.0
+r96 n57 n57___rc 6.0
+r97 n58 n58___rc 23.0
+r98 n59 n59___rc 13.0
+r99 n60 n60___rc 13.0
+r100 n61 n61___rc 14.0
+r101 n62 n62___rc 34.0
+r102 n63 n63___rc 11.0
+r103 n64 n64___rc 24.0
+r104 n65 n65___rc 10.0
+r105 n66 n66___rc 0.0
+r106 n67 n67___rc 9.0
+r107 n68 n68___rc 2.0
+r108 n69 n69___rc 5.0
+r109 n70 n70___rc 187.0
+r110 n71 n71___rc 8.0
+r111 n72 n72___rc 188.0
+r112 n73 n73___rc 0.0
+r113 n75 n75___rc 14.0
+r114 n76 n76___rc 2.0
+r115 n77 n77___rc 189.0
+r116 n78 n78___rc 24.0
+r117 n80 n80___rc 5.0
+r118 n82 n82___rc 8.0
+r119 n84 n84___rc 8.0
+r120 n86 n86___rc 5.0
+r121 n88 n88___rc 11.0
+r122 n90 n90___rc 5.0
+r123 n92 n92___rc 7.0
+r124 n94 n94___rc 8.0
+r125 n95 n95___rc 189.0
+r126 pisos_0__PISO16_N10 pisos_0__PISO16_N10___rc 7.0
+r127 pisos_0__PISO16_N11 pisos_0__PISO16_N11___rc 49.0
+r128 pisos_0__PISO16_N12 pisos_0__PISO16_N12___rc 4.0
+r129 pisos_0__PISO16_N13 pisos_0__PISO16_N13___rc 4.0
+r130 pisos_0__PISO16_N14 pisos_0__PISO16_N14___rc 90.0
+r131 pisos_0__PISO16_N15 pisos_0__PISO16_N15___rc 7.0
+r132 pisos_0__PISO16_N16 pisos_0__PISO16_N16___rc 52.0
+r133 pisos_0__PISO16_N17 pisos_0__PISO16_N17___rc 47.0
+r134 pisos_0__PISO16_N18 pisos_0__PISO16_N18___rc 32.0
+r135 pisos_0__PISO16_N19 pisos_0__PISO16_N19___rc 10.0
+r136 pisos_0__PISO16_N20 pisos_0__PISO16_N20___rc 17.0
+r137 pisos_0__PISO16_N21 pisos_0__PISO16_N21___rc 13.0
+r138 pisos_0__PISO16_N22 pisos_0__PISO16_N22___rc 5.0
+r139 pisos_0__PISO16_N4 pisos_0__PISO16_N4___rc 23.0
+r140 pisos_0__PISO16_N5 pisos_0__PISO16_N5___rc 12.0
+r141 pisos_0__PISO16_N6 pisos_0__PISO16_N6___rc 4.0
+r142 pisos_0__PISO16_N7 pisos_0__PISO16_N7___rc 7.0
+r143 pisos_0__PISO16_N8 pisos_0__PISO16_N8___rc 17.0
+r144 pisos_0__PISO16_N9 pisos_0__PISO16_N9___rc 5.0
+r145 pisos_0__PISO16_ctr_1_ pisos_0__PISO16_ctr_1____rc 21.0
+r146 pisos_0__PISO16_ctr_2_ pisos_0__PISO16_ctr_2____rc 32.0
+r147 pisos_0__PISO16_ctr_3_ pisos_0__PISO16_ctr_3____rc 31.0
+r148 pisos_0__PISO16_shift_register[10] pisos_0__PISO16_shift_register[10]___rc 22.0
+r149 pisos_0__PISO16_shift_register[11] pisos_0__PISO16_shift_register[11]___rc 27.0
+r150 pisos_0__PISO16_shift_register[12] pisos_0__PISO16_shift_register[12]___rc 79.0
+r151 pisos_0__PISO16_shift_register[13] pisos_0__PISO16_shift_register[13]___rc 5.0
+r152 pisos_0__PISO16_shift_register[14] pisos_0__PISO16_shift_register[14]___rc 36.0
+r153 pisos_0__PISO16_shift_register[15] pisos_0__PISO16_shift_register[15]___rc 32.0
+r154 pisos_0__PISO16_shift_register[1] pisos_0__PISO16_shift_register[1]___rc 9.0
+r155 pisos_0__PISO16_shift_register[2] pisos_0__PISO16_shift_register[2]___rc 9.0
+r156 pisos_0__PISO16_shift_register[3] pisos_0__PISO16_shift_register[3]___rc 7.0
+r157 pisos_0__PISO16_shift_register[4] pisos_0__PISO16_shift_register[4]___rc 62.0
+r158 pisos_0__PISO16_shift_register[5] pisos_0__PISO16_shift_register[5]___rc 6.0
+r159 pisos_0__PISO16_shift_register[6] pisos_0__PISO16_shift_register[6]___rc 5.0
+r160 pisos_0__PISO16_shift_register[7] pisos_0__PISO16_shift_register[7]___rc 54.0
+r161 pisos_0__PISO16_shift_register[8] pisos_0__PISO16_shift_register[8]___rc 59.0
+r162 pisos_0__PISO16_shift_register[9] pisos_0__PISO16_shift_register[9]___rc 9.0
+r163 pisos_1__PISO16_N10 pisos_1__PISO16_N10___rc 20.0
+r164 pisos_1__PISO16_N11 pisos_1__PISO16_N11___rc 49.0
+r165 pisos_1__PISO16_N12 pisos_1__PISO16_N12___rc 20.0
+r166 pisos_1__PISO16_N13 pisos_1__PISO16_N13___rc 61.0
+r167 pisos_1__PISO16_N14 pisos_1__PISO16_N14___rc 84.0
+r168 pisos_1__PISO16_N15 pisos_1__PISO16_N15___rc 19.0
+r169 pisos_1__PISO16_N16 pisos_1__PISO16_N16___rc 8.0
+r170 pisos_1__PISO16_N17 pisos_1__PISO16_N17___rc 30.0
+r171 pisos_1__PISO16_N18 pisos_1__PISO16_N18___rc 32.0
+r172 pisos_1__PISO16_N19 pisos_1__PISO16_N19___rc 11.0
+r173 pisos_1__PISO16_N20 pisos_1__PISO16_N20___rc 10.0
+r174 pisos_1__PISO16_N21 pisos_1__PISO16_N21___rc 19.0
+r175 pisos_1__PISO16_N22 pisos_1__PISO16_N22___rc 4.0
+r176 pisos_1__PISO16_N4 pisos_1__PISO16_N4___rc 25.0
+r177 pisos_1__PISO16_N5 pisos_1__PISO16_N5___rc 29.0
+r178 pisos_1__PISO16_N6 pisos_1__PISO16_N6___rc 6.0
+r179 pisos_1__PISO16_N7 pisos_1__PISO16_N7___rc 9.0
+r180 pisos_1__PISO16_N8 pisos_1__PISO16_N8___rc 7.0
+r181 pisos_1__PISO16_N9 pisos_1__PISO16_N9___rc 5.0
+r182 pisos_1__PISO16_ctr_1_ pisos_1__PISO16_ctr_1____rc 20.0
+r183 pisos_1__PISO16_ctr_2_ pisos_1__PISO16_ctr_2____rc 39.0
+r184 pisos_1__PISO16_ctr_3_ pisos_1__PISO16_ctr_3____rc 24.0
+r185 pisos_1__PISO16_shift_register[10] pisos_1__PISO16_shift_register[10]___rc 171.0
+r186 pisos_1__PISO16_shift_register[11] pisos_1__PISO16_shift_register[11]___rc 4.0
+r187 pisos_1__PISO16_shift_register[12] pisos_1__PISO16_shift_register[12]___rc 69.0
+r188 pisos_1__PISO16_shift_register[13] pisos_1__PISO16_shift_register[13]___rc 15.0
+r189 pisos_1__PISO16_shift_register[14] pisos_1__PISO16_shift_register[14]___rc 6.0
+r190 pisos_1__PISO16_shift_register[15] pisos_1__PISO16_shift_register[15]___rc 7.0
+r191 pisos_1__PISO16_shift_register[1] pisos_1__PISO16_shift_register[1]___rc 22.0
+r192 pisos_1__PISO16_shift_register[2] pisos_1__PISO16_shift_register[2]___rc 20.0
+r193 pisos_1__PISO16_shift_register[3] pisos_1__PISO16_shift_register[3]___rc 22.0
+r194 pisos_1__PISO16_shift_register[4] pisos_1__PISO16_shift_register[4]___rc 131.0
+r195 pisos_1__PISO16_shift_register[5] pisos_1__PISO16_shift_register[5]___rc 11.0
+r196 pisos_1__PISO16_shift_register[6] pisos_1__PISO16_shift_register[6]___rc 41.0
+r197 pisos_1__PISO16_shift_register[7] pisos_1__PISO16_shift_register[7]___rc 6.0
+r198 pisos_1__PISO16_shift_register[8] pisos_1__PISO16_shift_register[8]___rc 38.0
+r199 pisos_1__PISO16_shift_register[9] pisos_1__PISO16_shift_register[9]___rc 7.0
+r200 pisos_2__PISO16_N10 pisos_2__PISO16_N10___rc 81.0
+r201 pisos_2__PISO16_N11 pisos_2__PISO16_N11___rc 11.0
+r202 pisos_2__PISO16_N12 pisos_2__PISO16_N12___rc 26.0
+r203 pisos_2__PISO16_N13 pisos_2__PISO16_N13___rc 9.0
+r204 pisos_2__PISO16_N14 pisos_2__PISO16_N14___rc 7.0
+r205 pisos_2__PISO16_N15 pisos_2__PISO16_N15___rc 12.0
+r206 pisos_2__PISO16_N16 pisos_2__PISO16_N16___rc 36.0
+r207 pisos_2__PISO16_N17 pisos_2__PISO16_N17___rc 37.0
+r208 pisos_2__PISO16_N18 pisos_2__PISO16_N18___rc 138.0
+r209 pisos_2__PISO16_N19 pisos_2__PISO16_N19___rc 25.0
+r210 pisos_2__PISO16_N20 pisos_2__PISO16_N20___rc 13.0
+r211 pisos_2__PISO16_N21 pisos_2__PISO16_N21___rc 30.0
+r212 pisos_2__PISO16_N22 pisos_2__PISO16_N22___rc 15.0
+r213 pisos_2__PISO16_N4 pisos_2__PISO16_N4___rc 23.0
+r214 pisos_2__PISO16_N5 pisos_2__PISO16_N5___rc 36.0
+r215 pisos_2__PISO16_N6 pisos_2__PISO16_N6___rc 5.0
+r216 pisos_2__PISO16_N7 pisos_2__PISO16_N7___rc 38.0
+r217 pisos_2__PISO16_N8 pisos_2__PISO16_N8___rc 46.0
+r218 pisos_2__PISO16_N9 pisos_2__PISO16_N9___rc 92.0
+r219 pisos_2__PISO16_ctr_1_ pisos_2__PISO16_ctr_1____rc 19.0
+r220 pisos_2__PISO16_ctr_2_ pisos_2__PISO16_ctr_2____rc 35.0
+r221 pisos_2__PISO16_ctr_3_ pisos_2__PISO16_ctr_3____rc 23.0
+r222 pisos_2__PISO16_shift_register[10] pisos_2__PISO16_shift_register[10]___rc 27.0
+r223 pisos_2__PISO16_shift_register[11] pisos_2__PISO16_shift_register[11]___rc 29.0
+r224 pisos_2__PISO16_shift_register[12] pisos_2__PISO16_shift_register[12]___rc 13.0
+r225 pisos_2__PISO16_shift_register[13] pisos_2__PISO16_shift_register[13]___rc 80.0
+r226 pisos_2__PISO16_shift_register[14] pisos_2__PISO16_shift_register[14]___rc 64.0
+r227 pisos_2__PISO16_shift_register[15] pisos_2__PISO16_shift_register[15]___rc 16.0
+r228 pisos_2__PISO16_shift_register[1] pisos_2__PISO16_shift_register[1]___rc 28.0
+r229 pisos_2__PISO16_shift_register[2] pisos_2__PISO16_shift_register[2]___rc 8.0
+r230 pisos_2__PISO16_shift_register[3] pisos_2__PISO16_shift_register[3]___rc 14.0
+r231 pisos_2__PISO16_shift_register[4] pisos_2__PISO16_shift_register[4]___rc 16.0
+r232 pisos_2__PISO16_shift_register[5] pisos_2__PISO16_shift_register[5]___rc 10.0
+r233 pisos_2__PISO16_shift_register[6] pisos_2__PISO16_shift_register[6]___rc 27.0
+r234 pisos_2__PISO16_shift_register[7] pisos_2__PISO16_shift_register[7]___rc 10.0
+r235 pisos_2__PISO16_shift_register[8] pisos_2__PISO16_shift_register[8]___rc 128.0
+r236 pisos_2__PISO16_shift_register[9] pisos_2__PISO16_shift_register[9]___rc 43.0
+r237 pisos_3__PISO16_N10 pisos_3__PISO16_N10___rc 77.0
+r238 pisos_3__PISO16_N11 pisos_3__PISO16_N11___rc 19.0
+r239 pisos_3__PISO16_N12 pisos_3__PISO16_N12___rc 7.0
+r240 pisos_3__PISO16_N13 pisos_3__PISO16_N13___rc 3.0
+r241 pisos_3__PISO16_N14 pisos_3__PISO16_N14___rc 88.0
+r242 pisos_3__PISO16_N15 pisos_3__PISO16_N15___rc 22.0
+r243 pisos_3__PISO16_N16 pisos_3__PISO16_N16___rc 15.0
+r244 pisos_3__PISO16_N17 pisos_3__PISO16_N17___rc 79.0
+r245 pisos_3__PISO16_N18 pisos_3__PISO16_N18___rc 4.0
+r246 pisos_3__PISO16_N19 pisos_3__PISO16_N19___rc 52.0
+r247 pisos_3__PISO16_N20 pisos_3__PISO16_N20___rc 16.0
+r248 pisos_3__PISO16_N21 pisos_3__PISO16_N21___rc 12.0
+r249 pisos_3__PISO16_N22 pisos_3__PISO16_N22___rc 15.0
+r250 pisos_3__PISO16_N3 pisos_3__PISO16_N3___rc 14.0
+r251 pisos_3__PISO16_N4 pisos_3__PISO16_N4___rc 19.0
+r252 pisos_3__PISO16_N5 pisos_3__PISO16_N5___rc 29.0
+r253 pisos_3__PISO16_N6 pisos_3__PISO16_N6___rc 5.0
+r254 pisos_3__PISO16_N7 pisos_3__PISO16_N7___rc 25.0
+r255 pisos_3__PISO16_N8 pisos_3__PISO16_N8___rc 18.0
+r256 pisos_3__PISO16_N9 pisos_3__PISO16_N9___rc 40.0
+r257 pisos_3__PISO16_ctr_0_ pisos_3__PISO16_ctr_0____rc 25.0
+r258 pisos_3__PISO16_ctr_1_ pisos_3__PISO16_ctr_1____rc 15.0
+r259 pisos_3__PISO16_ctr_2_ pisos_3__PISO16_ctr_2____rc 40.0
+r260 pisos_3__PISO16_ctr_3_ pisos_3__PISO16_ctr_3____rc 27.0
+r261 pisos_3__PISO16_shift_register[10] pisos_3__PISO16_shift_register[10]___rc 8.0
+r262 pisos_3__PISO16_shift_register[11] pisos_3__PISO16_shift_register[11]___rc 11.0
+r263 pisos_3__PISO16_shift_register[12] pisos_3__PISO16_shift_register[12]___rc 79.0
+r264 pisos_3__PISO16_shift_register[13] pisos_3__PISO16_shift_register[13]___rc 61.0
+r265 pisos_3__PISO16_shift_register[14] pisos_3__PISO16_shift_register[14]___rc 49.0
+r266 pisos_3__PISO16_shift_register[15] pisos_3__PISO16_shift_register[15]___rc 28.0
+r267 pisos_3__PISO16_shift_register[1] pisos_3__PISO16_shift_register[1]___rc 21.0
+r268 pisos_3__PISO16_shift_register[2] pisos_3__PISO16_shift_register[2]___rc 60.0
+r269 pisos_3__PISO16_shift_register[3] pisos_3__PISO16_shift_register[3]___rc 26.0
+r270 pisos_3__PISO16_shift_register[4] pisos_3__PISO16_shift_register[4]___rc 5.0
+r271 pisos_3__PISO16_shift_register[5] pisos_3__PISO16_shift_register[5]___rc 17.0
+r272 pisos_3__PISO16_shift_register[6] pisos_3__PISO16_shift_register[6]___rc 61.0
+r273 pisos_3__PISO16_shift_register[7] pisos_3__PISO16_shift_register[7]___rc 30.0
+r274 pisos_3__PISO16_shift_register[8] pisos_3__PISO16_shift_register[8]___rc 19.0
+r275 pisos_3__PISO16_shift_register[9] pisos_3__PISO16_shift_register[9]___rc 39.0
+*** Estimated net capacitances from Design Compiler
+c1 CLK_IN___rc VSS_PISO64_4 8.31178e-16
+c2 DATA_IN[0]___rc VSS_PISO64_4 1.82456e-16
+c3 DATA_IN[10]___rc VSS_PISO64_4 1.93738e-16
+c4 DATA_IN[11]___rc VSS_PISO64_4 3.35016e-16
+c5 DATA_IN[12]___rc VSS_PISO64_4 5.14761e-16
+c6 DATA_IN[13]___rc VSS_PISO64_4 3.6304e-16
+c7 DATA_IN[14]___rc VSS_PISO64_4 1.01108e-16
+c8 DATA_IN[15]___rc VSS_PISO64_4 5.46372e-16
+c9 DATA_IN[16]___rc VSS_PISO64_4 2.2068e-16
+c10 DATA_IN[17]___rc VSS_PISO64_4 1.5818e-16
+c11 DATA_IN[18]___rc VSS_PISO64_4 2.32944e-16
+c12 DATA_IN[19]___rc VSS_PISO64_4 3.12842e-16
+c13 DATA_IN[1]___rc VSS_PISO64_4 8.8021e-17
+c14 DATA_IN[20]___rc VSS_PISO64_4 7.4619e-17
+c15 DATA_IN[21]___rc VSS_PISO64_4 8.2737e-17
+c16 DATA_IN[22]___rc VSS_PISO64_4 2.12491e-16
+c17 DATA_IN[23]___rc VSS_PISO64_4 2.77268e-16
+c18 DATA_IN[24]___rc VSS_PISO64_4 3.28433e-16
+c19 DATA_IN[25]___rc VSS_PISO64_4 1.79607e-16
+c20 DATA_IN[26]___rc VSS_PISO64_4 2.65699e-16
+c21 DATA_IN[27]___rc VSS_PISO64_4 5.9093e-17
+c22 DATA_IN[28]___rc VSS_PISO64_4 2.9781e-16
+c23 DATA_IN[29]___rc VSS_PISO64_4 1.7355e-16
+c24 DATA_IN[2]___rc VSS_PISO64_4 5.9872e-17
+c25 DATA_IN[30]___rc VSS_PISO64_4 3.96139e-16
+c26 DATA_IN[31]___rc VSS_PISO64_4 4.6241e-16
+c27 DATA_IN[32]___rc VSS_PISO64_4 3.04977e-16
+c28 DATA_IN[33]___rc VSS_PISO64_4 3.92015e-16
+c29 DATA_IN[34]___rc VSS_PISO64_4 1.34624e-16
+c30 DATA_IN[35]___rc VSS_PISO64_4 3.77718e-16
+c31 DATA_IN[36]___rc VSS_PISO64_4 6.17992e-16
+c32 DATA_IN[37]___rc VSS_PISO64_4 2.094e-16
+c33 DATA_IN[38]___rc VSS_PISO64_4 3.63122e-16
+c34 DATA_IN[39]___rc VSS_PISO64_4 3.17443e-16
+c35 DATA_IN[3]___rc VSS_PISO64_4 1.10595e-16
+c36 DATA_IN[40]___rc VSS_PISO64_4 1.10411e-16
+c37 DATA_IN[41]___rc VSS_PISO64_4 7.8055e-17
+c38 DATA_IN[42]___rc VSS_PISO64_4 4.45852e-16
+c39 DATA_IN[43]___rc VSS_PISO64_4 1.82048e-16
+c40 DATA_IN[44]___rc VSS_PISO64_4 3.24139e-16
+c41 DATA_IN[45]___rc VSS_PISO64_4 3.15782e-16
+c42 DATA_IN[46]___rc VSS_PISO64_4 8.7609e-17
+c43 DATA_IN[47]___rc VSS_PISO64_4 1.8596e-16
+c44 DATA_IN[48]___rc VSS_PISO64_4 1.57296e-16
+c45 DATA_IN[49]___rc VSS_PISO64_4 4.62575e-16
+c46 DATA_IN[4]___rc VSS_PISO64_4 1.30615e-16
+c47 DATA_IN[50]___rc VSS_PISO64_4 9.101e-17
+c48 DATA_IN[51]___rc VSS_PISO64_4 4.47566e-16
+c49 DATA_IN[52]___rc VSS_PISO64_4 2.15658e-16
+c50 DATA_IN[53]___rc VSS_PISO64_4 3.59973e-16
+c51 DATA_IN[54]___rc VSS_PISO64_4 3.42351e-16
+c52 DATA_IN[55]___rc VSS_PISO64_4 2.25463e-16
+c53 DATA_IN[56]___rc VSS_PISO64_4 1.38948e-16
+c54 DATA_IN[57]___rc VSS_PISO64_4 2.1017e-16
+c55 DATA_IN[58]___rc VSS_PISO64_4 3.8118e-16
+c56 DATA_IN[59]___rc VSS_PISO64_4 9.451e-17
+c57 DATA_IN[5]___rc VSS_PISO64_4 5.3531e-17
+c58 DATA_IN[60]___rc VSS_PISO64_4 9.8221e-17
+c59 DATA_IN[61]___rc VSS_PISO64_4 7.086e-18
+c60 DATA_IN[62]___rc VSS_PISO64_4 4.01468e-16
+c61 DATA_IN[63]___rc VSS_PISO64_4 2.39476e-16
+c62 DATA_IN[6]___rc VSS_PISO64_4 1.23918e-16
+c63 DATA_IN[7]___rc VSS_PISO64_4 6.6878e-17
+c64 DATA_IN[8]___rc VSS_PISO64_4 1.75475e-16
+c65 DATA_IN[9]___rc VSS_PISO64_4 1.14026e-16
+c66 DATA_USED_OUT___rc VSS_PISO64_4 4.49727e-16
+c67 RESET_IN___rc VSS_PISO64_4 1.270182e-15
+c68 SERIAL_OUT[0]___rc VSS_PISO64_4 3.1114e-16
+c69 SERIAL_OUT[1]___rc VSS_PISO64_4 8.908e-17
+c70 SERIAL_OUT[2]___rc VSS_PISO64_4 4.304e-17
+c71 SERIAL_OUT[3]___rc VSS_PISO64_4 6.83199e-16
+c72 n106___rc VSS_PISO64_4 1.797662e-15
+c73 n108___rc VSS_PISO64_4 9.90876e-16
+c74 n109___rc VSS_PISO64_4 2.122268e-15
+c75 n110___rc VSS_PISO64_4 3.943444e-15
+c76 n111___rc VSS_PISO64_4 3.047116e-15
+c77 n112___rc VSS_PISO64_4 4.849165e-15
+c78 n114___rc VSS_PISO64_4 4.986563e-15
+c79 n115___rc VSS_PISO64_4 5.27678e-15
+c80 n24___rc VSS_PISO64_4 1.039983e-15
+c81 n26___rc VSS_PISO64_4 2.84598e-16
+c82 n27___rc VSS_PISO64_4 1.80225e-16
+c83 n28___rc VSS_PISO64_4 2.26998e-16
+c84 n29___rc VSS_PISO64_4 5.24171e-16
+c85 n30___rc VSS_PISO64_4 3.88549e-16
+c86 n31___rc VSS_PISO64_4 3.46513e-16
+c87 n32___rc VSS_PISO64_4 1.94942e-16
+c88 n33___rc VSS_PISO64_4 3.02618e-16
+c89 n34___rc VSS_PISO64_4 4.87749e-16
+c90 n35___rc VSS_PISO64_4 6.7885e-17
+c91 n37___rc VSS_PISO64_4 4.1064e-17
+c92 n39___rc VSS_PISO64_4 5.3714e-17
+c93 n41___rc VSS_PISO64_4 1.13949e-16
+c94 n55___rc VSS_PISO64_4 7.6879e-17
+c95 n56___rc VSS_PISO64_4 3.13759e-16
+c96 n57___rc VSS_PISO64_4 9.9194e-17
+c97 n58___rc VSS_PISO64_4 2.86269e-16
+c98 n59___rc VSS_PISO64_4 1.70672e-16
+c99 n60___rc VSS_PISO64_4 2.14631e-16
+c100 n61___rc VSS_PISO64_4 1.55837e-16
+c101 n62___rc VSS_PISO64_4 4.21487e-16
+c102 n63___rc VSS_PISO64_4 1.99379e-16
+c103 n64___rc VSS_PISO64_4 3.66435e-16
+c104 n65___rc VSS_PISO64_4 1.50617e-16
+c105 n66___rc VSS_PISO64_4 2.593e-18
+c106 n67___rc VSS_PISO64_4 1.19022e-16
+c107 n68___rc VSS_PISO64_4 2.1595e-17
+c108 n69___rc VSS_PISO64_4 7.506e-17
+c109 n70___rc VSS_PISO64_4 4.387049e-15
+c110 n71___rc VSS_PISO64_4 1.11598e-16
+c111 n72___rc VSS_PISO64_4 4.466484e-15
+c112 n73___rc VSS_PISO64_4 1.044e-18
+c113 n75___rc VSS_PISO64_4 2.31389e-16
+c114 n76___rc VSS_PISO64_4 2.6566e-17
+c115 n77___rc VSS_PISO64_4 4.311016e-15
+c116 n78___rc VSS_PISO64_4 3.3174e-16
+c117 n80___rc VSS_PISO64_4 8.2611e-17
+c118 n82___rc VSS_PISO64_4 1.08342e-16
+c119 n84___rc VSS_PISO64_4 1.04529e-16
+c120 n86___rc VSS_PISO64_4 8.5924e-17
+c121 n88___rc VSS_PISO64_4 1.72378e-16
+c122 n90___rc VSS_PISO64_4 7.0798e-17
+c123 n92___rc VSS_PISO64_4 8.7585e-17
+c124 n94___rc VSS_PISO64_4 8.6142e-17
+c125 n95___rc VSS_PISO64_4 4.189021e-15
+c126 pisos_0__PISO16_N10___rc VSS_PISO64_4 1.03188e-16
+c127 pisos_0__PISO16_N11___rc VSS_PISO64_4 8.35946e-16
+c128 pisos_0__PISO16_N12___rc VSS_PISO64_4 6.8391e-17
+c129 pisos_0__PISO16_N13___rc VSS_PISO64_4 5.2168e-17
+c130 pisos_0__PISO16_N14___rc VSS_PISO64_4 9.75101e-16
+c131 pisos_0__PISO16_N15___rc VSS_PISO64_4 1.22897e-16
+c132 pisos_0__PISO16_N16___rc VSS_PISO64_4 6.03173e-16
+c133 pisos_0__PISO16_N17___rc VSS_PISO64_4 7.11524e-16
+c134 pisos_0__PISO16_N18___rc VSS_PISO64_4 3.73149e-16
+c135 pisos_0__PISO16_N19___rc VSS_PISO64_4 1.67012e-16
+c136 pisos_0__PISO16_N20___rc VSS_PISO64_4 2.08326e-16
+c137 pisos_0__PISO16_N21___rc VSS_PISO64_4 2.11276e-16
+c138 pisos_0__PISO16_N22___rc VSS_PISO64_4 8.361e-17
+c139 pisos_0__PISO16_N4___rc VSS_PISO64_4 2.63739e-16
+c140 pisos_0__PISO16_N5___rc VSS_PISO64_4 2.10991e-16
+c141 pisos_0__PISO16_N6___rc VSS_PISO64_4 4.5081e-17
+c142 pisos_0__PISO16_N7___rc VSS_PISO64_4 9.0444e-17
+c143 pisos_0__PISO16_N8___rc VSS_PISO64_4 2.03138e-16
+c144 pisos_0__PISO16_N9___rc VSS_PISO64_4 5.8514e-17
+c145 pisos_0__PISO16_ctr_1____rc VSS_PISO64_4 3.1264e-16
+c146 pisos_0__PISO16_ctr_2____rc VSS_PISO64_4 4.72526e-16
+c147 pisos_0__PISO16_ctr_3____rc VSS_PISO64_4 4.28588e-16
+c148 pisos_0__PISO16_shift_register[10]___rc VSS_PISO64_4 2.53544e-16
+c149 pisos_0__PISO16_shift_register[11]___rc VSS_PISO64_4 4.00153e-16
+c150 pisos_0__PISO16_shift_register[12]___rc VSS_PISO64_4 8.46094e-16
+c151 pisos_0__PISO16_shift_register[13]___rc VSS_PISO64_4 6.5121e-17
+c152 pisos_0__PISO16_shift_register[14]___rc VSS_PISO64_4 3.9775e-16
+c153 pisos_0__PISO16_shift_register[15]___rc VSS_PISO64_4 4.46001e-16
+c154 pisos_0__PISO16_shift_register[1]___rc VSS_PISO64_4 1.37174e-16
+c155 pisos_0__PISO16_shift_register[2]___rc VSS_PISO64_4 1.0478e-16
+c156 pisos_0__PISO16_shift_register[3]___rc VSS_PISO64_4 1.26383e-16
+c157 pisos_0__PISO16_shift_register[4]___rc VSS_PISO64_4 8.93197e-16
+c158 pisos_0__PISO16_shift_register[5]___rc VSS_PISO64_4 8.1027e-17
+c159 pisos_0__PISO16_shift_register[6]___rc VSS_PISO64_4 6.9902e-17
+c160 pisos_0__PISO16_shift_register[7]___rc VSS_PISO64_4 5.81838e-16
+c161 pisos_0__PISO16_shift_register[8]___rc VSS_PISO64_4 9.73155e-16
+c162 pisos_0__PISO16_shift_register[9]___rc VSS_PISO64_4 1.4711e-16
+c163 pisos_1__PISO16_N10___rc VSS_PISO64_4 2.2391e-16
+c164 pisos_1__PISO16_N11___rc VSS_PISO64_4 7.59179e-16
+c165 pisos_1__PISO16_N12___rc VSS_PISO64_4 2.36776e-16
+c166 pisos_1__PISO16_N13___rc VSS_PISO64_4 1.003284e-15
+c167 pisos_1__PISO16_N14___rc VSS_PISO64_4 1.191102e-15
+c168 pisos_1__PISO16_N15___rc VSS_PISO64_4 2.95353e-16
+c169 pisos_1__PISO16_N16___rc VSS_PISO64_4 1.04469e-16
+c170 pisos_1__PISO16_N17___rc VSS_PISO64_4 4.16901e-16
+c171 pisos_1__PISO16_N18___rc VSS_PISO64_4 3.74775e-16
+c172 pisos_1__PISO16_N19___rc VSS_PISO64_4 1.32287e-16
+c173 pisos_1__PISO16_N20___rc VSS_PISO64_4 1.62239e-16
+c174 pisos_1__PISO16_N21___rc VSS_PISO64_4 3.05162e-16
+c175 pisos_1__PISO16_N22___rc VSS_PISO64_4 5.3228e-17
+c176 pisos_1__PISO16_N4___rc VSS_PISO64_4 2.84815e-16
+c177 pisos_1__PISO16_N5___rc VSS_PISO64_4 3.23679e-16
+c178 pisos_1__PISO16_N6___rc VSS_PISO64_4 8.9777e-17
+c179 pisos_1__PISO16_N7___rc VSS_PISO64_4 1.30289e-16
+c180 pisos_1__PISO16_N8___rc VSS_PISO64_4 1.24844e-16
+c181 pisos_1__PISO16_N9___rc VSS_PISO64_4 6.8449e-17
+c182 pisos_1__PISO16_ctr_1____rc VSS_PISO64_4 3.03628e-16
+c183 pisos_1__PISO16_ctr_2____rc VSS_PISO64_4 5.05884e-16
+c184 pisos_1__PISO16_ctr_3____rc VSS_PISO64_4 3.37397e-16
+c185 pisos_1__PISO16_shift_register[10]___rc VSS_PISO64_4 2.031106e-15
+c186 pisos_1__PISO16_shift_register[11]___rc VSS_PISO64_4 6.7617e-17
+c187 pisos_1__PISO16_shift_register[12]___rc VSS_PISO64_4 1.007463e-15
+c188 pisos_1__PISO16_shift_register[13]___rc VSS_PISO64_4 2.29782e-16
+c189 pisos_1__PISO16_shift_register[14]___rc VSS_PISO64_4 8.9917e-17
+c190 pisos_1__PISO16_shift_register[15]___rc VSS_PISO64_4 1.07875e-16
+c191 pisos_1__PISO16_shift_register[1]___rc VSS_PISO64_4 2.41359e-16
+c192 pisos_1__PISO16_shift_register[2]___rc VSS_PISO64_4 2.59834e-16
+c193 pisos_1__PISO16_shift_register[3]___rc VSS_PISO64_4 2.69765e-16
+c194 pisos_1__PISO16_shift_register[4]___rc VSS_PISO64_4 1.498185e-15
+c195 pisos_1__PISO16_shift_register[5]___rc VSS_PISO64_4 1.52135e-16
+c196 pisos_1__PISO16_shift_register[6]___rc VSS_PISO64_4 6.92929e-16
+c197 pisos_1__PISO16_shift_register[7]___rc VSS_PISO64_4 9.7381e-17
+c198 pisos_1__PISO16_shift_register[8]___rc VSS_PISO64_4 4.56095e-16
+c199 pisos_1__PISO16_shift_register[9]___rc VSS_PISO64_4 1.14561e-16
+c200 pisos_2__PISO16_N10___rc VSS_PISO64_4 1.352913e-15
+c201 pisos_2__PISO16_N11___rc VSS_PISO64_4 1.17366e-16
+c202 pisos_2__PISO16_N12___rc VSS_PISO64_4 2.83314e-16
+c203 pisos_2__PISO16_N13___rc VSS_PISO64_4 1.0998e-16
+c204 pisos_2__PISO16_N14___rc VSS_PISO64_4 1.14806e-16
+c205 pisos_2__PISO16_N15___rc VSS_PISO64_4 1.46316e-16
+c206 pisos_2__PISO16_N16___rc VSS_PISO64_4 5.43147e-16
+c207 pisos_2__PISO16_N17___rc VSS_PISO64_4 6.43088e-16
+c208 pisos_2__PISO16_N18___rc VSS_PISO64_4 1.80033e-15
+c209 pisos_2__PISO16_N19___rc VSS_PISO64_4 2.62988e-16
+c210 pisos_2__PISO16_N20___rc VSS_PISO64_4 1.87069e-16
+c211 pisos_2__PISO16_N21___rc VSS_PISO64_4 3.29207e-16
+c212 pisos_2__PISO16_N22___rc VSS_PISO64_4 1.6882e-16
+c213 pisos_2__PISO16_N4___rc VSS_PISO64_4 2.50403e-16
+c214 pisos_2__PISO16_N5___rc VSS_PISO64_4 4.10772e-16
+c215 pisos_2__PISO16_N6___rc VSS_PISO64_4 8.038e-17
+c216 pisos_2__PISO16_N7___rc VSS_PISO64_4 5.66871e-16
+c217 pisos_2__PISO16_N8___rc VSS_PISO64_4 7.09064e-16
+c218 pisos_2__PISO16_N9___rc VSS_PISO64_4 1.344168e-15
+c219 pisos_2__PISO16_ctr_1____rc VSS_PISO64_4 2.80321e-16
+c220 pisos_2__PISO16_ctr_2____rc VSS_PISO64_4 4.08765e-16
+c221 pisos_2__PISO16_ctr_3____rc VSS_PISO64_4 3.09641e-16
+c222 pisos_2__PISO16_shift_register[10]___rc VSS_PISO64_4 3.04143e-16
+c223 pisos_2__PISO16_shift_register[11]___rc VSS_PISO64_4 3.32237e-16
+c224 pisos_2__PISO16_shift_register[12]___rc VSS_PISO64_4 1.75786e-16
+c225 pisos_2__PISO16_shift_register[13]___rc VSS_PISO64_4 1.302128e-15
+c226 pisos_2__PISO16_shift_register[14]___rc VSS_PISO64_4 1.084209e-15
+c227 pisos_2__PISO16_shift_register[15]___rc VSS_PISO64_4 1.92051e-16
+c228 pisos_2__PISO16_shift_register[1]___rc VSS_PISO64_4 4.77347e-16
+c229 pisos_2__PISO16_shift_register[2]___rc VSS_PISO64_4 1.40883e-16
+c230 pisos_2__PISO16_shift_register[3]___rc VSS_PISO64_4 1.614e-16
+c231 pisos_2__PISO16_shift_register[4]___rc VSS_PISO64_4 2.10383e-16
+c232 pisos_2__PISO16_shift_register[5]___rc VSS_PISO64_4 1.30161e-16
+c233 pisos_2__PISO16_shift_register[6]___rc VSS_PISO64_4 3.06149e-16
+c234 pisos_2__PISO16_shift_register[7]___rc VSS_PISO64_4 1.52659e-16
+c235 pisos_2__PISO16_shift_register[8]___rc VSS_PISO64_4 1.737731e-15
+c236 pisos_2__PISO16_shift_register[9]___rc VSS_PISO64_4 6.63275e-16
+c237 pisos_3__PISO16_N10___rc VSS_PISO64_4 9.45545e-16
+c238 pisos_3__PISO16_N11___rc VSS_PISO64_4 3.21376e-16
+c239 pisos_3__PISO16_N12___rc VSS_PISO64_4 1.13652e-16
+c240 pisos_3__PISO16_N13___rc VSS_PISO64_4 4.7209e-17
+c241 pisos_3__PISO16_N14___rc VSS_PISO64_4 1.329148e-15
+c242 pisos_3__PISO16_N15___rc VSS_PISO64_4 2.74801e-16
+c243 pisos_3__PISO16_N16___rc VSS_PISO64_4 2.17302e-16
+c244 pisos_3__PISO16_N17___rc VSS_PISO64_4 1.298734e-15
+c245 pisos_3__PISO16_N18___rc VSS_PISO64_4 4.3735e-17
+c246 pisos_3__PISO16_N19___rc VSS_PISO64_4 8.19242e-16
+c247 pisos_3__PISO16_N20___rc VSS_PISO64_4 2.52437e-16
+c248 pisos_3__PISO16_N21___rc VSS_PISO64_4 1.56148e-16
+c249 pisos_3__PISO16_N22___rc VSS_PISO64_4 1.73366e-16
+c250 pisos_3__PISO16_N3___rc VSS_PISO64_4 1.51992e-16
+c251 pisos_3__PISO16_N4___rc VSS_PISO64_4 2.02716e-16
+c252 pisos_3__PISO16_N5___rc VSS_PISO64_4 3.137e-16
+c253 pisos_3__PISO16_N6___rc VSS_PISO64_4 5.6004e-17
+c254 pisos_3__PISO16_N7___rc VSS_PISO64_4 3.37228e-16
+c255 pisos_3__PISO16_N8___rc VSS_PISO64_4 2.205e-16
+c256 pisos_3__PISO16_N9___rc VSS_PISO64_4 5.60061e-16
+c257 pisos_3__PISO16_ctr_0____rc VSS_PISO64_4 4.18668e-16
+c258 pisos_3__PISO16_ctr_1____rc VSS_PISO64_4 2.33798e-16
+c259 pisos_3__PISO16_ctr_2____rc VSS_PISO64_4 4.66062e-16
+c260 pisos_3__PISO16_ctr_3____rc VSS_PISO64_4 3.49122e-16
+c261 pisos_3__PISO16_shift_register[10]___rc VSS_PISO64_4 1.1797e-16
+c262 pisos_3__PISO16_shift_register[11]___rc VSS_PISO64_4 1.23597e-16
+c263 pisos_3__PISO16_shift_register[12]___rc VSS_PISO64_4 1.009751e-15
+c264 pisos_3__PISO16_shift_register[13]___rc VSS_PISO64_4 6.50132e-16
+c265 pisos_3__PISO16_shift_register[14]___rc VSS_PISO64_4 7.6743e-16
+c266 pisos_3__PISO16_shift_register[15]___rc VSS_PISO64_4 3.04688e-16
+c267 pisos_3__PISO16_shift_register[1]___rc VSS_PISO64_4 2.60344e-16
+c268 pisos_3__PISO16_shift_register[2]___rc VSS_PISO64_4 6.53306e-16
+c269 pisos_3__PISO16_shift_register[3]___rc VSS_PISO64_4 4.52264e-16
+c270 pisos_3__PISO16_shift_register[4]___rc VSS_PISO64_4 7.6206e-17
+c271 pisos_3__PISO16_shift_register[5]___rc VSS_PISO64_4 2.1906e-16
+c272 pisos_3__PISO16_shift_register[6]___rc VSS_PISO64_4 9.49296e-16
+c273 pisos_3__PISO16_shift_register[7]___rc VSS_PISO64_4 3.49418e-16
+c274 pisos_3__PISO16_shift_register[8]___rc VSS_PISO64_4 2.19918e-16
+c275 pisos_3__PISO16_shift_register[9]___rc VSS_PISO64_4 4.47674e-16
+.ENDS
+*** End
+
